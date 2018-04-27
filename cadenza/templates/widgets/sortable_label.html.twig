@@ -1,0 +1,8 @@
+<span class="widget-sortable-label" data-action="{{ sortable.get_action() }}" data-order-by="{{ sortable.get_column() }}" data-order-direction="{{ sortable.get_toggled_direction() }}">
+	{{ sortable.label }}
+	{% if sortable.is_selected %}
+		{{ sortable.direction ? ICONS.sort['sorted-asc']|raw : ICONS.sort['sorted-desc']|raw }}
+	{% else %}
+		{{ ICONS.sort['sortable']|raw }}
+	{% endif %}
+</span>

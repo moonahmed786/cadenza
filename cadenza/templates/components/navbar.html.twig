@@ -1,0 +1,24 @@
+<nav id="{{ navbar_id }}" class="navbar navbar-default navbar-fluid-background">
+	<div class="container container-offset-header">
+		<div class="navbar-header">
+			<a href="{{ CADENZA_URL }}" class="navbar-brand">
+				<div class="floatleft icon-home">{{ ICONS.navbar['home']|raw }}</div>
+				<div class="floatleft app-logo">{% spaceless %}
+					<span class="sr-only">{{ APP_NAME }}</span>
+					{# Ensure logo.png and logo_o.png both get loaded so there is no delay the first time hovering: #}
+					<img class="hidden" src="{{ ASSETS_IMAGES_DIR }}/logo.png" width="210" height="40" alt="{{ APP_NAME }}" />
+					<img class="hidden" src="{{ ASSETS_IMAGES_DIR }}/logo_o.png" width="210" height="40" alt="{{ APP_NAME }}" />
+				{% endspaceless %}</div>
+				<div class="clear"></div>
+			</a>
+		</div>
+		<div id="{{ navbar_id }}_content">
+			{% block navbar_content %}
+			{% endblock %}
+		</div>
+	</div>
+</nav>
+<div class="container">
+	{% block navbar_modals %}
+	{% endblock %}
+</div>

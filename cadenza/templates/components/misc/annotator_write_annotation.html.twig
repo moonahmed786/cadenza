@@ -1,0 +1,69 @@
+{% set annotator_write_annotation_id = 'id_annotator_write_annotation' %}
+<div id="{{ annotator_write_annotation_id }}">
+
+	<div class="new_comment_button_container">
+		<div class="new_comment_button">
+			<div class="action-button">
+				<a href="#" class="btn btn-icon icon-new inverse" aria-label="{{ TEXT.label['new'] }}">{{ ICONS.btn['new']|raw }}</a>
+			</div>
+			<div class="action-label">
+				<div class="pre-line">{{ TEXT.label['annotation_new_with_linebreak'] }}</div>
+			</div>
+			<div class="new_comment_button_spacing">&nbsp;</div>
+		</div>
+	</div>
+	
+	<div class="write_comment_container hidden">
+		<div class="write_comment">
+			<div class="action-button">
+				<a href="#" class="btn btn-icon icon-close-circle inverse" aria-label="{{ TEXT.label['close'] }}">{{ ICONS.btn['close_circle']|raw }}</a>
+			</div>
+			
+			<div class="action-label" data-new-message="{{ TEXT.label['annotation_new_with_linebreak'] }}" data-edit-message="{{ TEXT.label['annotation_edit_with_linebreak'] }}">
+				<div class="pre-line"></div>
+			</div>
+			
+			<div class="text-input">
+				<textarea class="text form-control" placeholder="{{ TEXT.hint['annotation'] }}"></textarea>
+			</div>
+			
+			<div class="start-time-display">
+				<div>{{ TEXT.label['start_time'] }} </div>
+				<div>
+					<input class="start-time form-control" readonly disabled type="text" value="0:00">
+				</div>
+			</div>
+			
+			<div class="duration-input">
+				<div>{{ TEXT.label['duration_(s)'] }} </div>
+				<div>
+			        <input type="text" class="form-control duration input-num" placeholder="" maxlength="2" value="" />
+				</div>
+			</div>
+			
+			<div class="action-button">
+				<a href="#" class="btn btn-icon icon-save inverse" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+			</div>
+		</div>
+	</div>
+	
+	<div class="write_reply_container hidden">
+		<div class="write_reply">
+			<div class="action-button">
+				<a href="#" class="btn btn-icon icon-close-circle inverse" aria-label="{{ TEXT.label['close'] }}">{{ ICONS.btn['close_circle']|raw }}</a>
+			</div>
+			
+			<div class="action-label" data-new-message="{{ TEXT.label['reply_new_with_linebreak'] }}" data-edit-message="{{ TEXT.label['reply_edit_with_linebreak'] }}">
+				<div class="pre-line"></div>
+			</div>
+			
+			<div class="text-input">
+				<textarea class="text form-control" placeholder="{{ TEXT.hint['annotation_reply'] }}"></textarea>
+			</div>
+			
+			<div class="action-button">
+				<a href="#" class="btn btn-icon icon-save inverse" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+			</div>
+		</div>
+	</div>
+</div>

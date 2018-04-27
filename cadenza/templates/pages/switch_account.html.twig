@@ -1,0 +1,58 @@
+{% extends "base.html.twig" %}
+
+{% set body_class = '' %}
+{% set include_css_components = false %}
+{% set include_css_components_admin = true %}
+
+{% set js_admin_components = [
+	'forms/account'
+] %}
+
+{% block body %}
+			<div class="page-block login-wrap" id="page-block-8w37hxkfjzs">
+			<div class="border-holder">
+				<div class="block-inner login-binner">
+					<div class="login-box">
+					<div class="landing-brand">
+						<img class="landing-logo" src="{{ ASSETS_IMAGES_DIR }}/logo_landing.png" alt="{{ APP_NAME }}"/>
+						<h4 class="switch-account">Switch account</h4>
+					</div>
+					<div class="login-form-box">
+						{% if user %}
+							<ul class="list-group">
+								<li 
+								class="list-group-item account-item"
+								data-currentuid="{{uid}}"
+								data-uid="{{user.uid}}"
+								data-email="{{user.g_email}}"
+								>{{user.g_email}} ({{user.user_type}})</li>
+							</ul>
+							{% else %}
+							  <form action="" method="POST" role="form">
+								<div class="form-group">
+									<label for="">Email</label>
+									<input type="text" name="username" class="form-control" placeholder="email">
+								</div>
+
+								<div class="form-group">
+									<label for="">Password</label>
+									<input type="Password" name="password" class="form-control" placeholder="Password">
+								</div>
+							
+								<button type="submit" class="btn btn-primary">Submit</button>
+							</form>
+							{% endif %}
+					</div>
+
+				</div> 
+			</div>
+			<div class="footer-forms">
+				<div class="container">
+					<div class="row">
+						<p>Copyright <a href="https://musictoolsuite.ca/" rel="null" type="url" class="url-link">Music Tool Suite</a> ©2018</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% if has_thead is null %}
+	{% set has_thead = true %}
+{% endif %}
+{% if has_tfoot is null %}
+	{% set has_tfoot = true %}
+{% endif %}
+{% if has_tbody is null %}
+	{% set has_tbody = true %}
+{% endif %}
+
+<table id="{{ table_id }}" class="{{ table_class }}" {% for key, value in table_data %} data-{{ key }}="{{ value }}"{% endfor %}>
+	{% if has_thead %}<thead class="{{ thead_class }}">
+		{% block table_head %}
+		{% endblock %}
+	</thead>{% endif %}
+	{% if has_tfoot %}<tfoot class="{{ tfoot_class }}">
+		{% block table_foot %}
+		{% endblock %}
+	{% endif %}</tfoot>
+	{% if has_tbody %}<tbody class="{{ tbody_class }}">
+		{% block table_body %}
+		{% endblock %}
+	{% endif %}</tbody>
+</table>
+{% block table_modals %}
+{% endblock %}

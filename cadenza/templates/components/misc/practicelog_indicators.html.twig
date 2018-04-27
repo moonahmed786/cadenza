@@ -1,0 +1,25 @@
+{% set practicelog_indicators_id = 'id_practicelog_indicators_' ~ practice.practice_id %}
+{% set practicelog_indicators_class = 'practicelog-indicators' %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderMiscPracticelogIndicators,
+so if the parameters of this template change, make sure to update that function! #}
+
+<div id="{{ practicelog_indicators_id }}" class="practicelog-indicators" data-practice-id="{{ practice.practice_id }}">
+	<div class="pull-right">
+		{% if practice.has_attachment %}
+			<div class="floatleft indicator-icon indicator-has-attachment">{{ ICONS.indicator['has_attachment']|raw }}</div>
+		{% endif %}
+		{% if practice.has_annotator %}
+			<div class="floatleft indicator-icon indicator-has-annotator">{{ ICONS.indicator['has_annotator']|raw }}</div>
+		{% endif %}
+		{% if practice.has_comment %}
+			<div class="floatleft indicator-icon indicator-has-comment">{{ ICONS.indicator['has_comment']|raw }}</div>
+		{% endif %}
+		{% if practice.is_notified %}
+			<div class="floatleft indicator-icon indicator-is-notified">{{ ICONS.indicator['is_notified']|raw }}</div>
+		{% endif %}
+		{% if practice.has_attachment or practice.has_annotator or practice.has_comment or practice.is_notified %}
+			<div class="clear"></div>
+		{% endif %}
+	</div>
+</div>

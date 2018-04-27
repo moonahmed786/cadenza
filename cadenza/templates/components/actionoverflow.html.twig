@@ -1,0 +1,17 @@
+{% set actionoverflow_class = hidden ? 'actionoverflow hidden' : 'actionoverflow' %}
+<div id="{{ actionoverflow_id }}" class="{{ actionoverflow_class }}">
+	<div class="{{ actionoverflow_dropdown_class }}">
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+			{% set toggleicon_class = inverse ? 'toggle-icon inverse' : 'toggle-icon' %}
+			<div class="{{ toggleicon_class }}">
+				<div class="icon-image">
+					<i class="fa fa-ellipsis-v"></i>
+				</div>
+			</div>
+		</a>
+		<ul class="dropdown-menu dropdown-menu-right" role="menu">
+			{% block actionoverflow_list_items %}
+			{% endblock %}
+		</ul>
+	</div>
+</div>

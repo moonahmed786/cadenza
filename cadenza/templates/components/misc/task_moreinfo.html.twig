@@ -1,0 +1,22 @@
+{% set task_moreinfo_id = 'id_task_moreinfo' %}
+
+<div id="{{ task_moreinfo_id }}">
+	{% if task.category == '0' %}
+		{% set category_name = task.category_other is not empty ? TEXT.label['other:'] ~ ' ' ~ task.category_other : TEXT.label['other'] %}
+	{% else %}
+		{% set category_name = TEXT.label['task_cat_'~task.category] %}
+	{% endif %}
+	<div class="row nogutters moreinfo-target">
+		<div class="col-xs-12 col-md-5 target-icon"><img src="{{ ASSETS_IMAGES_DIR }}/{{ user.user_type }}/target.png" width="40" height="40" alt="{{ TEXT.label['target'] }}" /></div>
+		<div class="col-xs-12 col-md-7 target-ratio">{{ task.count_practices }}/{{ task.target }}</div>
+	</div>
+	<div class="moreinfo-category bg-color-cat-{{ task.category }}">{{ category_name }}</div>
+	<div class="moreinfo-attachments">
+		{% for attachment in task.teacher_attachments %}
+			<div class="moreinfo-attachment" data-file-id="{{ attachment.file_id }}">
+				<div class="fileicon"><i class="fa fa-file-o"></i></div> {# TODO: icon should not be hard-coded #}
+				<a href="#" class="filename color-env">{{ attachment.filename }}</a>
+			</div>
+		{% endfor %}
+	</div>
+</div>

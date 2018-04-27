@@ -1,0 +1,44 @@
+{% extends "components/checklist.html.twig" %}
+
+{% set checklist_id = 'id_checklist_assign_checklist' %}
+{% set is_empty = false %}
+
+{% block checklist_heading %}
+{% endblock %}
+
+{% block checklist_content %}
+	<div class="task-checklist">
+		<input type="hidden" id="{{ checklist_id }}_json" value="{{ checklist_item_rows|json_encode }}" />
+		<input type="hidden" id="{{ checklist_id }}_target_unit_1" value="{{ TEXT.hint['targettype1'] }}" />
+		<input type="hidden" id="{{ checklist_id }}_target_unit_2" value="{{ TEXT.hint['targettype2'] }}" />
+		<input type="hidden" id="{{ checklist_id }}_target_unit_3" value="{{ TEXT.hint['targettype3'] }}" />
+		<input type="hidden" id="{{ checklist_id }}_target_unit_4" value="{{ TEXT.hint['targettype4'] }}" />
+		<table class="table">
+			<tr id="{{ checklist_id }}_item_dummy" class="hidden">
+				<td class="item-remove">
+					<a href="#" class="btn btn-icon icon-remove disabled" aria-label="{{ TEXT.label['remove'] }}">{{ ICONS.btn['remove']|raw }}</a>
+				</td>
+				<td class="item-text">
+					<div class="autocomplete-wrapper"><input type="text" class="typeahead form-control" placeholder="{{ TEXT.hint['enter_a_new_checklist_item'] }}" maxlength="255" value="" /></div>
+				</td>
+				<td class="item-target">
+					<div class="input-group">
+						<div class="input-group-btn">
+							<button type="button" class="btn btn-default padding-right-only dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<span class="btn btn-icon icon-targettype" data-target-type="1">{{ ICONS.btn['targettype1']|raw }}</span> <i class="fa fa-caret-down"></i>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#" data-target-type="1"><span>{{ ICONS.btn['targettype1']|raw }}</span> {{ TEXT.placeholder['target_type_1'] }}</a></li>
+								<li><a href="#" data-target-type="2"><span>{{ ICONS.btn['targettype2']|raw }}</span> {{ TEXT.placeholder['target_type_2'] }}</a></li>
+								<li><a href="#" data-target-type="3"><span>{{ ICONS.btn['targettype3']|raw }}</span> {{ TEXT.placeholder['target_type_3'] }}</a></li>
+								<li><a href="#" data-target-type="4"><span>{{ ICONS.btn['targettype4']|raw }}</span> {{ TEXT.placeholder['target_type_4'] }}</a></li>
+							</ul>
+						</div>
+						<input type="text" class="form-control input-num" placeholder="" maxlength="2" value="" disabled />
+						<span class="input-group-addon"></span>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</div>
+{% endblock %}

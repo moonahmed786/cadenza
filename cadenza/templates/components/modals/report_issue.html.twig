@@ -1,0 +1,27 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_report_issue' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog' %}
+{% set modal_title = TEXT.label['report_an_issue'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<div class="form-group nomargin">
+		<p id="{{ modal_id }}_blurb"></p>
+		<p>{{ TEXT.hint['to_report_tech_issue_email_x']|replace({'{x}':'<a href="mailto:' ~ EMAIL_CONTACT ~ '">' ~ EMAIL_CONTACT ~ '</a>'})|raw }}.</p>
+		<p>{{ TEXT.hint['type_details_box_below'] }}.</p>
+		<textarea id="{{ modal_id }}_text" class="form-control" rows="5" aria-labelledby="{{ modal_id }}_label"></textarea>
+	</div>
+	<div class="alert hidden" role="alert" id="{{ modal_id }}_alert_status"></div>
+{% endblock %}
+
+{% block modal_footer %}
+	<div class="floatleft">
+		<button type="button" class="btn btn-default btn-lg" id="{{ modal_id }}_cancel_btn">{{ TEXT.label['cancel'] }}</button>
+	</div>
+	<div class="floatright">
+		<button type="button" class="btn btn-danger btn-lg" id="{{ modal_id }}_send_btn">{{ TEXT.label['send_report'] }}</button>
+	</div>
+	<div class="clear"></div>
+{% endblock %}

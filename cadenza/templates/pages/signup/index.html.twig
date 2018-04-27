@@ -1,0 +1,51 @@
+
+{% extends "base.html.twig" %}
+
+{% set body_class = 'signup-page' %}
+{% set include_css_components = true %}
+{% set include_css_components_admin = false %}
+
+{% set js_components = [
+	'navbars/_default'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/_default.html.twig' with { 'user':user } only %}
+	<div class="container container-offset-content">
+		
+		<div class="signup-heading">{{ TEXT.signup['heading']|nl2br }}</div>
+		<div class="signup-note">{{ TEXT.signup['note'] }}</div>
+		
+		<div class="center-block main-info-block">
+			<div class="pull-left text-center">
+				<img class="student-image" src="{{ ASSETS_IMAGES_DIR }}/signup_student.png" width="68" height="123" alt="{{ TEXT.label['student'] }}" />
+				
+		  		<p class="environment-student"><a class="btn btn-default btn-block btn-xl" href="{{ href_student }}" role="button">{{ TEXT.label['student'] }}</a></p>
+		  		
+		  		<div class="center-block list-wrapper">
+					<ul class="text-justify">
+						<li>{{ TEXT.signup['student_list_text_1'] }}</li>
+						<li>{{ TEXT.signup['student_list_text_2'] }}</li>
+						<li>{{ TEXT.signup['student_list_text_3'] }}</li>
+						<li>{{ TEXT.signup['student_list_text_4'] }}</li>
+					</ul>
+		  		</div>
+			</div>
+			<div class="pull-right text-center">
+				<img class="teacher-image" src="{{ ASSETS_IMAGES_DIR }}/signup_teacher.png" width="125" height="122" alt="{{ TEXT.label['teacher'] }}" />
+				
+		  		<p class="environment-teacher"><a class="btn btn-default btn-block btn-xl" href="{{ href_teacher }}" role="button">{{ TEXT.label['teacher'] }}</a></p>
+			
+		  		<div class="center-block list-wrapper">
+					<ul class="text-justify">
+						<li>{{ TEXT.signup['teacher_list_text_1'] }}</li>
+						<li>{{ TEXT.signup['teacher_list_text_2'] }}</li>
+						<li>{{ TEXT.signup['teacher_list_text_3'] }}</li>
+						<li>{{ TEXT.signup['teacher_list_text_4'] }}</li>
+					</ul>
+		  		</div>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+{% endblock %}

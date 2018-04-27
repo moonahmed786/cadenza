@@ -1,0 +1,84 @@
+{% extends "admin_components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using AdminComponents::renderTableListOfUserInvitations,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set has_rows = (page_invite_rows|length > 0) %}
+
+{% set table_id = 'id_table_list_of_user_invitations' %}
+{% set table_class = 'table table-striped' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = true %}
+{% set has_tfoot = has_rows %}
+{% set has_tbody = has_rows %}
+
+{% block table_head %}
+	{% if not has_rows %}
+		<tr class="hint">
+			<th colspan="3"><h4 class="light nomargin-top">{{ TEXT.hint['no_user_invitations'] }}.</h4></th>
+		</tr>
+	{% else %}
+	    <tr>
+	        <th>
+	        	{% if sortable_options['email'] %}
+	    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['email'] } only %}
+	        	{% endif %}
+	        </th>
+	        <th class="status">{{ TEXT.label['status'] }}</th>
+	        <th class="status-date">
+	        	{% if sortable_options['date'] %}
+	    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['date'] } only %}
+	        	{% endif %}
+	        </th>
+	    </tr>
+	{% endif %}
+{% endblock %}
+
+{% block table_foot %}
+	<tr>
+		<th colspan="3">{% include 'widgets/pagination.html.twig' with { 'pagination':pagination } only %}</th>
+	</tr>
+{% endblock %}
+
+{% block table_body %}
+    {% for invite in page_invite_rows %}
+	    <tr>
+	        <td>
+	        	<div class="email">
+		        	{% if user.user_type == 'student' %}
+		        		{% set is_invited_teacher_blocked = invite.teacher_user_status == 'blocked' %}
+		        		{{ invite.teacher_email }}
+		        		{% if is_invited_teacher_blocked %}
+        					<span class="user-status-blocked">{{ '(' ~ TEXT.label['blocked'] ~ ')' }}</span>
+        				{% endif %}
+		        	{% elseif user.user_type == 'teacher' %}
+		        		{% set is_invited_student_blocked = invite.student_user_status == 'blocked' %}
+		        		{{ invite.student_email }}
+		        		{% if is_invited_student_blocked %}
+        					<span class="user-status-blocked">{{ '(' ~ TEXT.label['blocked'] ~ ')' }}</span>
+        				{% endif %}
+		        	{% endif %}
+	        	</div>
+	        </td>
+	        <td>
+	        	{% if invite.status == 'pending' or invite.status == 'pending-inactive' %}
+	        		<span class="color-env">{{ TEXT.label['pending'] }}</span>
+	        	{% elseif invite.status == 'rejected' or invite.status == 'rejected-inactive' %}
+	        		<span class="text-danger">{{ TEXT.label['rejected'] }}</span>
+	        	{% endif %}
+	        </td>
+	        <td>
+	        	{% if invite.status == 'pending' or invite.status == 'pending-inactive' %}
+	        		<span class="color-env">{{ invite.status_date|split(' ')[0] }}</span>
+	        	{% elseif invite.status == 'rejected' or invite.status == 'rejected-inactive' %}
+	        		<span class="text-danger">{{ invite.status_date|split(' ')[0] }}</span>
+	        	{% endif %}
+	        </td>
+	    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+{% endblock %}

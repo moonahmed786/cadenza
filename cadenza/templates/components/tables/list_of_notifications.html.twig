@@ -1,0 +1,192 @@
+{% extends "components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderTableListOfNotifications,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set table_id = 'id_table_list_of_notifications' %}
+{% set table_class = 'table table-notifications' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = '' %}
+{% set has_thead = true %}
+{% set has_tfoot = true %}
+{% set has_tbody = true %}
+
+{% block table_head %}
+	<tr>
+		<th class="top-buttons" colspan="6">{% spaceless %}
+			{% set deleteall_btn_class = (user.notifications|length - user.count_invite_notifications == 0) ? 'btn btn-default btn-sm disabled' : 'btn btn-default btn-sm' %}
+			<a href="#" class="{{ deleteall_btn_class }}" id="{{ table_id }}_delete_all_btn" data-last-notification-id="{{ user.last_notification.notification_id }}">{{ TEXT.label['delete_all'] }}</a>
+			
+			<span class="btn-spacer"></span>
+			
+			{% set markall_btn_class = (user.count_unread_notifications == 0) ? 'btn btn-default btn-sm disabled' : 'btn btn-default btn-sm' %}
+			<a href="#" class="{{ markall_btn_class }}" id="{{ table_id }}_mark_all_btn" data-last-notification-id="{{ user.last_notification.notification_id }}">{{ TEXT.label['mark_all_as_read'] }}</a>
+		{% endspaceless %}</th>
+	</tr>
+{% endblock %}
+
+{% block table_foot %}
+	{% if user.notifications|length > 0 %}
+		<tr>
+			<th colspan="6">{% include 'widgets/pagination.html.twig' with { 'pagination':pagination } only %}</th>
+		</tr>
+	{% endif %}
+{% endblock %}
+
+{% block table_body %}
+	{% if user.notifications|length == 0 %}
+		<tr class="no-notifications">
+			<td colspan="6" class="h4">{{ TEXT.hint['no_notifications'] }}.</i></td>
+		</tr>
+	{% else %}
+		{% for notification in page_notifications %}
+			{% set notification_id = notification.notification_id %}
+			{% set is_go_accessible = (notification_id in page_notification_ids_accessible) %}
+			{% if notification.ref == 'user_link' %}
+				{% set user_link_notification = notification %}
+				<tr class="invite" data-notification-id="{{ notification_id }}">
+					<td class="trash"></td>
+					<td class="picture"><img src="{{ user_link_notification.sender_picture }}" width="60" height="60" alt="{{ user_link_notification.sender_name }}" /></td>
+					<td class="toggle"></td>
+					<td>
+						<div class="h4 nomargin sender-name">{{ user_link_notification.sender_name }}</div>
+						<div>{{ user_link_notification.is_user_link_inactive ? TEXT.notifications['wants_to_reconnect'] : TEXT.notifications['wants_to_connect'] }}.</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ user_link_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks">
+						<div class="rejectaccept row nogutters">
+                            <div class="col-xs-6">
+                                <a href="#" class="btn btn-icon icon-close-circle-large icon-labelled label-below invite-reject" data-teacher-id="{{ user_link_notification.sender_uid }}" aria-label="{{ TEXT.label['reject'] }}" data-teacher-id="{{ user_link_notification.sender_uid }}">
+                                	<div class="icon-image">{{ ICONS.btn['close_circle']|raw }}</div>
+                                	<div class="icon-text invite-label">{{ TEXT.label['reject'] }}</div>
+                                </a>
+                            </div>
+                            <div class="col-xs-6">
+                                <a href="#" class="btn btn-icon icon-save-large icon-labelled label-below invite-accept" data-teacher-id="{{ user_link_notification.sender_uid }}" aria-label="{{ TEXT.label['accept'] }}" data-teacher-id="{{ user_link_notification.sender_uid }}">
+                                	<div class="icon-image">{{ ICONS.btn['save']|raw }}</div>
+                                	<div class="icon-text invite-label">{{ TEXT.label['accept'] }}</div>
+                                </a>
+                            </div>
+						</div>
+					</td>
+				</tr>
+			{% elseif notification.ref == 'practice' %}
+				{% set practice_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ practice_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ practice_notification.sender_picture }}" width="60" height="60" alt="{{ practice_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ practice_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ practice_notification.sender_name }} {{ TEXT.notifications['notified_to_see'] }}
+							<span class="color-env">{{ TEXT.label['practice'] }} #{{ practice_notification.practice_num }}</span>
+							in the task <span class="color-env">{{ practice_notification.task_title is empty ? TEXT.label['untitled_task'] : practice_notification.task_title }}</span>.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ practice_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go{% if not is_go_accessible %} disabled{% endif %}" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% elseif notification.ref == 'practice_comment' %}
+				{% set practice_comment_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ practice_comment_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ practice_comment_notification.sender_picture }}" width="60" height="60" alt="{{ practice_comment_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ practice_comment_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ practice_comment_notification.sender_name }} {{ TEXT.notifications['commented_on'] }}
+							<span class="color-env">{{ TEXT.label['practice'] }} #{{ practice_comment_notification.practice_num }}</span>
+							in the task <span class="color-env">{{ practice_comment_notification.task_title is empty ? TEXT.label['untitled_task'] : practice_comment_notification.task_title }}</span>.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ practice_comment_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go{% if not is_go_accessible %} disabled{% endif %}" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% elseif notification.ref == 'lesson_comment' %}
+				{% set lesson_comment_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ lesson_comment_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ lesson_comment_notification.sender_picture }}" width="60" height="60" alt="{{ lesson_comment_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ lesson_comment_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ lesson_comment_notification.sender_name }} {{ TEXT.notifications['commented_on'] }}
+							<span class="color-env">{{ TEXT.label['reflections']|lower }}</span>
+							for the lesson on <span class="color-env">{{ lesson_comment_notification.lesson_created_date_local|date("M j, Y") }}</span>.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ lesson_comment_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go{% if not is_go_accessible %} disabled{% endif %}" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% elseif notification.ref == 'annotation' %}
+				{% set annotation_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ annotation_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ annotation_notification.sender_picture }}" width="60" height="60" alt="{{ annotation_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ annotation_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ annotation_notification.sender_name }} {{ TEXT.notifications['annotated_on'] }}
+							<span class="color-env">{{ annotation_notification.annotator_title }}</span>
+							for <span class="color-env">{{ TEXT.label['practice'] }} #{{ annotation_notification.practice_num }}</span>
+							in the task <span class="color-env">{{ annotation_notification.task_title is empty ? TEXT.label['untitled_task'] : annotation_notification.task_title }}</span>.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ annotation_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go{% if not is_go_accessible %} disabled{% endif %}" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% elseif notification.ref == 'user_blocked' %}
+				{% set user_blocked_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ user_blocked_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ user_blocked_notification.sender_picture }}" width="60" height="60" alt="{{ user_blocked_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ user_blocked_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ user_blocked_notification.sender_name }} {{ TEXT.notifications['was_blocked'] }}.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ user_blocked_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go disabled" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% elseif notification.ref == 'user_unblocked' %}
+				{% set user_unblocked_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ user_unblocked_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ user_unblocked_notification.sender_picture }}" width="60" height="60" alt="{{ user_unblocked_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ user_unblocked_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ user_unblocked_notification.sender_name }} {{ TEXT.notifications['was_unblocked'] }}.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ user_unblocked_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go disabled" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% elseif notification.ref == 'user_deleted' %}
+				{% set user_deleted_notification = notification %}
+				<tr class="notification" data-notification-id="{{ notification_id }}" data-unread="{{ user_deleted_notification.is_unread }}">
+					<td class="trash"><a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['delete']|raw }}</a></td>
+					<td class="picture"><img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="60" height="60" alt="{{ user_deleted_notification.sender_name }}" /></td>
+					<td class="toggle"><div class="toggle-unread" data-notification-id="{{ notification_id }}" data-unread="{{ user_deleted_notification.is_unread }}"></div></td>
+					<td>
+						<div class="h4 nomargin notification-text">
+							{{ user_deleted_notification.sender_name }} {{ TEXT.notifications['was_deleted'] }}.
+						</div>
+					</td>
+					<td class="date"><div class="time h4 nomargin">{{ user_deleted_notification.time_ago|capitalize }}</div></td>
+					<td class="quicklinks"><a href="#" class="btn btn-icon icon-go disabled" aria-label="{{ TEXT.label['go'] }}" data-notification-id="{{ notification_id }}">{{ ICONS.btn['go']|raw }}</a></td>
+				</tr>
+			{% else %}
+				{# TODO: remove? #}
+				<tr class="notification" data-notification-id="{{ notification_id }}">
+					<td colspan="6">[ Unknown notification ref: {{ notification.ref }} ]</td>
+				</tr>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+{% endblock %}
+
+{% block table_modals %}
+{% endblock %}

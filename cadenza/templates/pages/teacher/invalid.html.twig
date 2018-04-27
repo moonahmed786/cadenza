@@ -1,0 +1,13 @@
+{% extends "teacher.html.twig" %}
+
+{% set js_components = [
+	'modals/add_students',
+	'navbars/teacher',
+	'tables/list_of_invites'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/teacher.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+	</div>
+{% endblock %}

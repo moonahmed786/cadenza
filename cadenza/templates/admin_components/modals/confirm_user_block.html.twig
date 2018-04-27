@@ -1,0 +1,31 @@
+{% extends "admin_components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_confirm_user_block' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog' %}
+{% set modal_title = TEXT.label['confirmation_to_block'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<p>{{ TEXT.account['sure_block_user'] }} <strong>{{ user.email }}</strong>?</p>
+	<div class="block-blurb">
+		{% if user.user_type == 'teacher' %}
+			{{ TEXT.blurb['confirm_user_block_teacher'] }}
+		{% elseif user.user_type == 'student' %}
+			{{ TEXT.blurb['confirm_user_block_student'] }}
+		{% else %}
+			{# TODO: block "default" user? #}
+		{% endif %}
+	</div>
+	<p>{{ TEXT.hint['action_unblock_to_regain_access'] }}</p>
+{% endblock %}
+
+{% block modal_footer %}
+	<div class="floatleft">
+		<button type="button" class="btn btn-default btn-lg" id="{{ modal_id }}_cancel_btn">{{ TEXT.label['cancel'] }}</button>
+	</div>
+	<div class="floatright">
+		<button type="button" class="btn btn-warning btn-lg" id="{{ modal_id }}_block_btn" data-uid="{{ user.uid }}">{{ TEXT.label['block_user'] }}</button>
+	</div>
+	<div class="clear"></div>
+{% endblock %}

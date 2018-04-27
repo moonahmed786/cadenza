@@ -1,0 +1,49 @@
+{% set selecteduser_header_id = 'id_selecteduser_header' %}
+
+{# IMPORTANT: This component can be refreshed using AdminComponents::renderMiscSelecteduserHeader,
+so if the parameters of this template change, make sure to update that function! #}
+
+<div id="{{ selecteduser_header_id }}">
+	<h1>{{ user.name }}</h1>
+	{% set is_user_blocked = user.status == 'blocked' %}
+	<h4>
+		{% if user.user_type is null %}
+			<span class="prompt">{{ TEXT.label['account'] ~ TEXT.label[':'] }}</span>
+			{{ user.email }}
+		{% elseif user.user_type == 'student' %}
+			<span class="prompt">{{ TEXT.label['student_account:'] }}</span>
+			<span class="color-student">{{ user.email }}</span>
+			{% if is_user_blocked %}
+				<span class="user-status-blocked">{{ '(' ~ TEXT.label['blocked'] ~ ')' }}</span>
+			{% endif %}
+		{% elseif user.user_type == 'teacher' %}
+			<span class="prompt">{{ TEXT.label['teacher_account:'] }}</span>
+			<span class="color-teacher">{{ user.email }}</span>
+			{% if is_user_blocked %}
+				<span class="user-status-blocked">{{ '(' ~ TEXT.label['blocked'] ~ ')' }}</span>
+			{% endif %}
+		{% endif %}
+	</h4>
+	<div class="floatleft account-picture">
+		{% if user.picture is not null %}
+			<img src="{{ user.picture }}" width="100" height="100" alt="{{ user.name }}" />
+		{% else %}
+			<img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="100" height="100" alt="{{ user.name }}" />
+		{% endif %}
+	</div>
+	<div class="floatleft account-info">
+		<div class="h4">
+			<span class="prompt">{{ TEXT.label['user_id'] ~ TEXT.label[':'] }}</span>
+			{{ user.uid }}
+		</div>
+		<div class="h4">
+			<span class="prompt">{{ TEXT.label['created_date:'] }}</span>
+			{{ user.created_date_local|date("Y-m-d") }}
+		</div>
+		<div class="h4">
+			<span class="prompt">{{ TEXT.label['last_login'] ~ TEXT.label[':'] }}</span>
+			{{ user.last_login|capitalize }}
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

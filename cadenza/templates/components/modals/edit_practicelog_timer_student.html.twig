@@ -1,0 +1,17 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_edit_practicelog_timer_student' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-sm' %}
+{% set modal_title = TEXT.label['edit_timer'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<div class="timer-wrapper">
+		{% include 'components/timers/editonly_timer_student.html.twig' with { } only %}
+	</div>
+{% endblock %}
+
+{% block modal_footer %}
+	<a href="#" class="btn btn-icon icon-save" id="{{ modal_id }}_save_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+{% endblock %}

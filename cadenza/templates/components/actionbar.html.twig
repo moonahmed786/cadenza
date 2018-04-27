@@ -1,0 +1,34 @@
+<nav id="{{ actionbar_id }}">
+	<div class="container actionbar">
+		<div class="floatleft">
+			<div class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="floatleft icon-image">{% spaceless %}
+							{% if linked_user.picture is not null %}
+								<img src="{{ linked_user.picture }}" width="38" height="38" alt="{{ linked_user.name }}" />
+							{% else %}
+								<img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="38" height="38" alt="{{ linked_user.name }}" />
+							{% endif %}
+						{% endspaceless %}</div>
+						<div class="floatleft icon-text h4 nomargin">{{ linked_user.name }} <i class="fa fa-caret-down"></i></div>
+						<div class="clear"></div>
+					</div>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="lessons.php?{{ linked_user.user_type }}_id={{ linked_user.uid }}" class="btn">{{ ICONS.mnu['list_of_lessons']|raw }} {{ TEXT.label['list_of_lessons'] }}</a></li>
+					<li><a href="view_lesson_overview.php?{{ linked_user.user_type }}_id={{ linked_user.uid }}&lesson_id=latest" class="btn{% if not has_lessons %} disabled{% endif %}">{{ ICONS.mnu['latest_lesson']|raw }} {{ TEXT.label['latest_lesson'] }}</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="floatright">
+			{% block action_buttons %}
+			{% endblock %}
+		</div>
+		<div class="clear"></div>
+	</div>
+</nav>
+<div class="container">
+	{% block actionbar_modals %}
+	{% endblock %}
+</div>

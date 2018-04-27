@@ -1,0 +1,19 @@
+<?php
+$base = 'E:\xampp\htdocs\queen-music\cadenza';
+// $base = '/Users/abdulmanan7/Sites/cadanza-music/';
+return array(
+	'filestore_path'                     => $base.'\files',
+	'twig_templates_path'                => $base.'\templates',
+	'twig_cache_path'                    => $base.'\twig_cache',
+	'google_auth_json'                   => $base.'\client_secrets.json',
+	'google_browser_api_key'             => 'AIzaSyBkJqVXm1IV4ijSHsSFCLJxFwJ6xIT1VJg',
+	'google_cadenza_folder_property_key' => 'cadenzaFolderPropertyProduction',
+	'google_analytics_enabled'           => true,
+	'https_enabled'                      => false,
+	'mysql_host'                         => 'localhost',
+	'mysql_username'                     => 'root',
+	'mysql_password'                     => '',
+	'mysql_database'                     => 'cadenza',
+	'timezone_local'                     => 'America/New_York',
+	'environment'                        => 'production'
+);

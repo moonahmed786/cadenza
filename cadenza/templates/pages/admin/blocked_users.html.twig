@@ -1,0 +1,16 @@
+{% extends "admin.html.twig" %}
+
+{% set js_admin_components = [
+	'misc/filter_user_type',
+	'navbars/admin',
+	'tables/list_of_blocked_users'
+] %}
+
+{% block body %}
+	{% include 'admin_components/navbars/admin.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['blocked_users'] }}</h1>
+		{% include 'admin_components/misc/filter_user_type.html.twig' with { 'filter_user_type_index':filter_user_type_index, 'filter_user_type_action':filter_user_type_action } only %}
+		{% include 'admin_components/tables/list_of_blocked_users.html.twig' with { 'page_users':page_users, 'pagination':pagination, 'sortable_options':sortable_options, 'filter_user_type':filter_user_type } only %}
+	</div>
+{% endblock %}

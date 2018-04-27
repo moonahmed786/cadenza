@@ -1,0 +1,14 @@
+{% extends "components/upload.html.twig" %}
+
+{% set upload_id = 'id_upload_practice_student_attachments' %}
+{% set upload_class = 'upload-practice-student-attachments' %}
+{% set server = 'cadenza' %}
+{% set lesson_id = lesson.lesson_id %}
+{% set task_id = task.task_id %}
+{% set practice_id = practice.practice_id %}
+{% set uploaded_attachments = practice.student_attachments %}
+{% set is_readonly = false %}
+
+{% block heading %}
+	<div class="section-line"><h5 class="section">{{ TEXT.label['my_attachments']|upper }}</h5></div>
+{% endblock %}

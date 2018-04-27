@@ -1,0 +1,31 @@
+{% extends "admin_components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_confirm_user_delete' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog' %}
+{% set modal_title = TEXT.label['confirmation_to_delete'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<p>{{ TEXT.account['sure_delete_user'] }} <strong>{{ user.email }}</strong>?</p>
+	<div class="delete-blurb">
+		{% if user.user_type == 'teacher' %}
+			{{ TEXT.blurb['confirm_user_delete_teacher'] }}
+		{% elseif user.user_type == 'student' %}
+			{{ TEXT.blurb['confirm_user_delete_student'] }}
+		{% else %}
+			{{ TEXT.blurb['confirm_user_delete_other'] }}
+		{% endif %}
+	</div>
+	<p>{{ TEXT.hint['action_not_reversible'] }}</p>
+{% endblock %}
+
+{% block modal_footer %}
+	<div class="floatleft">
+		<button type="button" class="btn btn-default btn-lg" id="{{ modal_id }}_cancel_btn">{{ TEXT.label['cancel'] }}</button>
+	</div>
+	<div class="floatright">
+		<button type="button" class="btn btn-danger btn-lg" id="{{ modal_id }}_delete_btn" data-uid="{{ user.uid }}">{{ TEXT.label['delete_user'] }}</button>
+	</div>
+	<div class="clear"></div>
+{% endblock %}

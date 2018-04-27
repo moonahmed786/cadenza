@@ -1,0 +1,14 @@
+<div id="{{ selectedtask_id }}" data-practicing="{{ is_practicing ? '1' : '' }}">
+	<div class="row">
+		<div class="col-xs-9">
+			{% block top_left %}
+			{% endblock %}
+		</div>
+		<div class="col-xs-3 nopadding-left">
+			{% block top_right %}
+			{% endblock %}
+		</div>
+	</div>
+	{% block bottom %}
+	{% endblock %}
+</div>

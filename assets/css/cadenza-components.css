@@ -1,0 +1,1728 @@
+/* CSS document for Cadenza component styles */
+
+/* actionbars */
+.actionbar {
+	margin-top: -20px;
+	margin-bottom: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+.environment-student .actionbar {
+	border-bottom: 1px solid #28a8e0;
+}
+.environment-teacher .actionbar {
+	border-bottom: 1px solid #3f898a;
+}
+.actionbar a.dropdown-toggle > div.toggle-icon > div.icon-image {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #f0f0f0;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.actionbar a.dropdown-toggle > div.toggle-icon > div.icon-image .nopicture {
+	width: 40px;
+	height: 40px;
+}
+.actionbar a.dropdown-toggle > div.toggle-icon > div.icon-text {
+	color: #333;
+	padding-left: 5px;
+	line-height: 40px;
+}
+.actionbar .dropdown-menu > li > a > i {
+	width: 24px;
+}
+.actionbar .btn-icon.icon-labelled > div.icon-text {
+	color: #333;
+}
+.actionbar .btn-spacer {
+	display: inline-block;
+	width: 20px;
+}
+.actionbar .actionbar-actionbuttons {
+	display: none;
+}
+@media (min-width: 992px) {
+	.actionbar .actionbar-actionbuttons.show-md,
+	.actionbar .actionbar-actionbuttons .show-md {
+		display: block;
+	}
+}
+.actionbar .actionbar-actionoverflow {
+	display: block;
+	margin-left: 20px;
+}
+@media (min-width: 992px) {
+	.actionbar .actionbar-actionoverflow.hide-md,
+	.actionbar .actionbar-actionoverflow .hide-md {
+		display: none;
+	}
+}
+
+/* actionoverflows */
+.actionoverflow,
+.actionoverflow .dropdown,
+.actionoverflow a.dropdown-toggle,
+.actionoverflow a.dropdown-toggle > div.toggle-icon {
+	width: 40px;
+	height: 40px;
+	display: block;
+}
+.actionoverflow a.dropdown-toggle > div.toggle-icon > div.icon-image {
+	width: 40px;
+	height: 40px;
+	font-size: 32px;
+	line-height: 32px;
+	padding-top: 5px;
+	border: 0;
+}
+.environment-student .actionoverflow a.dropdown-toggle .toggle-icon {
+	color: #28a8e0;
+}
+.environment-student .actionoverflow a.dropdown-toggle .toggle-icon:hover,
+.environment-student .actionoverflow a.dropdown-toggle .toggle-icon:focus {
+	color: #1b8aba;
+}
+.environment-teacher .actionoverflow a.dropdown-toggle .toggle-icon {
+	color: #3f898a;
+}
+.environment-teacher .actionoverflow a.dropdown-toggle .toggle-icon:hover,
+.environment-teacher .actionoverflow a.dropdown-toggle .toggle-icon:focus {
+	color: #357273;
+}
+.actionoverflow a.dropdown-toggle .toggle-icon.inverse {
+	color: #f0f0f0;
+}
+.actionoverflow a.dropdown-toggle .toggle-icon.inverse:hover,
+.actionoverflow a.dropdown-toggle .toggle-icon.inverse:focus {
+	color: #ffffff;
+}
+.actionoverflow .dropdown-menu {
+	padding: 0px;
+	border: 1px solid #dfdfdf;
+	min-width: 250px;
+	cursor: default;
+}
+.actionoverflow .dropdown-menu:before {
+	/* arrow css based on http://stackoverflow.com/questions/5935296/adding-a-arrow-mark-to-a-border-through-css#answer-5935452 */
+	content: "";
+	border-color: transparent transparent #dfdfdf transparent;
+	border-style: solid;
+	border-width: 7px;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -13px;
+	right: 12px;
+}
+.actionoverflow .dropdown-menu:after {
+	/* arrow css based on http://stackoverflow.com/questions/5935296/adding-a-arrow-mark-to-a-border-through-css#answer-5935452 */
+	content: "";
+	border-color: transparent transparent #ffffff transparent;
+	border-style: solid;
+	border-width: 4px;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: -7px;
+	right: 15px;
+}
+.actionoverflow .dropdown-menu > li {
+	border: 1px solid #dfdfdf;
+}
+
+/* timers */
+.timer {
+	margin-bottom: 10px;
+}
+.timer .timericon {
+	height: 60px;
+	font-size: 42px;
+	padding-top: 10px;
+	line-height: 1;
+	margin-right: 8px;
+	cursor: default;
+}
+.timer .timericon[data-ticking="1"] {
+	color: #f06522;
+}
+.timer .timertime {
+	font-size: 30px;
+	line-height: 60px;
+	height: 60px;
+	padding: 0px 2px;
+}
+.timer .timertime .hrs {
+	width: 49px;
+}
+.timer .timertime .min {
+	width: 65px;
+}
+.timer .timertime .sec {
+	width: 55px;
+}
+.timer .timerbuttons {
+	padding-top: 10px;
+}
+.timer .timeredit {
+	height: 60px;
+	padding-top: 13px;
+}
+.timer .timeredit .edit-hrs {
+	width: 75px;
+}
+.timer .timeredit .edit-min {
+	width: 85px;
+}
+.timer .timeredit .edit-sec {
+	width: 85px;
+}
+
+/* uploads */
+.upload-files-wrapper {
+	line-height: 0;
+	margin-left: -5px;
+	margin-right: -5px;
+}
+.upload-file {
+	display: inline-block;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 10px;
+	height: 64px;
+	border-width: 2px;
+	border-color: #999999;
+	border-radius: 0;
+}
+.upload-file.file-chooser {
+	border-style: dashed;
+	text-align: center;
+	line-height: 60px;
+	font-size: 18px;
+}
+.environment-student .upload-file.file-chooser {
+	color: #28a8e0;
+}
+.environment-teacher .upload-file.file-chooser {
+	color: #3f898a;
+}
+.upload-file.file-chooser:hover,
+.upload-file.file-chooser:focus,
+.upload-file.file-chooser.focus {
+	border-color: #333;
+}
+.environment-student .upload-file.file-chooser:hover,
+.environment-student .upload-file.file-chooser:focus,
+.environment-student .upload-file.file-chooser.focus {
+	color: #28a8e0;
+}
+.environment-teacher .upload-file.file-chooser:hover,
+.environment-teacher .upload-file.file-chooser:focus,
+.environment-teacher .upload-file.file-chooser.focus {
+	color: #357273;
+}
+.upload-file.file-uploading,
+.upload-file.file-uploaded {
+	background-color: #f2f2f2;
+	border-style: solid;
+	padding: 10px;
+	line-height: 40px;
+}
+.upload-file.file-uploading .fileicon,
+.upload-file.file-uploaded .fileicon {
+	border: 0;
+	margin: 0;
+	padding: 4px 0px 0px 0px;
+	line-height: 1;
+	width: 40px;
+	height: 40px;
+	font-size: 32px;
+	cursor: default;
+}
+.upload-file.file-uploading .filename,
+.upload-file.file-uploaded .filename {
+	height: 40px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.has-error.upload-file.file-uploading {
+	background-color: #f2dede;
+	border-color: #ebccd1;
+}
+.has-error.upload-file.file-uploading .fileicon,
+.has-error.upload-file.file-uploading .filename {
+	color: #a94442;
+}
+.upload-practice-student-annotator .upload-practice-student-annotator-import-btn,
+.upload-practicelog-student-annotator .upload-practicelog-student-annotator-import-btn {
+	cursor: pointer;
+}
+
+.upload-file .progress {
+	height: 5px;
+}
+
+.environment-student .upload-file .progress .progress-bar {
+	background-color: #28a8e0;
+}
+.environment-teacher .upload-file .progress .progress-bar {
+	background-color: #357273;
+}
+
+@media (min-width: 1px) and (max-width: 991px) {
+	/* task teacher attachments */
+	.upload-task-teacher-attachments .upload-file {
+		width: 257px;
+	}
+	.upload-task-teacher-attachments .upload-file.file-uploading .filename,
+	.upload-task-teacher-attachments .upload-file.file-uploaded .filename {
+		width: 102px;
+	}
+	/* practice student attachments */
+	.upload-practice-student-attachments .upload-file {
+		width: 257px;
+	}
+	.upload-practice-student-attachments .upload-file.file-uploading .filename,
+	.upload-practice-student-attachments .upload-file.file-uploaded .filename {
+		width: 102px;
+	}
+	/* practice student annotator */
+	.upload-practice-student-annotator .upload-file {
+		width: 257px;
+	}
+	.upload-practice-student-annotator .upload-practice-student-annotator-btns .upload-file {
+		width: 116px;
+	}
+	.upload-practice-student-annotator .upload-practice-student-annotator-import-btn {
+		font-size: 14px;
+	}
+	.upload-practice-student-annotator .upload-file.file-uploading .filename,
+	.upload-practice-student-annotator .upload-file.file-uploaded .filename {
+		width: 102px;
+	}
+	/* practicelog student attachments */
+	.upload-practicelog-student-attachments .upload-file {
+		width: 246px;
+	}
+	.upload-practicelog-student-attachments .upload-file.file-uploading .filename,
+	.upload-practicelog-student-attachments .upload-file.file-uploaded .filename {
+		width: 91px;
+	}
+	/* practicelog student annotator */
+	.upload-practicelog-student-annotator .upload-file {
+		width: 246px;
+	}
+	.upload-practicelog-student-annotator .upload-practicelog-student-annotator-btns .upload-file {
+		width: 116px;
+	}
+	.upload-practicelog-student-annotator .upload-practicelog-student-annotator-import-btn {
+		font-size: 14px;
+	}
+	.upload-practicelog-student-annotator .upload-file.file-uploading .filename,
+	.upload-practicelog-student-annotator .upload-file.file-uploaded .filename {
+		width: 91px;
+	}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+	/* task teacher attachments */
+	.upload-task-teacher-attachments .upload-file {
+		width: 97%;
+	}
+	.upload-task-teacher-attachments .upload-file.file-uploading .filename,
+	.upload-task-teacher-attachments .upload-file.file-uploaded .filename {
+		width: 185px;
+	}
+	/* practice student attachments */
+	.upload-practice-student-attachments .upload-file {
+		width: 340px;
+	}
+	.upload-practice-student-attachments .upload-file.file-uploading .filename,
+	.upload-practice-student-attachments .upload-file.file-uploaded .filename {
+		width: 185px;
+	}
+	/* practice student annotator */
+	.upload-practice-student-annotator .upload-file {
+		width: 340px;
+	}
+	.upload-practice-student-annotator .upload-practice-student-annotator-btns .upload-file {
+		width: 158px;
+	}
+	.upload-practice-student-annotator .upload-file.file-uploading .filename,
+	.upload-practice-student-annotator .upload-file.file-uploaded .filename {
+		width: 185px;
+	}
+	/* practicelog student attachments */
+	.upload-practicelog-student-attachments .upload-file {
+		width: 329px;
+	}
+	.upload-practicelog-student-attachments .upload-file.file-uploading .filename,
+	.upload-practicelog-student-attachments .upload-file.file-uploaded .filename {
+		width: 174px;
+	}
+	/* practicelog student annotator */
+	.upload-practicelog-student-annotator .upload-file {
+		width: 329px;
+	}
+	.upload-practicelog-student-annotator .upload-practicelog-student-annotator-btns .upload-file {
+		width: 157px;
+	}
+	.upload-practicelog-student-annotator .upload-file.file-uploading .filename,
+	.upload-practicelog-student-annotator .upload-file.file-uploaded .filename {
+		width: 174px;
+	}
+}
+@media (min-width: 1200px) {
+	/* task teacher attachments */
+	.upload-task-teacher-attachments .upload-file {
+		width: 97%;
+	}
+	.upload-task-teacher-attachments .upload-file.file-uploading .filename,
+	.upload-task-teacher-attachments .upload-file.file-uploaded .filename {
+		width: 260px;
+	}
+	/* practice student attachments */
+	.upload-practice-student-attachments .upload-file {
+		width: 415px;
+	}
+	.upload-practice-student-attachments .upload-file.file-uploading .filename,
+	.upload-practice-student-attachments .upload-file.file-uploaded .filename {
+		width: 260px;
+	}
+	/* practice student annotator */
+	.upload-practice-student-annotator .upload-file {
+		width: 415px;
+	}
+	.upload-practice-student-annotator .upload-practice-student-annotator-btns .upload-file {
+		width: 195px;
+	}
+	.upload-practice-student-annotator .upload-file.file-uploading .filename,
+	.upload-practice-student-annotator .upload-file.file-uploaded .filename {
+		width: 260px;
+	}
+	/* practicelog student attachments */
+	.upload-practicelog-student-attachments .upload-file {
+		width: 404px;
+	}
+	.upload-practicelog-student-attachments .upload-file.file-uploading .filename,
+	.upload-practicelog-student-attachments .upload-file.file-uploaded .filename {
+		width: 249px;
+	}
+	/* practicelog student annotator */
+	.upload-practicelog-student-annotator .upload-file {
+		width: 404px;
+	}
+	.upload-practicelog-student-annotator .upload-practicelog-student-annotator-btns .upload-file {
+		width: 195px;
+	}
+	.upload-practicelog-student-annotator .upload-file.file-uploading .filename,
+	.upload-practicelog-student-annotator .upload-file.file-uploaded .filename {
+		width: 249px;
+	}
+}
+
+/* Annotator Modal */
+#id_modal_annotator .modal-body {
+	padding: 0px;
+	font-size: 18px;
+}
+#id_modal_annotator .modal-body h4 {
+	font-size: 20px;
+}
+#id_modal_annotator .modal-body p {
+	margin: 0px;
+}
+#id_modal_annotator .modal-body .container-fluid {
+	padding: 0px;
+	min-width: 0px;
+}
+#id_modal_annotator .modal-body .left-side-content {
+	padding: 15px;
+}
+#id_modal_annotator .modal-body .right-side-content {
+	height: 450px;
+	overflow-y: scroll;
+}
+@media (min-width: 1px) and (max-width: 991px) {
+	#id_modal_annotator .modal-body .left-side-content {
+		padding: 5px 15px;
+	}
+	
+	#id_modal_annotator .modal-body .right-side-content {
+		height: 205px;
+	}
+}
+#id_modal_annotator .modal-footer {
+	font-size: 18px;
+}
+.environment-teacher #id_modal_annotator .modal-footer {
+	background-color: #3F898A;
+	color: #F0F0F0;
+}
+.environment-student #id_modal_annotator .modal-footer {
+	background-color: #28a8e0;
+	color: #F0F0F0;
+}
+
+#id_annotator_media_playback {
+	padding-top: 15px;
+}
+@media (min-width: 1px) and (max-width: 991px) {
+	#id_annotator_media_playback {
+		padding-top: 0px;
+	    width: 400px;
+	    margin: 0 auto;
+	}
+}
+#id_annotator_media_playback .video-js {
+	overflow: hidden;
+}
+#id_annotator_media_playback .video-js.portrait-video {
+    height: 350px;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 100%;
+}
+#id_annotator_media_playback .video-js .vjs-rotation-button {
+	line-height: 3em;
+}
+#id_annotator_media_playback .video-js.vjs-fluid {
+	min-height: 150px;
+}
+#id_annotator_media_playback .vjs-progress-control .vjs-progress-holder .annotation-marker {
+    position: absolute;
+    display: block;
+    height: .3em;
+    margin: 0;
+    padding: 0;
+    width: 0;
+    left: 0;
+    top: 0;
+}
+#id_annotator_media_playback .vjs-progress-control .vjs-progress-holder .annotation-marker:before {
+	position: absolute;
+    bottom: 0.05em;
+    right: -.5em;
+    font-size: 1.2em;
+    font-weight: bold;
+    content: '\007C';
+    padding-right: 0.34em; /* adjustment to line up tick with slider thumb */
+}
+.environment-teacher #id_annotator_media_playback .vjs-progress-control .vjs-progress-holder .annotation-marker:before {
+	color: #3F898A;
+}
+.environment-student #id_annotator_media_playback .vjs-progress-control .vjs-progress-holder .annotation-marker:before {
+	color: #28a8e0;
+}
+#id_annotator_media_playback .video-js .vjs-control-bar {
+	display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#id_annotator_annotations_loading_overlay {
+	display: none;
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	opacity: 0.5;
+	background-color: #000000;
+}
+#id_annotator_annotations_loading_overlay .loading-overlay-indicator-container {
+	display: table;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+}
+#id_annotator_annotations_loading_overlay .loading-overlay-indicator {
+	display: table-cell;
+	text-align: center;
+	vertical-align: middle;
+	width: 100%;
+	height: 100%;
+	color: #F0F0F0;
+	font-size: 32px;
+}
+
+#id_annotator_annotations_items {
+	padding: 15px 15px 15px 0px;
+}
+@media (min-width: 1px) and (max-width: 991px) {
+	#id_annotator_annotations_items {
+		padding: 15px;
+	}
+}
+#id_annotator_annotations_items .annotation_time {
+	text-align: right;
+	color: #f06522;
+}
+#id_annotator_annotations_items .annotation_reply {
+	padding-top: 8px;
+}
+#id_annotator_annotations_items .annotation_reply .annotation .icon-reply {
+	visibility: hidden;
+}
+#id_annotator_annotations_items .annotation {
+	display: table;
+	width: 100%;
+}
+#id_annotator_annotations_items .annotation.highlight {
+    background-color: #f1f1f1;
+}
+#id_annotator_annotations_items .annotation > div {
+	display: table-row;
+}
+#id_annotator_annotations_items .annotation_author_photo,
+#id_annotator_annotations_items .reply_indicator,
+#id_annotator_annotations_items .annotation_text {
+	display: table-cell;
+	vertical-align: top;
+	word-wrap: break-word;
+}
+#id_annotator_annotations_items .annotation_author_photo,
+#id_annotator_annotations_items .reply_indicator {
+	width: 60px;
+}
+#id_annotator_annotations_items .annotation_author_photo {
+	padding: 5px 5px 0px;
+}
+#id_annotator_annotations_items .annotation_author_photo img {
+	width: 100%;
+}
+#id_annotator_annotations_items .reply_indicator {
+	text-align: right;
+}
+#id_annotator_annotations_items .annotation_text {
+	padding-left: 5px;
+}
+#id_annotator_annotations_items .annotation_text > p {
+	width: 280px;
+}
+@media (min-width: 1px) and (max-width: 991px) {
+	#id_annotator_annotations_items .annotation_text > p {
+		width: 455px;
+	}
+}
+#id_annotator_annotations_items .annotation_text .annotation_author_name {
+	font-weight: bold;
+}
+#id_annotator_annotations_items .annotation_text .annotation_content {
+	white-space: pre-line;
+}
+#id_annotator_annotations_items .item-buttons .btn-icon {
+	font-size: 28px;
+}
+#id_annotator_annotations_items .seperator {
+	margin: 15px 0px;
+	border-style: solid;
+	border-width: 1px 0px 0px 0px;
+	border-color: #3F898A;
+	opacity: 0.5;
+	width: 100%;
+}
+
+#id_annotator_write_annotation .new_comment_button_container,
+#id_annotator_write_annotation .write_comment_container,
+#id_annotator_write_annotation .write_reply_container {
+	display: table;
+	width: 100%;
+	height: 65px;
+}
+#id_annotator_write_annotation .new_comment_button,
+#id_annotator_write_annotation .write_comment,
+#id_annotator_write_annotation .write_reply {
+	display: table-row;
+}
+#id_annotator_write_annotation .action-button,
+#id_annotator_write_annotation .action-label,
+#id_annotator_write_annotation .text-input,
+#id_annotator_write_annotation .start-time-display,
+#id_annotator_write_annotation .duration-input,
+#id_annotator_write_annotation .new_comment_button_spacing {
+	display: table-cell;
+}
+#id_annotator_write_annotation .action-button {
+	vertical-align: middle;
+	text-align: center;
+	width: 50px;
+	padding: 5px;
+}
+#id_annotator_write_annotation .action-label {
+	vertical-align: middle;
+	text-align: left;
+	width: 100px;
+	padding: 10px 5px;
+}
+#id_annotator_write_annotation .text-input {
+	vertical-align: middle;
+	text-align: center;
+	padding: 0px 5px;
+}
+#id_annotator_write_annotation .text-input .text {
+	width: 100%;
+	height: 100%;
+}
+#id_annotator_write_annotation .start-time-display, #id_annotator_write_annotation .duration-input {
+	vertical-align: middle;
+	text-align: center;
+	width: 115px;
+	padding: 5px;
+}
+#id_annotator_write_annotation .start-time-display .start-time, #id_annotator_write_annotation .duration-input .duration {
+	width: 100%;
+	text-align: center;
+}
+#id_annotator_write_annotation .new_comment_button .action-label {
+	cursor: pointer;
+}
+
+/* Notemaker Import Modal */
+.environment-student #id_modal_notemaker_import .modal-footer {
+	background-color: #28a8e0;
+	color: #F0F0F0;
+}
+#id_modal_notemaker_import .modal-body {
+	min-height: 350px;
+}
+#id_modal_notemaker_import .table tbody tr {
+	height: 80px;
+}
+#id_modal_notemaker_import .table .created_date {
+	width: 140px;
+}
+#id_modal_notemaker_import .table .media_thumbnail {
+	width: 100px;
+}
+#id_modal_notemaker_import .table .media_thumbnail img {
+	width: 100%;
+}
+#id_modal_notemaker_import .table-loading .backdrop {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	opacity: .5;
+	background-color: #000000;
+}
+#id_modal_notemaker_import .table-loading {
+	font-size: 32px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+/* list of teachers */
+#id_table_list_of_teachers {
+	border-collapse: separate;
+	border-spacing: 0px 6px;
+	margin: -16px 0px 0px 0px;
+}
+#id_table_list_of_teachers .inactive {
+	background-color: #f1f1f1;
+}
+#id_table_list_of_teachers thead th {
+	padding: 0;
+	border: 0;
+}
+#id_table_list_of_teachers td {
+	border-style: solid;
+	border-width: 0px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+}
+#id_table_list_of_teachers .inactive td {
+	border-top-width: 0px;
+	border-bottom-width: 0px;
+}
+.environment-student #id_table_list_of_teachers td {
+	border-color: #28a8e0;
+}
+#id_table_list_of_teachers td.picture {
+	width: 118px;
+}
+#id_table_list_of_teachers td.picture .nopicture {
+	width: 100px;
+	height: 100px;
+}
+#id_table_list_of_teachers td.col-first {
+	border-left-width: 1px;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+}
+#id_table_list_of_teachers .inactive td.col-first {
+	border-left-width: 0px;
+}
+#id_table_list_of_teachers td.col-last {
+	border-right-width: 1px;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+}
+#id_table_list_of_teachers .inactive td.col-last {
+	border-right-width: 0px;
+}
+#id_table_list_of_teachers div.teacher-name {
+	line-height: normal;
+	margin-bottom: 4px;
+}
+#id_table_list_of_teachers .btn-icon.icon-labelled > div.icon-text {
+	font-size: 14px;
+}
+#id_table_list_of_teachers td.quicklinks {
+	width: 140px;
+}
+
+/* list of students */
+#id_table_list_of_students td {
+	line-height: normal;
+}
+#id_table_list_of_students th.picture {
+	width: 80px;
+}
+#id_table_list_of_students div.picture {
+	margin: 2px;
+}
+@media (min-width: 1px) {
+	#id_table_list_of_students th.name {
+		width: 170px;
+	}
+	#id_table_list_of_students div.name {
+		width: 154px;
+		word-wrap: break-word;
+	}
+}
+@media (min-width: 992px) {
+	#id_table_list_of_students th.name {
+		width: 290px;
+	}
+	#id_table_list_of_students div.name {
+		width: 274px;
+		word-wrap: break-word;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_students th.name {
+		width: 490px;
+	}
+	#id_table_list_of_students div.name {
+		width: 474px;
+		word-wrap: break-word;
+	}
+}
+#id_table_list_of_students th.quicklinks {
+	width: 90px;
+}
+
+/* list of lessons */
+#id_table_list_of_lessons th.quicklinks {
+	width: 105px;
+}
+#id_table_list_of_lessons th.category {
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 13px;
+}
+#id_table_list_of_lessons td.category {
+	padding-left: 0px;
+	padding-right: 0px;
+	width: 12px;
+}
+#id_table_list_of_lessons th.toggle-showhide,
+#id_table_list_of_lessons td.toggle-showhide {
+	padding-left: 0px;
+}
+#id_table_list_of_lessons th.lesson-date {
+	width: 115px;
+}
+#id_table_list_of_lessons tr.lesson-task td {
+	padding: 4px;
+}
+#id_table_list_of_lessons tr.lesson-task td.task-title {
+	padding-left: 8px;
+}
+@media (min-width: 1px) {
+	#id_table_list_of_lessons tr.lesson-task td.task-title div.title-text {
+		width: 370px;
+	}
+}
+@media (min-width: 992px) {
+	#id_table_list_of_lessons tr.lesson-task td.task-title div.title-text {
+		width: 590px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_lessons tr.lesson-task td.task-title div.title-text {
+		width: 790px;
+	}
+}
+
+/* rewards dropdown */
+#id_table_rewards_dropdown td {
+	border: 0px;
+}
+#id_table_rewards_dropdown td.reward-points,
+#id_table_rewards_dropdown td.reward-badges {
+	white-space: nowrap;
+}
+#id_table_rewards_dropdown div.points-num,
+#id_table_rewards_dropdown div.badges-num {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 48px;
+	line-height: 48px;
+	margin-top: 4px;
+}
+#id_table_rewards_dropdown div.points-to-next-badge {
+	font-size: 0.9em;
+}
+#id_table_rewards_dropdown .progress {
+	margin: 0px;
+	height: 10px;
+}
+
+/* notifications tables (list of notifications) */
+.table-notifications tr.no-notifications {
+	background-color: #F1F1F1;
+	text-align: center;
+	height: 80px;
+}
+.table-notifications th.top-buttons {
+	text-align: right;
+}
+.table-notifications th.top-buttons .btn-spacer {
+	display: inline-block;
+	width: 5px;
+}
+.table-notifications td.picture {
+	width: 76px;
+}
+.table-notifications span.new {
+	color: #ee2430;
+}
+.table-notifications div.time {
+	color: #777;
+}
+.table-notifications tr.invite {
+	background-color: #fefbd6;
+}
+.table-notifications tr.notification[data-unread="1"] {
+	background-color: #e0e0e0;
+}
+.table-notifications#id_table_list_of_notifications {
+	margin-top: -47px;
+}
+.table-notifications#id_table_list_of_notifications tr {
+	border: 1px solid #c5c7c9;
+}
+.table-notifications#id_table_list_of_notifications td {
+	border-color: #c5c7c9;
+}
+.table-notifications#id_table_list_of_notifications thead tr,
+.table-notifications#id_table_list_of_notifications thead th,
+.table-notifications#id_table_list_of_notifications tfoot tr,
+.table-notifications#id_table_list_of_notifications tfoot th {
+	border: 0;
+}
+.table-notifications#id_table_list_of_notifications td.trash {
+	width: 50px;
+	padding-right: 0px;
+}
+.table-notifications#id_table_list_of_notifications td.toggle {
+	width: 30px;
+	text-align: center;
+}
+.table-notifications#id_table_list_of_notifications div.toggle-unread {
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+	border-radius: 8px;
+	border-color: #333;
+	border-width: 1px;
+	border-style: solid;
+}
+.environment-student .table-notifications#id_table_list_of_notifications div.toggle-unread[data-unread="1"] {
+	background-color: #28a8e0;
+}
+.environment-teacher .table-notifications#id_table_list_of_notifications div.toggle-unread[data-unread="1"] {
+	background-color: #3f898a;
+}
+@media (min-width: 1px) {
+	.table-notifications#id_table_list_of_notifications tr.notification div.notification-text,
+	.table-notifications#id_table_list_of_notifications tr.invite div.sender-name {
+		width: 286px;
+	}
+}
+@media (min-width: 992px) {
+	.table-notifications#id_table_list_of_notifications tr.notification div.notification-text,
+	.table-notifications#id_table_list_of_notifications tr.invite div.sender-name {
+		width: 506px;
+	}
+}
+@media (min-width: 1200px) {
+	.table-notifications#id_table_list_of_notifications tr.notification div.notification-text,
+	.table-notifications#id_table_list_of_notifications tr.invite div.sender-name {
+		width: 706px;
+	}
+}
+.table-notifications#id_table_list_of_notifications td.date {
+	width: 130px;
+}
+.table-notifications#id_table_list_of_notifications td.quicklinks {
+	width: 120px;
+	text-align: center;
+}
+.table-notifications#id_table_list_of_notifications .rejectaccept {
+	height: 65px;
+	padding-top: 5px;
+}
+.table-notifications#id_table_list_of_notifications td.quicklinks .invite-label {
+	font-size: 12px;
+}
+
+/* add students */
+#id_modal_add_students .alert {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+/* list of invites */
+#id_table_list_of_invites {
+	border: 1px solid #F9F9F9;
+	margin-top: 15px;
+}
+#id_table_list_of_invites td {
+	text-align: left;
+	border-top: none;
+}
+#id_table_list_of_invites .email {
+	width: 350px;
+}
+#id_table_list_of_invites .status {
+	width: 200px;
+}
+@media (min-width: 992px) {
+	#id_table_list_of_invites .email {
+		width: 440px;
+	}
+}
+#id_table_list_of_invites td.delete-resend {
+	text-align: right;
+	width: 186px;
+	padding-left: 0px;
+}
+#id_table_list_of_invites td.delete-resend .btn.invite-delete,
+#id_table_list_of_invites td.delete-resend .btn.invite-resend {
+	width: 80px;
+	margin-left: 8px;
+}
+
+/* lesson switcher */
+#id_table_lesson_switcher {
+	margin-bottom: 0px;
+}
+#id_table_lesson_switcher.overview {
+	width: auto;
+}
+#id_table_lesson_switcher td {
+	padding: 0;
+	border-top: none;
+}
+#id_table_lesson_switcher.bg-color-env td {
+	color: #f0f0f0;
+}
+#id_table_lesson_switcher td.prev,
+#id_table_lesson_switcher td.next {
+	width: 40px;
+}
+#id_table_lesson_switcher td.current {
+	text-align: center;
+}
+#id_table_lesson_switcher td.current .side-menu-date {
+	display: block;
+	margin: 10px 0px;
+}
+@media (min-width: 992px) {
+	#id_table_lesson_switcher td.current .side-menu-date {
+		margin: 15px 0px;
+	}
+}
+
+/* task selector */
+#id_table_task_selector .task-target {
+	margin-left: -2px;
+}
+#id_table_task_selector div.target-circles {
+	display: inline-block;
+}
+#id_table_task_selector div.target-circle {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background-color: #fff;
+	border-radius: 6px;
+	border-width: 1px;
+	border-style: solid;
+	margin: 0px 2px;
+}
+.environment-student #id_table_task_selector div.target-circle {
+	border-color: #28a8e0;
+}
+.environment-teacher #id_table_task_selector div.target-circle {
+	border-color: #3f898a;
+}
+.environment-student #id_table_task_selector div.target-circle.completed {
+	background-color: #a1dbe7;
+}
+.environment-teacher #id_table_task_selector div.target-circle.completed {
+	background-color: #89beb4;
+}
+#id_table_task_selector.overview {
+	border-collapse: separate;
+	border-spacing: 0px 6px;
+	margin: -6px 0px;
+}
+#id_table_task_selector.overview td {
+	border-top: none;
+	padding: 0px;
+}
+#id_table_task_selector.overview td.spacer {
+	width: 6px;
+}
+#id_table_task_selector.overview td.task-info {
+	border-width: 4px 0px 4px 4px;
+	border-radius: 8px 0px 0px 8px;
+	border-style: solid;
+	padding: 8px;
+}
+@media (min-width: 768px) {
+	#id_table_task_selector.overview td.task-info {
+		width: 292px;
+	}
+}
+@media (min-width: 992px) {
+	#id_table_task_selector.overview td.task-info {
+		width: 402px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_task_selector.overview td.task-info {
+		width: 502px;
+	}
+}
+.environment-student #id_table_task_selector.overview td.task-info {
+	border-color: #28a8e0;
+}
+.environment-teacher #id_table_task_selector.overview td.task-info {
+	border-color: #3f898a;
+}
+@media (min-width: 1px) {
+	#id_table_task_selector.overview td.task-info .task-title {
+		width: 272px;
+	}
+}
+@media (min-width: 992px) {
+	#id_table_task_selector.overview td.task-info .task-title {
+		width: 382px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_task_selector.overview td.task-info .task-title {
+		width: 482px;
+	}
+}
+#id_table_task_selector.overview td.task-go {
+	border-radius: 0px 8px 8px 0px;
+	border-width: 4px 4px 4px 0px;
+	border-style: solid;
+	width: 60px;
+	padding-left: 4px;
+}
+#id_table_task_selector.overview td.task-go.cat-1 {
+	background-color: #da1c80;
+	border-color: #da1c80;
+}
+#id_table_task_selector.overview td.task-go.cat-2 {
+	background-color: #ec972a;
+	border-color: #ec972a;
+}
+#id_table_task_selector.overview td.task-go.cat-3 {
+	background-color: #6a76cc;
+	border-color: #6a76cc;
+}
+#id_table_task_selector.overview td.task-go.cat-4 {
+	background-color: #44c9c4;
+	border-color: #44c9c4;
+}
+#id_table_task_selector.overview td.task-go.cat-5 {
+	background-color: #39b249;
+	border-color: #39b249;
+}
+#id_table_task_selector.overview td.task-go.cat-6 {
+	background-color: #ba7c53;
+	border-color: #ba7c53;
+}
+#id_table_task_selector.overview td.task-go.cat-0 {
+	background-color: #a7a8ac;
+	border-color: #a7a8ac;
+}
+#id_table_task_selector.overview td.reflection {
+	padding-top: 10px;
+}
+#id_table_task_selector.overview td.reflection .reflection-data {
+	display: inline-block;
+	padding-left: 20px;
+}
+.view-lesson-grid-left #id_table_task_selector,
+.edit-lesson-grid-left #id_table_task_selector {
+	border-collapse: separate;
+}
+.view-lesson-grid-left #id_table_task_selector td,
+.edit-lesson-grid-left #id_table_task_selector td {
+	border-top: none;
+}
+.view-lesson-grid-left #id_table_task_selector tr.selectable,
+.edit-lesson-grid-left #id_table_task_selector tr.selectable {
+	cursor: pointer;
+}
+.view-lesson-grid-left #id_table_task_selector tr.selectable td,
+.edit-lesson-grid-left #id_table_task_selector tr.selectable td {
+	border-top: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+}
+.environment-student .view-lesson-grid-left #id_table_task_selector tr.selected td,
+.environment-student .edit-lesson-grid-left #id_table_task_selector tr.selected td {
+	border-top: 1px solid #28a8e0;
+	border-bottom: 1px solid #28a8e0;
+}
+.environment-teacher .view-lesson-grid-left #id_table_task_selector tr.selected td,
+.environment-teacher .edit-lesson-grid-left #id_table_task_selector tr.selected td {
+	border-top: 1px solid #3f898a;
+	border-bottom: 1px solid #3f898a;
+}
+.view-lesson-grid-left #id_table_task_selector td.task-category,
+.edit-lesson-grid-left #id_table_task_selector td.task-category {
+	padding: 0px;
+}
+@media (min-width: 1px) {
+	.view-lesson-grid-left #id_table_task_selector td.task-category,
+	.edit-lesson-grid-left #id_table_task_selector td.task-category {
+		width: 16px;
+	}
+}
+@media (min-width: 992px) {
+	.view-lesson-grid-left #id_table_task_selector td.task-category,
+	.edit-lesson-grid-left #id_table_task_selector td.task-category {
+		width: 24px;
+	}
+}
+@media (min-width: 1200px) {
+	.view-lesson-grid-left #id_table_task_selector td.task-category,
+	.edit-lesson-grid-left #id_table_task_selector td.task-category {
+		width: 24px;
+	}
+}
+.view-lesson-grid-left #id_table_task_selector td.task,
+.edit-lesson-grid-left #id_table_task_selector td.task {
+	background-color: #f1f1f1;
+}
+@media (min-width: 1px) {
+	.view-lesson-grid-left #id_table_task_selector td.task .task-title,
+	.edit-lesson-grid-left #id_table_task_selector td.task .task-title {
+		width: 142px;
+	}
+}
+@media (min-width: 992px) {
+	.view-lesson-grid-left #id_table_task_selector td.task .task-title,
+	.edit-lesson-grid-left #id_table_task_selector td.task .task-title {
+		width: 189px;
+	}
+}
+@media (min-width: 1200px) {
+	.view-lesson-grid-left #id_table_task_selector td.task .task-title,
+	.edit-lesson-grid-left #id_table_task_selector td.task .task-title {
+		width: 239px;
+	}
+}
+.view-lesson-grid-left #id_table_task_selector tr.selected td.task,
+.edit-lesson-grid-left #id_table_task_selector tr.selected td.task {
+	background-color: #fff;
+}
+.view-lesson-grid-left #id_table_task_selector td.new-task,
+.edit-lesson-grid-left #id_table_task_selector td.new-task {
+	padding-bottom: 0px;
+}
+
+/* view/edit lesson */
+.view-lesson-grid-left,
+.edit-lesson-grid-left {
+	margin-top: -20px;
+	margin-left: -20px;
+	margin-bottom: 20px;
+}
+.environment-student .view-lesson-grid-left,
+.environment-student .edit-lesson-grid-left {
+	border-right: 1px solid #28a8e0;
+}
+.environment-teacher .view-lesson-grid-left,
+.environment-teacher .edit-lesson-grid-left {
+	border-right: 1px solid #3f898a;
+}
+.view-lesson-grid-right,
+.edit-lesson-grid-right {
+	margin-left: -31px;
+	padding-left: 30px;
+	margin-bottom: 20px;
+}
+.environment-student .view-lesson-grid-right,
+.environment-student .edit-lesson-grid-right {
+	border-left: 1px solid #28a8e0;
+}
+.environment-teacher .view-lesson-grid-right,
+.environment-teacher .edit-lesson-grid-right {
+	border-left: 1px solid #3f898a;
+}
+/* edit lesson - assign task */
+.edit-lesson-grid-right #id_form_assign_task .bottombar {
+	background-color: #3f898a;
+	margin-top: 30px;
+	margin-left: -30px;
+	margin-right: -20px;
+	padding: 10px 20px 10px 30px;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-title {
+	padding-left: 15px;
+}
+@media (min-width: 1px) {
+	.edit-lesson-grid-right #id_form_assign_task .task-title {
+		width: 350px;
+	}
+	.edit-lesson-grid-right #id_form_assign_task .task-title .autocomplete-wrapper input {
+		width: 335px;
+	}
+}
+@media (min-width: 992px) {
+	.edit-lesson-grid-right #id_form_assign_task .task-title {
+		width: 515px;
+	}
+	.edit-lesson-grid-right #id_form_assign_task .task-title .autocomplete-wrapper input {
+		width: 500px;
+	}
+}
+@media (min-width: 1200px) {
+	.edit-lesson-grid-right #id_form_assign_task .task-title {
+		width: 665px;
+	}
+	.edit-lesson-grid-right #id_form_assign_task .task-title .autocomplete-wrapper input {
+		width: 650px;
+	}
+}
+.edit-lesson-grid-right #id_form_assign_task .task-target {
+	padding-right: 15px;
+	width: 200px;
+}
+.edit-lesson-grid-right #id_form_assign_task div.task-category {
+	border-width: 2px;
+	border-style: solid;
+	border-radius: 5px;
+	padding: 8px;
+	cursor: pointer;
+}
+.edit-lesson-grid-right #id_form_assign_task div.task-category.selected {
+	color: #f0f0f0;
+	cursor: default;
+}
+.edit-lesson-grid-right #id_form_assign_task div.task-category.cat-grid-left {
+	margin-right: 2px;
+	margin-bottom: 4px;
+}
+.edit-lesson-grid-right #id_form_assign_task div.task-category.cat-grid-mid {
+	margin-right: 2px;
+	margin-left: 2px;
+	margin-bottom: 4px;
+}
+.edit-lesson-grid-right #id_form_assign_task div.task-category.cat-grid-right {
+	margin-left: 2px;
+	margin-bottom: 4px;
+}
+@media (min-width: 1px) {
+	.edit-lesson-grid-right #id_form_assign_task div.task-category .autocomplete-wrapper input {
+		width: 505px;
+	}
+}
+@media (min-width: 992px) {
+	.edit-lesson-grid-right #id_form_assign_task div.task-category .autocomplete-wrapper input {
+		width: 670px;
+	}
+}
+@media (min-width: 1200px) {
+	.edit-lesson-grid-right #id_form_assign_task div.task-category .autocomplete-wrapper input {
+		width: 820px;
+	}
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist {
+	padding: 0px 15px;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist .btn {
+	height: 34px;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist tr td {
+	padding: 0;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist tr + tr td {
+	padding-top: 4px;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-remove {
+	border-top: none;
+	width: 40px;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-text {
+	border-top: none;
+	padding-right: 4px;
+	padding-left: 4px;
+}
+@media (min-width: 1px) {
+	.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-text .autocomplete-wrapper input {
+		width: 297px;
+	}
+}
+@media (min-width: 992px) {
+	.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-text .autocomplete-wrapper input {
+		width: 462px;
+	}
+}
+@media (min-width: 1200px) {
+	.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-text .autocomplete-wrapper input {
+		width: 612px;
+	}
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-target {
+	border-top: none;
+	width: 180px;
+}
+.edit-lesson-grid-right #id_form_assign_task .task-checklist td.item-target .input-group-addon {
+	width: 66px;
+	text-align: left;
+}
+
+/* selected task */
+#id_selectedtask_student .description,
+#id_selectedtask_teacher .description {
+	padding-top: 10px;
+}
+#id_selectedtask_student_start_practice_btn,
+#id_selectedtask_student_save_practice_btn {
+	margin: 10px 0px;
+}
+textarea#id_selectedtask_student_new_practice_first_comment {
+	height: 74px;
+	margin-bottom: 10px;
+}
+
+/* checklists */
+.checklist ul {
+	list-style-type: none;
+	padding-left: 0px;
+	font-size: 18px;
+}
+.checklist .checklist-item-content {
+	padding-top: 6px;
+}
+@media (min-width: 1px) {
+	.checklist .checklist-item-content {
+		width: 340px;
+	}
+}
+@media (min-width: 992px) {
+	.checklist .checklist-item-content {
+		width: 470px;
+	}
+}
+@media (min-width: 1200px) {
+	.checklist .checklist-item-content {
+		width: 580px;
+	}
+}
+.checklist .checklist-item-target {
+	display: inline-block;
+	background-color: #f06522;
+	padding: 2px 6px;
+	border-radius: 8px;
+	font-size: 14px;
+	color: #f0f0f0;
+	margin-left: 8px;
+}
+
+/* ratings */
+.rating .row.reflection-faces {
+	padding: 5px 0px;
+}
+.rating .vertical.reflection-faces {
+	min-height: 60px;
+}
+.rating .reflection-face,
+.rating .reflection-face-ro {
+	padding: 4px 0px 5px 0px;
+	text-align: center;
+}
+.rating .reflection-face {
+	cursor: pointer;
+}
+.rating .reflection-face > div {
+    display: inline-block;
+    padding-top: 4px;
+	width: 60px;
+    height: 60px;
+}
+.rating .reflection-face.selected > div {
+	background-image: url("../images/smilies-selection.png");
+    background-repeat: no-repeat;
+}
+
+/* view/edit reflection modal */
+#id_modal_view_reflection .reflection-prompt,
+#id_modal_edit_reflection .reflection-prompt {
+	line-height: 40px;
+}
+#id_modal_edit_reflection .reflection-form .reflection-face-actions {
+	padding-top: 9px;
+}
+#id_modal_edit_reflection .reflection-form .refresh-wrapper {
+	margin-right: 5px;
+}
+
+/* comments */
+.comments-form .comment-item {
+	border-bottom: solid 1px #ddd;
+	padding: 10px 5px 10px 5px;
+}
+.comments-form .comment-item:first-of-type {
+	border-top: solid 1px #ddd;
+}
+.comments-form .comment-item:nth-of-type(2n-1) {
+	background-color: #f9f9f9;
+}
+.comments-form .comment-item textarea {
+	margin-top: 3px;
+	margin-bottom: 3px;
+}
+.comments-form .comment-item[data-comment-id='new'] {
+	border: 0;
+	padding-left: 0px;
+	padding-right: 0px;
+	background-color: transparent;
+}
+
+/* goals */
+#id_modal_edit_goals[data-completed-filter='0'],
+#id_modal_view_goals[data-completed-filter='0'] {
+	/* show all */
+}
+
+#id_modal_edit_goals[data-completed-filter='1'] div[data-completed='1'],
+#id_modal_view_goals[data-completed-filter='1'] div[data-completed='1'] {
+	/* show only incomplete */
+	display: none;
+}
+
+#id_modal_edit_goals[data-completed-filter='2'] div[data-completed='0'],
+#id_modal_view_goals[data-completed-filter='2'] div[data-completed='0'] {
+	/* show only complete */
+	display: none;
+}
+.goals-form .goals-item {
+	margin-top: 15px;
+}
+.goals-form .goals-item .item-buttons {
+	width: 90px;
+	margin: 0px auto;
+}
+.goals-form .goals-item .item-buttons .btn-spacer {
+	display: inline-block;
+	width: 10px;
+}
+.goals-form .goals-item .item-text.pre-line,
+.goals-ro .goals-item .item-text.pre-line {
+	margin-left: 30px;
+}
+
+/* report issue */
+#id_modal_report_issue button {
+	width: 150px;
+}
+#id_modal_report_issue div.alert {
+	margin-top: 15px;
+	margin-bottom: 0px;
+}
+
+/* edit practicelog timer (student) */
+#id_modal_edit_practicelog_timer_student .timer-wrapper {
+	width: 210px;
+	margin: 0px auto;
+}
+
+/* misc components */
+#id_account_info .account-picture {
+	width: 100px;
+}
+#id_account_info .account-info {
+	padding-left: 20px;
+}
+#id_account_info .account-delete {
+	padding-top: 20px;
+}
+.environment-student #id_account_info .account-delete a {
+	color: #28a8e0;
+}
+.environment-student #id_account_info .account-delete a:hover,
+.environment-student #id_account_info .account-delete a:focus {
+	color: #1b8aba;
+}
+.environment-teacher #id_account_info .account-delete a {
+	color: #3f898a;
+}
+.environment-teacher #id_account_info .account-delete a:hover,
+.environment-teacher #id_account_info .account-delete a:focus {
+	color: #357273;
+}
+#id_practicelog div.practice-header {
+	cursor: pointer;
+	height: 70px;
+	padding: 0px;
+	line-height: 50px;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+}
+#id_practicelog div.practice-header.first {
+	border-top-width: 1px;
+	margin-top: 10px;
+}
+.environment-student #id_practicelog div.practice-header.open {
+	background-color: #28a8e0;
+	color: #f0f0f0;
+}
+.environment-teacher #id_practicelog div.practice-header.open {
+	background-color: #3f898a;
+	color: #f0f0f0;
+}
+#id_practicelog .practice-header-column-left {
+	padding: 10px 10px 10px 10px;
+}
+#id_practicelog .practice-header-column-right {
+	padding: 10px 10px 10px 0px;
+}
+#id_practicelog .practice-header-column-right .time-spent {
+	width: 90px;
+	text-align: center;
+}
+#id_practicelog .practice-header-column-right .reflection {
+	width: 38px;
+	height: 50px;
+	text-align: center;
+	margin-right: 2px;
+}
+#id_practicelog .practice-header-column-right .reflection img {
+	display: none;
+}
+#id_practicelog .practice-header-column-right .reflection[data-selected-reflection-index="1"] img[data-reflection-index="1"],
+#id_practicelog .practice-header-column-right .reflection[data-selected-reflection-index="2"] img[data-reflection-index="2"],
+#id_practicelog .practice-header-column-right .reflection[data-selected-reflection-index="3"] img[data-reflection-index="3"],
+#id_practicelog .practice-header-column-right .reflection[data-selected-reflection-index="4"] img[data-reflection-index="4"] {
+	display: inline;
+	margin-top: -4px;
+}
+#id_practicelog .practice-header-column-right .moreactions {
+	width: 50px;
+	height: 50px;
+	padding: 5px;
+	text-align: center;
+}
+#id_practicelog div.practice-content {
+	display: none;
+	padding: 10px;
+	border-style: solid;
+	border-top-width: 0px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+}
+#id_practicelog .practice-header .practicelog-indicators {
+	width: 100px;
+	line-height: 25px;
+	margin-top: 10px;
+	color: #cbcbcb;
+}
+.environment-student #id_practicelog .practice-header .practicelog-indicators {
+	color: #28a8e0;
+}
+.environment-teacher #id_practicelog .practice-header .practicelog-indicators {
+	color: #3f898a;
+}
+#id_practicelog .practice-header.open .practicelog-indicators {
+	color: #f0f0f0;
+}
+#id_task_moreinfo {
+	background-color: #EEE;
+	padding: 10px;
+	border-radius: 4px;
+	margin-bottom: 10px;
+}
+#id_task_moreinfo .moreinfo-target {
+	text-align: center;
+	width: 100px;
+	margin: 0px auto;
+}
+@media (min-width: 992px) {
+	#id_task_moreinfo .moreinfo-target {
+		width: 120px;
+	}
+}
+#id_task_moreinfo .moreinfo-target .target-icon {
+	height: 40px;
+}
+#id_task_moreinfo .moreinfo-target .target-ratio {
+	height: 40px;
+	line-height: 40px;
+	font-size: 24px;
+}
+#id_task_moreinfo .moreinfo-category {
+	margin: 10px 0px;
+	text-align: center;
+	color: #f0f0f0;
+	padding: 2px;
+	border-radius: 5px;
+}
+#id_task_moreinfo .moreinfo-attachments {
+	margin-top: -4px;
+}
+#id_task_moreinfo .moreinfo-attachment {
+	text-align: center;
+}
+#id_task_moreinfo .moreinfo-attachment .fileicon {
+	text-align: center;
+	padding: 4px 0px 0px 0px;
+	font-size: 32px;
+	cursor: default;
+}
+#id_welcome_student h1,
+#id_welcome_teacher h1,
+#id_welcome_student h2,
+#id_welcome_teacher h2 {
+	margin-top: 30px;
+}
+#id_welcome_student .btn-default,
+#id_welcome_teacher .btn-default {
+	margin: 0px 15px;
+}
+#id_welcome_student span.note,
+#id_welcome_teacher span.note {
+	display: block;
+	margin-top: 60px;
+}
+#id_welcome_student .spacer {
+	height: 40px;
+}
+

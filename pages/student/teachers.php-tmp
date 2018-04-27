@@ -1,0 +1,105 @@
+<?php
+require_once dirname(__FILE__).'/../../_cadenza/Core.php';
+Core::init();
+
+if (isset($_REQUEST['action']) && $_REQUEST['action']) {
+	ActionHandler::action($_REQUEST['action']);
+	exit;
+}
+
+if (!Login::isLoggedInAsStudent()) {
+	Redirect::set('student/invalid');// will check login status and handle accordingly
+	Redirect::go();
+}
+$uid                      = Session::uid();
+$link_statuses_connected  = UserLinkGateway::getStatusArrayConnected();
+$link_statuses_inactive   = UserLinkGateway::getStatusArrayInactive();
+$teachers_user_statuses   = array('active', 'deleted');
+$count_connected_teachers = UserGateway::countTeachersWithStatusesLinkedToStudent($uid, $teachers_user_statuses, $link_statuses_connected);
+$count_inactive_teachers  = UserGateway::countTeachersWithStatusesLinkedToStudent($uid, $teachers_user_statuses, $link_statuses_inactive);
+$count_all_teachers       = $count_connected_teachers+$count_inactive_teachers;
+if ($count_all_teachers == 0) {
+	Redirect::set('index');
+	Redirect::go();
+}
+$order_by        = isset($_REQUEST['order_by'])?$_REQUEST['order_by']:null;
+$order_direction = isset($_REQUEST['order_direction'])?$_REQUEST['order_direction']:null;
+Redirect::done();
+
+$user        = Login::getCurrentUser();
+$navbar_data = Components::loadStudentNavbarData($user, $count_connected_teachers, $count_inactive_teachers);
+
+$lesson_counts             = array();
+$latest_lesson_dates_local = array();
+
+$sortable_action            = 'sortableListOfTeachers';
+$sortable_default_column    = 'user_links.last_lesson_id';
+$sortable_default_direction = 'DESC';
+Sortable::init($sortable_action, $sortable_default_column, $sortable_default_direction, $order_by, $order_direction);
+
+$sortable_options = array(
+	new Sortable(Language::getText('label', 'latest_lesson'), "user_links.last_lesson_id", "DESC"),
+	new Sortable(Language::getText('label', 'name'), "u.g_name", "ASC"),
+);
+
+$connected_teacher_rows = UserGateway::findAllTeachersWithStatusesLinkedToStudent($user->uid, $teachers_user_statuses, $link_statuses_connected, array('orderby' => Sortable::get_order_by_string()));
+$connected_teachers     = array();
+foreach ($connected_teacher_rows as $connected_teacher_row) {
+	$connected_teacher                                  = new User($connected_teacher_row);
+	$connected_teachers[]                               = $connected_teacher;
+	$lesson_counts[$connected_teacher->uid]             = LessonGateway::countSavedOfStudentTeacher($user->uid, $connected_teacher->uid);
+	$last_lesson_row                                    = LessonGateway::findLastSaved($user->uid, $connected_teacher->uid);
+	$latest_lesson_dates_local[$connected_teacher->uid] = $last_lesson_row?Core::utcToLocal($last_lesson_row['created_date']):null;
+}
+
+$inactive_teacher_rows = UserGateway::findAllTeachersWithStatusesLinkedToStudent($user->uid, $teachers_user_statuses, $link_statuses_inactive, array('orderby' => Sortable::get_order_by_string()));
+$inactive_teachers     = array();
+foreach ($inactive_teacher_rows as $inactive_teacher_row) {
+	$inactive_teacher                                  = new User($inactive_teacher_row);
+	$inactive_teachers[]                               = $inactive_teacher;
+	$lesson_counts[$inactive_teacher->uid]             = LessonGateway::countSavedOfStudentTeacher($user->uid, $inactive_teacher->uid);
+	$last_lesson_row                                   = LessonGateway::findLastSaved($user->uid, $inactive_teacher->uid);
+	$latest_lesson_dates_local[$inactive_teacher->uid] = $last_lesson_row?Core::utcToLocal($last_lesson_row['created_date']):null;
+}
+
+$twig    = new Twig_Environment_Cadenza();
+$context = array(
+	'user'                      => $user,
+	'navbar_data'               => $navbar_data,
+	'connected_teachers'        => $connected_teachers,
+	'inactive_teachers'         => $inactive_teachers,
+	'lesson_counts'             => $lesson_counts,
+	'latest_lesson_dates_local' => $latest_lesson_dates_local,
+	'sortable_options'          => $sortable_options,
+	// 'login_with_google'=> Core::cadenzaUrl('pages/select_account.php'),
+);
+// $client = new Google_Client_Cadenza(true);
+// $service = new Google_Service_Drive_Cadenza($client);
+// $files = retrieveAllFiles();
+// echo "<pre>";
+// print_r($files);
+die;
+
+print$twig->render('pages/student/teachers.html.twig', $context);
+
+function retrieveAllFiles(Google_Service_Drive_Cadenza $service) {
+	$result    = array();
+	$pageToken = NULL;
+
+	do {
+		try {
+			$parameters = array();
+			if ($pageToken) {
+				$parameters['pageToken'] = $pageToken;
+			}
+			$files = $service->files->listFiles($parameters);
+
+			$result    = array_merge($result, $files->getItems());
+			$pageToken = $files->getNextPageToken();
+		} catch (Exception $e) {
+			print"An error occurred: ".$e->getMessage();
+			$pageToken = NULL;
+		}
+	} while ($pageToken);
+	return $result;
+}

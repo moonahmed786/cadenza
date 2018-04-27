@@ -1,0 +1,55 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_edit_reflection' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['reflection'] %}
+{% set has_footer = false %}
+
+{% block modal_body %}
+	<div class="form-group nomargin reflection-form">
+		<div class="row">
+			<div class="col-xs-8 col-md-9">
+				<div class="section-line"><h4 class="section" id="{{ modal_id }}_lesson_title"></h4></div>
+			</div>
+			<div class="col-xs-4 col-md-3 h4 nopadding-left text-center">
+				<span class="color-env">{{ ICONS.data['targets']|raw }}</span>
+				<span id="{{ modal_id }}_lesson_targets"></span>
+				&nbsp;
+				<span class="color-env">{{ ICONS.data['time_spent']|raw }}</span>
+				<span id="{{ modal_id }}_lesson_time_spent"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-md-9">
+				{% include 'components/ratings/edit_lesson_reflection.html.twig' with { } only %}
+			</div>
+			<div class="col-xs-1 col-md-1 nopadding-left">
+			</div>
+			<div class="col-xs-3 col-md-2 reflection-face-actions">
+				<a href="#" class="btn btn-icon icon-edit hidden" id="{{ modal_id }}_edit_reflection_index_btn" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+				<a href="#" class="btn btn-icon icon-save" id="{{ modal_id }}_save_reflection_index_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9 col-md-10 nopadding-right">
+				<div class="floatleft refresh-wrapper">
+					<a href="#" class="btn btn-icon icon-refresh" id="{{ modal_id }}_refresh_btn">{{ ICONS.btn['refresh']|raw }}</a>
+				</div>
+				<div class="floatleft">
+					<strong><span id="{{ modal_id }}_prompt" class="reflection-prompt"></span></strong>
+				</div>
+				<div class="clear"></div>
+				<textarea id="{{ modal_id }}_text_edit" class="form-control" rows="8" placeholder="{{ TEXT.hint['reflection'] }}" aria-labelledby="{{ modal_id }}_lesson_title"></textarea>
+				<span id="{{ modal_id }}_text_saved" class="pre-line hidden"></span>
+			</div>
+			<div class="col-xs-3 col-md-2">
+				<a href="#" class="btn btn-icon icon-edit" id="{{ modal_id }}_edit_reflection_text_btn" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+				<a href="#" class="btn btn-icon icon-save" id="{{ modal_id }}_save_reflection_text_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+			</div>
+		</div>
+		{# Comments #}
+		<h5 class="color-env">{{ TEXT.label['comments']|upper }}</h5>
+		<div id="{{ modal_id }}_lesson_comments"></div>
+	</div>
+{% endblock %}

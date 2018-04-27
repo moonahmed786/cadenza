@@ -1,0 +1,49 @@
+{% extends "components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderTableListOfInvites,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set table_id = 'id_table_list_of_invites' %}
+{% set table_class = 'table table-striped' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = false %}
+{% set has_tfoot = false %}
+{% set has_tbody = true %}
+
+{% set show_debug = false %}
+
+{% block table_head %}
+{% endblock %}
+
+{% block table_foot %}
+{% endblock %}
+
+{% block table_body %}
+	{% if show_debug %}<tr><td colspan="4" class="h5 nomargin"><div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div></td></tr>{% endif %}
+    {% for invite in invite_rows %}
+    	{% set delete_btn_class = 'btn btn-default btn-sm invite-delete' %}
+    	{% set resend_btn_class = (invite.status == 'pending' or invite.status == 'pending-inactive') ? 'btn btn-default btn-sm invite-resend disabled' : 'btn btn-default btn-sm invite-resend' %}
+	    <tr>
+	        <td>
+	        	<div class="floatleft email">{{ invite.student_email }}</div>
+		        <div class="floatleft status">
+		        	{% if invite.status == 'pending' or invite.status == 'pending-inactive' %}
+		        		<span class="color-env">{{ TEXT.label['invite_sent'] }} {{ invite.status_date|split(' ')[0] }}</span>
+		        	{% elseif invite.status == 'rejected' or invite.status == 'rejected-inactive' %}
+		        		<span class="text-danger">{{ TEXT.label['invite_rejected'] }}</span>
+		        	{% endif %}
+		        </div>
+		        <div class="clear"></div>
+	        </td>
+	        <td class="delete-resend">{% spaceless %}
+	        	<a href="#" class="{{ delete_btn_class }}" data-student-id="{{ invite.student_id }}">{{ TEXT.label['delete'] }}</a>
+	        	<a href="#" class="{{ resend_btn_class }}" data-student-email="{{ invite.student_email }}">{{ TEXT.label['resend'] }}</a>
+	        {% endspaceless %}</td>
+	    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+{% endblock %}

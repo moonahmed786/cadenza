@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% set body_class = 'signup-page' %}
+{% set include_css_components = true %}
+{% set include_css_components_admin = false %}
+
+{% set js_components = [
+	'navbars/_default'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/_default.html.twig' with { 'user':user } only %}
+	<div class="container container-offset-content">
+	</div>
+{% endblock %}

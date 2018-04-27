@@ -1,0 +1,43 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_notemaker_import' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['import_media'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="file_name">{{ TEXT.label['file_name'] }}</th>
+				<th class="created_date text-center">{{ TEXT.label['date_uploaded'] }}</th>
+				<th class="media_thumbnail text-center">&nbsp;</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr class="table-loading hidden">
+				<td colspan="3">
+					{{ ICONS.btn['loading']|raw }}
+				</td>
+			</tr>
+			<tr class="table-empty text-center hidden">
+				<td colspan="3">
+                    {% set x = '<a href="' ~ MUSICTOOLSUITE_URL_NOTEMAKER ~ '" target="_blank">' ~ TEXT.label['notemaker'] ~ '</a>' %}
+					{{ TEXT.label['notemaker_import_empty_x']|replace({'{x}':x})|raw|nl2br }}
+				</td>
+			</tr>
+			<tr id="{{ modal_id }}_dummy_row" class="hidden">
+				<td class="file_name">&nbsp;</td>
+				<td class="created_date text-center">&nbsp;</td>
+				<td class="media_thumbnail text-center">&nbsp;</td>
+			</tr>
+		</tfoot>
+		<tbody>
+		</tbody>
+	</table>
+{% endblock %}
+
+{% block modal_footer %}
+	<a href="#" class="btn btn-icon icon-save inverse disabled" id="{{ modal_id }}_save_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+{% endblock %}

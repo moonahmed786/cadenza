@@ -1,0 +1,30 @@
+{% block heading %}
+{% endblock %}
+<div id="{{ upload_id }}" class="{{ upload_class }}" data-readonly="{{ is_readonly }}">
+	<div id="{{ upload_id }}_files" class="upload-files-wrapper">
+		<input type="hidden" id="{{ upload_id }}_files_json" value="{{ uploaded_attachments|json_encode }}" />
+		<div id="{{ upload_id }}_file_dummy" class="floatleft hidden upload-file">
+			<div class="floatleft fileicon">
+				<a href="#" class="download-file disabled hidden">{{ ICONS.btn['file']|raw }}</a>
+				<span class="uploading">{{ ICONS.btn['loading']|raw }}</span>
+			</div>
+			<div class="floatleft filename">
+				<a href="#" class="download-file disabled hidden">{{ ICONS.btn['file']|raw }}</a>
+				<span class="uploading">{{ TEXT.label['uploading'] }}&hellip;</span>
+			</div>
+			<div class="floatright">
+				<a href="#" class="btn btn-icon icon-delete disabled hidden" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+				<a href="#" class="btn btn-icon icon-remove" aria-label="{{ TEXT.label['remove'] }}">{{ ICONS.btn['remove']|raw }}</a>
+			</div>
+			<div class="clear"></div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+			</div>
+		</div>{% spaceless %}
+		{% endspaceless %}<div id="{{ upload_id }}_btn" class="floatleft fileinput-button upload-file file-chooser">
+			<i class="fa fa-plus"></i>
+			<input id="{{ upload_id }}_input" data-server="{{ server }}" data-lesson-id="{{ lesson_id }}" data-task-id="{{ task_id }}" data-practice-id="{{ practice_id }}" type="file" multiple />
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

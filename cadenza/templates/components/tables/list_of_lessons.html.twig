@@ -1,0 +1,88 @@
+{% extends "components/table.html.twig" %}
+
+{% set has_rows = page_lessons|length > 0 %}
+
+{% set table_id = 'id_table_list_of_lessons' %}
+{% set table_class = 'table table-striped-manual' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = true %}
+{% set has_tfoot = has_rows %}
+{% set has_tbody = has_rows %}
+
+{% block table_head %}
+	{% if not has_rows %}
+		<tr class="hint">
+			{% if user.user_type == 'student' %}
+				<th colspan="7"><h4 class="light nomargin-top">{{ is_link_connected ? TEXT.hint['no_lessons_student'] : TEXT.hint['no_lessons_student_disconnected'] }}.</h4></th>
+			{% elseif user.user_type == 'teacher' %}
+				<th colspan="7"><h4 class="light nomargin-top">{{ TEXT.hint['no_lessons_teacher'] }}.</h4></th>
+			{% endif %}
+		</tr>
+	{% else %}
+		<tr class="hint">
+			<th colspan="7"><h4 class="light nomargin-top">{{ TEXT.hint['select_a_lesson'] }}.</h4></th>
+		</tr>
+	    <tr>
+	    	<th class="category">&nbsp;</th>
+	        <th class="lesson-date">
+	        	{% if sortable_options['date'] %}
+	    			{% include 'widgets/sortable_label.html.twig' with { 'sortable': sortable_options['date'] } only %}
+	        	{% endif %}
+	        </th>
+	        <th class="toggle-showhide">&nbsp;</th>
+	        <th class="text-center quicklinks">{{ TEXT.label['reflection'] }}</th>
+	        <th class="text-center quicklinks">{{ TEXT.label['targets'] }}</th>
+	        <th class="text-center quicklinks">{{ TEXT.label['time_spent'] }}</th>
+	        <th class="text-center quicklinks">{{ TEXT.label['go'] }}</th>
+	    </tr>
+    {% endif %}
+{% endblock %}
+
+{% block table_foot %}
+	<tr>
+		<th colspan="7">{% include 'widgets/pagination.html.twig' with { 'pagination':pagination } only %}</th>
+	</tr>
+{% endblock %}
+
+{% block table_body %}
+	{% set lesson_num = 0 %}
+    {% for lesson in page_lessons %}
+    	{% set lesson_num = lesson_num + 1 %}
+    	{% set stripe_class = lesson_num is odd ? 'striped' : '' %}
+	    <tr class="lesson {{ stripe_class }}" data-lesson-id="{{ lesson.lesson_id }}">
+	    	<td class="category">&nbsp;</td>
+	        <td>{{ lesson.created_date_local|date("Y-m-d") }}</td>
+	        <td class="toggle-showhide">
+	        	<a href="#" class="btn btn-icon icon-toggle-showhide" data-show="1" aria-label="{{ TEXT.label['showhide_tasks'] }}">{{ ICONS.btn['toggle_show']|raw }}</a>
+	        </td>
+	        <td class="text-center"><a href="#" class="btn btn-icon icon-reflection" aria-label="{{ TEXT.label['reflection'] }}" data-lesson-id="{{ lesson.lesson_id }}">{{ ICONS.btn['reflection']|raw }}</a></td>
+	        <td class="text-center">{{ lesson.count_saved_tasks_with_target_met }}/{{ lesson.saved_tasks|length }}</td>
+	        <td class="text-center">{{ lesson.time_spent }}</td>
+	        <td class="text-center"><a href="view_lesson_overview.php?{{ linked_user.user_type }}_id={{ linked_user.uid }}&lesson_id={{ lesson.lesson_id }}" class="btn btn-icon icon-go" aria-label="{{ TEXT.label['go'] }}">{{ ICONS.btn['go']|raw }}</a></td>
+	    </tr>
+	    {% set task_num = 0 %}
+	    {% for lesson_task in lesson.saved_tasks %}
+	    	{% set task_num = task_num + 1 %}
+		    <tr class="lesson-task {{ stripe_class }} hidden" data-lesson-id="{{ lesson.lesson_id }}" data-task-id="{{ lesson_task.task_id }}">
+		    	<td class="category bg-color-cat-{{ lesson_task.category }}">&nbsp;</td>
+		    	<td colspan="3" class="task-title">
+		    		<div class="title-text">{{ task_num }}. {{ lesson_task.title is empty ? TEXT.label['untitled_task'] : lesson_task.title }}</div>
+	    		</td>
+	    		<td class="text-center">{{ lesson_task.count_practices }}/{{ lesson_task.target }}</td>
+	    		<td class="text-center">{{ lesson_task.time_spent }}</td>
+	    		<td class="text-center">
+	    			<a href="view_lesson.php?{{ linked_user.user_type }}_id={{ linked_user.uid }}&lesson_id={{ lesson.lesson_id }}&select_task_id={{ lesson_task.task_id }}" class="btn btn-icon-sm icon-go" aria-label="{{ TEXT.label['go'] }}">{{ ICONS.btn['go']|raw }}</a>
+	    		</td>
+	    	</tr>
+	    {% endfor %}
+    {% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+	{% if user.user_type == 'student' %}
+		{% include 'components/modals/edit_reflection.html.twig' with { 'user':user } only %}
+	{% endif %}
+	{% include 'components/modals/view_reflection.html.twig' with { 'user':user } only %}
+{% endblock %}

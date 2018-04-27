@@ -1,0 +1,18 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_add_students' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['add_students'] %}
+{% set has_footer = false %}
+
+{% block modal_body %}
+	<div class="input-group input-group-lg">
+		<input type="email" class="form-control" id="{{ modal_id }}_email_input" aria-label="{{ TEXT.label['email'] }}" placeholder="{{ TEXT.hint['enter_student_email'] }}">
+		<span class="input-group-btn">
+			<button type="button" class="btn btn-default" id="{{ modal_id }}_add_btn">{{ TEXT.label['add'] }}</button>
+		</span>
+	</div>
+	<div class="alert hidden" role="alert" id="{{ modal_id }}_alert_status"></div>
+	{% include 'components/tables/list_of_invites.html.twig' with { 'invite_rows':invite_rows } only %}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "admin_components/tabbedarea.html.twig" %}
+
+{% set tabbedarea_id = 'id_tabbedarea_selecteduser' %}
+{% set tabbedarea_active_index = (selected_tab_index is not null) ? selected_tab_index : 0 %}
+{% if user.user_type == 'student' %}
+	{% set tabbedarea_tablist_items = [
+		{'tab_key':'teachers', 'label':TEXT.label['teachers'], 'component_id':'id_table_list_of_user_connected_users', 'action':'paginationSortableListOfUserConnectedUsers'},
+		{'tab_key':'invitations', 'label':TEXT.label['invitations'], 'component_id':'id_table_list_of_user_invitations', 'action':'paginationSortableListOfUserInvitations'},
+		{'tab_key':'flags', 'label':TEXT.label['flags'], 'component_id':'id_table_list_of_user_flags', 'action':'sortableListOfUserFlags'},
+		{'tab_key':'reports', 'label':TEXT.label['reports'], 'component_id':'id_table_list_of_user_reports', 'action':'sortableListOfUserReports'}
+	] %}
+{% elseif user.user_type == 'teacher' %}
+	{% set tabbedarea_tablist_items = [
+		{'tab_key':'students', 'label':TEXT.label['students'], 'component_id':'id_table_list_of_user_connected_users', 'action':'paginationSortableListOfUserConnectedUsers'},
+		{'tab_key':'invitations', 'label':TEXT.label['invitations'], 'component_id':'id_table_list_of_user_invitations', 'action':'paginationSortableListOfUserInvitations'},
+		{'tab_key':'flags', 'label':TEXT.label['flags'], 'component_id':'id_table_list_of_user_flags', 'action':'sortableListOfUserFlags'},
+		{'tab_key':'reports', 'label':TEXT.label['reports'], 'component_id':'id_table_list_of_user_reports', 'action':'sortableListOfUserReports'}
+	] %}
+{% else %}
+	{% set tabbedarea_tablist_items = [] %}
+	{% set tabbedarea_noitems_hint = TEXT.hint['no_user_user_type'] ~ '.' %}
+{% endif %}
+
+{% block tabbedarea_tabpanel %}
+	{% if is_item_active %}
+		{% if (user.user_type == 'student' and item.tab_key == 'teachers') or (user.user_type == 'teacher' and item.tab_key == 'students') %}
+			{# Teachers/Students tab (connected users) #}
+			{% include 'admin_components/tables/list_of_user_connected_users.html.twig' with { 'user':user, 'page_connected_users':page_connected_users, 'pagination':pagination, 'sortable_options':sortable_options } only %}
+		{% elseif item.tab_key == 'invitations' %}
+			{# Invitations tab #}
+			{% include 'admin_components/tables/list_of_user_invitations.html.twig' with { 'user':user, 'page_invite_rows':page_invite_rows, 'pagination':pagination, 'sortable_options':sortable_options } only %}
+		{% elseif item.tab_key == 'flags' %}
+			{# Flags tab #}
+			{% include 'admin_components/tables/list_of_user_flags.html.twig' with { 'user':user, 'admin_reports':admin_reports, 'sortable_options':sortable_options } only %}
+		{% elseif item.tab_key == 'reports' %}
+			{# Reports tab #}
+			{% include 'admin_components/tables/list_of_user_reports.html.twig' with { 'user':user, 'admin_reports':admin_reports, 'sortable_options':sortable_options } only %}
+		{% endif %}
+	{% else %}
+		<div id="{{ item.component_id }}"></div>
+	{% endif %}
+{% endblock %}

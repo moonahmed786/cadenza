@@ -1,0 +1,21 @@
+{% extends "components/checklist.html.twig" %}
+
+{% set checklist_id = 'id_checklist_practicelog_checklist' %}
+{% set is_empty = (not practice.checklist_fields_has_checked) %}
+
+{% block checklist_heading %}
+{% endblock %}
+
+{% block checklist_content %}
+	<ul class="checklist">{% for practice_checklist_field in practice.checklist_fields %}
+		{% if practice_checklist_field.is_checked %}
+			<li>{% spaceless %}
+				<a href="#" class="btn btn-icon icon-chk-ro">{{ ICONS.btn['chk_on_ro']|raw }}</a>
+				<span>{{ practice_checklist_field.text }}</span>
+				{% if practice_checklist_field.target_type != 1 %}
+					<span class="checklist-item-target">{{ ICONS.btn['targettype' ~ practice_checklist_field.target_type]|raw }} {{ practice_checklist_field.target_val }} {{ TEXT.hint['targettype' ~ practice_checklist_field.target_type] }}</span>
+				{% endif %}
+			{% endspaceless %}</li>
+		{% endif %}
+	{% endfor %}</ul>
+{% endblock %}

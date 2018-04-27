@@ -1,0 +1,25 @@
+{% extends "admin.html.twig" %}
+
+{% set js_admin_components = [
+	'misc/selecteduser_actions',
+	'misc/selecteduser_header',
+	'modals/confirm_user_block',
+	'modals/confirm_user_delete',
+	'modals/confirm_user_delete_data',
+	'modals/confirm_user_unblock',
+	'navbars/admin',
+	'tabbedareas/selecteduser',
+	'tables/list_of_user_connected_users',
+	'tables/list_of_user_flags',
+	'tables/list_of_user_invitations',
+	'tables/list_of_user_reports'
+] %}
+
+{% block body %}
+	{% include 'admin_components/navbars/admin.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		{% include 'admin_components/misc/selecteduser_header.html.twig' with { 'user':user } only %}
+		{% include 'admin_components/tabbedareas/selecteduser.html.twig' with { 'user':user, 'page_connected_users':page_connected_users, 'page_invite_rows':page_invite_rows, 'admin_reports':admin_reports, 'pagination':pagination, 'sortable_options':sortable_options, 'selected_tab_index':tab_index } only %}
+		{% include 'admin_components/misc/selecteduser_actions.html.twig' with { 'user':user } only %}
+	</div>
+{% endblock %}

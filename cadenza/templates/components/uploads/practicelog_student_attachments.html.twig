@@ -1,0 +1,15 @@
+{% extends "components/upload.html.twig" %}
+
+{% set upload_id = 'id_upload_practicelog_student_attachments_' ~ practice.practice_id %}
+{% set upload_class = 'upload-practicelog-student-attachments' %}
+{% set server = 'cadenza' %}
+{% set lesson_id = lesson.lesson_id %}
+{% set task_id = task.task_id %}
+{% set practice_id = practice.practice_id %}
+{% set uploaded_attachments = practice.student_attachments %}
+{% set is_readonly = user.user_type != 'student' or not is_link_connected %}
+
+{% block heading %}
+	{% set heading_label = user.user_type == 'student' ? TEXT.label['my_attachments']|upper : TEXT.label['attachments']|upper %}
+	<h5 class="color-env">{{ heading_label }}</h5>
+{% endblock %}

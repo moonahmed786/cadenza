@@ -1,0 +1,62 @@
+{% set annotator_annotations_id = 'id_annotator_annotations' %}
+
+<div id="{{ annotator_annotations_id }}_dummy_comment" class="hidden annotation_comment">
+	<div>
+		<h4 class="annotation_time"></h4>
+	</div>
+	<div class="annotation">
+		<div>
+			<div class="annotation_author_photo"></div>
+			<div class="annotation_text">
+				<p>
+					{% spaceless %}<span class="annotation_author_name"></span>{{ TEXT.label[':'] ~ " " }}{% endspaceless %}
+					<span class="annotation_content"></span>
+				</p>
+				<div class="item-buttons pull-right">{% spaceless %}
+					<a href="#" class="owner_only btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+					<span class="owner_only btn-spacer"></span>
+					<a href="#" class="owner_only btn btn-icon icon-edit" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+					<span class="owner_only btn-spacer"></span>
+					<a href="#" class="btn btn-icon icon-reply" aria-label="{{ TEXT.label['reply'] }}">{{ ICONS.btn['reply']|raw }}</a>
+				{% endspaceless %}</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<div class="reply_items"></div>
+	<div class="seperator"></div>
+</div>
+
+<div id="{{ annotator_annotations_id }}_dummy_reply" class="hidden annotation_reply">
+	<div class="annotation">
+		<div>
+			<div class="reply_indicator">{{ ICONS.btn['reply_indicator']|raw }}</div>
+			<div class="annotation_text">
+				<p>
+					{% spaceless %}<span class="annotation_author_name"></span>{{ TEXT.label[':'] ~ " " }}{% endspaceless %}
+					<span class="annotation_content"></span>
+				</p>
+				<div class="item-buttons pull-right">{% spaceless %}
+					<a href="#" class="owner_only btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+					<span class="owner_only btn-spacer"></span>
+					<a href="#" class="owner_only btn btn-icon icon-edit" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+					<span class="owner_only btn-spacer"></span>
+					<a href="#" class="owner_only btn btn-icon icon-reply" aria-label="{{ TEXT.label['reply'] }}">{{ ICONS.btn['reply']|raw }}</a>
+				{% endspaceless %}</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="{{ annotator_annotations_id }}" data-current-user-name="{{ TEXT.label['you'] }}">
+	<div id="{{ annotator_annotations_id }}_items"></div>
+</div>
+	
+<div id="{{ annotator_annotations_id }}_loading_overlay">
+	<div class="loading-overlay-indicator-container">
+		<div class="loading-overlay-indicator">
+			{{ ICONS.btn['loading']|raw }}
+		</div>
+	</div>
+</div>

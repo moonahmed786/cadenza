@@ -1,0 +1,31 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_annotator' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['media_annotator'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<div class="container-fluid">
+		<div class="row nogutters">
+			<div class="col-md-7 left-side-content">
+				<div>
+					<h4 id="{{ modal_id }}_title"></h4>
+					<div id="{{ modal_id }}_created_date"></div>
+					<div id="{{ modal_id }}_created_date_no_content" class="hidden">{{ TEXT.label['unknown_date'] }}</div>
+				</div>
+				<div>
+					{% include 'components/misc/annotator_media_playback.html.twig' with { } only %}
+				</div>
+			</div>
+			<div class="col-md-5 right-side-content">
+				{% include 'components/misc/annotator_annotations.html.twig' with { } only %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block modal_footer %}
+	{% include 'components/misc/annotator_write_annotation.html.twig' with { } only %}
+{% endblock %}

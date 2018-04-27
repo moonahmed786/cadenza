@@ -1,0 +1,18 @@
+{% set welcome_id = 'id_welcome_student' %}
+
+<div id="{{ welcome_id }}" class="text-center">
+	<h1 class="color-env">{{ TEXT.welcome['student_greet_h_x']|replace({'{x}':user.first_name}) }}</h1>
+	<h2>{{ TEXT.welcome['student_greet_text1']|nl2br }}</h2>
+	<h2>{{ TEXT.welcome['student_greet_text2']|nl2br }}</h2>
+	<h2>{% spaceless %}
+		<button type="button" class="btn btn-default btn-lg" id="{{ welcome_id }}_refresh_btn">{{ ICONS.btn['refresh']|raw }} {{ TEXT.label['refresh'] }}</button>
+	{% endspaceless %}</h2>
+	
+	<div class="spacer"></div>
+	
+	{% set x = '<a href="' ~ MUSICTOOLSUITE_URL_CADENZA ~ '" target="_blank">' ~ TEXT.welcome['using_cadenza'] ~ '</a>' %}
+	<h4>{{ TEXT.welcome['student_greet_text3_x']|replace({'{x}':x})|raw|nl2br }}</h4>
+	
+	{% set x = '<a href="' ~ MUSICTOOLSUITE_URL_NOTEMAKER ~ '" target="_blank">' ~ TEXT.welcome['find_out_about_notemaker'] ~ '</a>' %}
+	<h4>{{ TEXT.welcome['student_greet_text4_x']|replace({'{x}':x})|raw|nl2br }}</h4>
+</div>

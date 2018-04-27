@@ -1,0 +1,57 @@
+{% if is_new %}
+	{% set comment_id = 'id_' ~ ref ~ '_comments_' ~ ref_id ~ '_new' %}
+	{% set is_owner = true %}
+{% else %}
+	{% set comment_id = 'id_' ~ ref ~ '_comments_' ~ ref_id ~ '_' ~ comment.comment_id %}
+	{% set is_owner = comment.author_uid == user.uid %}
+{% endif %}
+
+{% set show_debug = false %}
+
+<div id="{{ comment_id }}" data-ref="{{ ref }}" data-ref-id="{{ ref_id }}" data-comment-id="{{ is_new ? 'new' : comment.comment_id }}" class="comment-item">
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	{% if is_owner %}
+		{% if not is_readonly %}
+		<div class="comment-edit{{ not is_new ? ' hidden' : '' }}">
+			<div class="row">
+				<div class="col-xs-9 col-md-10 nopadding-right">
+					<textarea class="autosize-js form-control item-text" rows="1" placeholder="{{ TEXT.hint['comments'] }}" aria-label="{{ TEXT.label['comment'] }}">{{ not is_new ? comment.comment_text }}</textarea>
+				</div>
+				<div class="col-xs-3 col-md-2">
+					<div class="item-buttons">{% spaceless %}
+						<a href="#" class="btn btn-icon icon-save" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+						<span class="btn-spacer"></span>
+						<a href="#" class="btn btn-icon icon-delete {{ is_new ? 'disabled' }}" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+					{% endspaceless %}</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		{% if not is_new %}
+		<div class="comment-saved">
+			<div class="row">
+				<div class="col-xs-9 col-md-10 nopadding-right">
+					<strong>{{ TEXT.label['me:'] }}</strong><br />
+					<span class="item-text pre-line">{{ comment.comment_text }}</span>
+				</div>
+				{% if not is_readonly %}
+				<div class="col-xs-3 col-md-2">
+					<div class="item-buttons">{% spaceless %}
+						<a href="#" class="btn btn-icon icon-edit" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+						<span class="btn-spacer"></span>
+						<a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+					{% endspaceless %}</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		{% endif %}
+	{% else %}
+		<div class="comment-saved">
+			<div>
+				<strong>{{ comment.author_name ~ TEXT.label[':'] }}</strong><br />
+				<span class="item-text pre-line">{{ comment.comment_text }}</span>
+			</div>
+		</div>
+	{% endif %}
+</div>

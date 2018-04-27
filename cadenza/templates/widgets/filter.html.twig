@@ -1,0 +1,32 @@
+{% if not selected_index %}
+	{% set selected_index = 0 %}
+{% endif %}
+
+{% if not items %}
+	{% set items = [""] %}
+{% endif %}
+
+{% if items and items[selected_index] %}
+	{% set selected_item = items[selected_index] %}
+{% else %}
+	{% set selected_item = "" %}
+{% endif %}
+
+<div id="{{ widget_id }}" class="widget-filter" {% for key, value in widget_data %} data-{{ key }}="{{ value }}"{% endfor %}>
+	<div class="floatleft"><span class="filter-prompt">{{ prompt }}</span></div>
+	<div class="floatleft">
+		<div class="dropdown dropdown-filter" id="{{ widget_id }}_dropdown" data-selected-index="{{ selected_index }}">
+			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				<div class="floatleft"><span class="filter-text">{{ selected_item }}</span></div>
+				<div class="floatright"><i class="fa fa-caret-down"></i></div>
+				<div class="clear"></div>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="{{ widget_id }}_dropdown">
+			    {% for item in items %}
+					<li><a href="#" data-select-index="{{ loop.index0 }}">{{ item }}</a></li>
+			    {% endfor %}
+		  	</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

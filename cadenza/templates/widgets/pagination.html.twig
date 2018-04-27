@@ -1,0 +1,19 @@
+<div class="widget-pagination h3 text-center" data-action="{{ pagination.action }}">
+	<a href="#" data-page-number="{{ pagination.current_page - 1 }}" class="btn btn-icon icon-prev {{ pagination.current_page == 1 ? 'disabled' : '' }}" aria-label="{{ TEXT.label['prev'] }}">{{ ICONS.btn['prev']|raw }}</a>
+	
+	{% if pagination.first_with_ellipses %}
+	<a href="#" data-page-number="1" class="btn page-number-link {{ pagination.current_page == 1 ? 'disabled highlight' : '' }}">1</a>
+	<span class="ellipsis noselect">&hellip;</span>
+	{% endif %}
+	
+	{% for page_number in pagination.start_page_number..pagination.end_page_number %}
+	<a href="#" data-page-number="{{ page_number }}" class="btn page-number-link {{ pagination.current_page == page_number ? 'disabled highlight' : '' }}">{{ page_number }}</a>
+	{% endfor %}
+	
+	{% if pagination.last_with_ellipses %}
+	<span class="ellipsis noselect">&hellip;</span>
+	<a href="#" data-page-number="{{ pagination.total_pages }}" class="btn page-number-link {{ pagination.current_page == pagination.total_pages ? 'disabled highlight' : '' }}">{{ pagination.total_pages }}</a>
+	{% endif %}
+	
+	<a href="#" data-page-number="{{ pagination.current_page + 1 }}" class="btn btn-icon icon-next {{ pagination.current_page == pagination.total_pages ? 'disabled' : '' }}" aria-label="{{ TEXT.label['next'] }}">{{ ICONS.btn['next']|raw }}</a>
+</div>

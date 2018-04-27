@@ -1,0 +1,16 @@
+{% extends "student.html.twig" %}
+
+{% set js_components = [
+	'modals/edit_goals',
+	'modals/view_goals',
+	'navbars/student',
+	'tables/list_of_teachers'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/student.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['my_teachers'] }}</h1>
+		{% include 'components/tables/list_of_teachers.html.twig' with { 'user':user, 'connected_teachers':connected_teachers, 'inactive_teachers':inactive_teachers, 'lesson_counts':lesson_counts, 'latest_lesson_dates_local':latest_lesson_dates_local, 'sortable_options':sortable_options } only %}
+	</div>
+{% endblock %}

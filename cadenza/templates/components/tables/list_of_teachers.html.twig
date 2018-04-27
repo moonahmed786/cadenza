@@ -1,0 +1,95 @@
+{% extends "components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderTableListOfTeachers,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set table_id = 'id_table_list_of_teachers' %}
+{% set table_class = 'table' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h3' %}
+{% set has_thead = true %}
+{% set has_tfoot = false %}
+{% set has_tbody = true %}
+
+{% set show_debug = false %}
+
+{% block table_head %}
+	<tr class="hint">
+		<th colspan="5">
+			<div class="floatleft">
+				<h4 class="light">{{ TEXT.hint['select_a_teacher'] }}.</h4>
+			</div>
+			<div class="floatright">
+				{% set widget_id = 'id_widget_teacher_list_sortable' %}
+				{% include 'widgets/sortable_dropdown_select.html.twig' with { 'prompt':TEXT.label['sort_by:'], 'widget_id':widget_id, 'sortable_options':sortable_options } only %}
+			</div>
+			<div class="clear"></div>
+		</th>
+	</tr>
+
+{% endblock %}
+
+{% block table_foot %}
+{% endblock %}
+
+{% block table_body %}
+	{% if show_debug %}<tr><td colspan="5" class="h5 nomargin"><div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div></td></tr>{% endif %}
+    {% for connected_teacher in connected_teachers %}
+    <tr>
+        <td class="picture col-first">{% spaceless %}
+        	{% if connected_teacher.picture is not null %}
+        		<img src="{{ connected_teacher.picture }}" width="100" height="100" alt="{{ connected_teacher.name }}" />
+        	{% else %}
+        		<img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="100" height="100" alt="{{ connected_teacher.name }}" />
+        	{% endif %}
+        {% endspaceless %}</td>
+        <td>
+        	<div class="teacher-name">{{ connected_teacher.name }}</div>
+        	{% if latest_lesson_dates_local[connected_teacher.uid] is null %}
+        		<div class="h4 nomargin light">{{ TEXT.hint['no_latest_lesson'] }}.</div>
+        	{% else %}
+        		<div class="h4 nomargin color-env">{{ TEXT.label['latest_lesson:'] }} {{ latest_lesson_dates_local[connected_teacher.uid]|date("M j, Y") }}</div>
+        	{% endif %}
+        </td>
+        <td class="text-center quicklinks">
+        	<a href="#" class="btn btn-icon icon-labelled label-below" data-linked-user-id="{{ connected_teacher.uid }}"><div class="icon-image icon-goals">{{ ICONS.btn['goals']|raw }}</div><div class="icon-text">{{ TEXT.label['goals'] }}</div></a>
+        </td>
+        <td class="text-center quicklinks">
+        	<a href="lessons.php?teacher_id={{ connected_teacher.uid }}" class="btn btn-icon icon-labelled label-below"><div class="icon-image icon-lessonlist">{{ ICONS.btn['lessonlist']|raw }}</div><div class="icon-text">{{ TEXT.label['list_of_lessons'] }}</div></a>
+        </td>
+        <td class="text-center quicklinks col-last">
+        	<a href="view_lesson_overview.php?teacher_id={{ connected_teacher.uid }}&lesson_id=latest" class="btn btn-icon icon-labelled label-below {% if lesson_counts[connected_teacher.uid] == 0 %}disabled{% endif %}"><div class="icon-image icon-lesson">{{ ICONS.btn['lesson']|raw }}</div><div class="icon-text">{{ TEXT.label['latest_lesson'] }}</div></a>
+        </td>
+    </tr>
+    {% endfor %}
+    {% for inactive_teacher in inactive_teachers %}
+    <tr class="inactive">
+        <td class="picture col-first">{% spaceless %}
+        	{% if inactive_teacher.picture is not null %}
+        		<img src="{{ inactive_teacher.picture }}" width="100" height="100" alt="{{ inactive_teacher.name }}" />
+        	{% else %}
+        		<img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="100" height="100" alt="{{ inactive_teacher.name }}" />
+        	{% endif %}
+        {% endspaceless %}</td>
+        <td>
+        	<div class="teacher-name">{{ inactive_teacher.name }}</div>
+        	<div class="h4 nomargin color-env">
+        		{{ lesson_counts[inactive_teacher.uid] }} {{ TEXT.label['lessons'] }} {{ '(' ~ TEXT.label['inactive'] ~ ')' }}
+        	</div>
+        </td>
+        <td class="text-center quicklinks"></td>
+        <td class="text-center quicklinks">
+        	<a href="#" class="btn btn-icon icon-labelled label-below" data-linked-user-id="{{ inactive_teacher.uid }}"><div class="icon-image icon-goals">{{ ICONS.btn['goals']|raw }}</div><div class="icon-text">{{ TEXT.label['goals'] }}</div></a>
+        </td>
+        <td class="text-center quicklinks col-last">
+        	<a href="lessons.php?teacher_id={{ inactive_teacher.uid }}" class="btn btn-icon icon-labelled label-below"><div class="icon-image icon-lessonlist">{{ ICONS.btn['lessonlist']|raw }}</div><div class="icon-text">{{ TEXT.label['list_of_lessons'] }}</div></a>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+	{% include 'components/modals/edit_goals.html.twig' with { } only %}
+	{% include 'components/modals/view_goals.html.twig' with { } only %}
+{% endblock %}

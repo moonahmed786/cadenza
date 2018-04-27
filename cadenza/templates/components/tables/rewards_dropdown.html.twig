@@ -1,0 +1,50 @@
+{% extends "components/table.html.twig" %}
+
+{% set table_id = 'id_table_rewards_dropdown' %}
+{% set table_class = 'table nomargin' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'color-env' %}
+{% set has_thead = false %}
+{% set has_tfoot = true %}
+{% set has_tbody = true %}
+
+{% block table_head %}
+{% endblock %}
+
+{% block table_foot %}
+	{% set valuenow = user.reward_badgeprogress_current %}
+	{% set valuemin = 0 %}
+	{% set valuemax = user.reward_badgeprogress_next %}
+	{% set pct = (valuenow/valuemax)*100 %}
+	{% set points_to_next_badge = user.reward_badgeprogress_next - user.reward_badgeprogress_current %}
+	<tr>
+		<td colspan="4" class="text-center">
+			<div class="progress">
+				<div class="progress-bar bg-color-env" role="progressbar" aria-valuenow="{{ valuenow }}" aria-valuemin="{{ valuemin }}" aria-valuemax="{{ valuemax }}" style="width: {{ pct }}%;">
+					<span class="sr-only">{{ pct }}%</span>
+				</div>
+			</div>
+			<div class="points-to-next-badge">{{ TEXT.hint['x_points_to_next_badge']|replace({'{x}':points_to_next_badge}) }}</div>
+		</td>
+	</tr>
+{% endblock %}
+
+{% block table_body %}
+	<tr>
+		<td class="text-center">
+			<img src="{{ ASSETS_IMAGES_DIR }}/rewards_star.png" width="80" height="80" alt="{{ TEXT.label['practice_points'] }}" />
+		</td>
+		<td class="text-center reward-points">
+			<div class="points-num">{{ user.reward_points }}</div>
+			<div>{{ TEXT.label['practice_points'] }}</div>
+		</td>
+		<td class="text-center">
+			<img src="{{ ASSETS_IMAGES_DIR }}/rewards_badge.png" width="80" height="80" alt="{{ TEXT.label['badges'] }}" />
+		</td>
+		<td class="text-center reward-badges">
+			<div class="badges-num">{{ user.reward_badges }}</div>
+			<div>{{ TEXT.label['badges'] }}</div>
+		</td>
+	</tr>
+{% endblock %}

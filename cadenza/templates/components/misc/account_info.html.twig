@@ -1,0 +1,15 @@
+{% set account_info_id = 'id_account_info' %}
+
+<div id="{{ account_info_id }}">
+	<div class="floatleft account-picture">
+		<img src="{{ user.picture }}" width="100" height="100" alt="{{ user.name }}" />
+	</div>
+	<div class="floatleft account-info">
+		<div class="h4"><span class="light">{{ TEXT.label['first_name'] ~ TEXT.label[':'] }}</span> {{ user.first_name }}</div>
+		<div class="h4"><span class="light">{{ TEXT.label['last_name'] ~ TEXT.label[':'] }}</span> {{ user.last_name }}</div>
+		<div class="h4"><span class="light">{{ TEXT.label['email_address'] ~ TEXT.label[':'] }}</span> {{ user.email }}</div>
+	</div>
+	<div class="clear"></div>
+	<div class="account-delete"><a href="#">{{ TEXT.account['request_delete'] }}</a></div>
+</div>
+{% include 'components/modals/account_deletion.html.twig' with { } only %}

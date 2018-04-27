@@ -1,0 +1,31 @@
+{% extends "components/actionbar.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderActionbarStudent,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set actionbar_id = 'id_actionbar_student' %}
+{% set linked_user = teacher %}
+{% set has_lessons = count_lessons > 0 %}
+
+{% set show_debug = false %}
+
+{% block action_buttons %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	<div class="floatleft actionbar-actionbuttons show-md">
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionbar_id }}_goals_btn" data-linked-user-id="{{ teacher.uid }}">
+			<div class="floatleft icon-image icon-goals" id="{{ actionbar_id }}_goals_icon">{{ ICONS.btn['goals']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['goals'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</div>
+	<div class="floatleft text-center actionbar-actionoverflow">
+		{% include 'components/actionoverflows/actionbar_overflow_student.html.twig' with { 'user':user, 'teacher':teacher, 'is_link_connected':is_link_connected, 'is_practicing':is_practicing } only %}
+	</div>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block actionbar_modals %}
+	{% include 'components/modals/edit_goals.html.twig' with { } only %}
+	{% include 'components/modals/view_goals.html.twig' with { } only %}
+	{% include 'components/modals/report_issue.html.twig' with { } only %}
+{% endblock %}

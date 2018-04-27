@@ -1,0 +1,20 @@
+<?php
+//
+$base = '/home/hqdemo/public_html/cadenza';
+return array(
+
+	'filestore_path'                     => $base.'/cadenza/files',
+	'twig_templates_path'                => $base.'/cadenza/templates',
+	'twig_cache_path'                    => $base.'/cadenza/twig_cache',
+	'google_auth_json'                   => $base.'/cadenza/client_secrets.json',
+	'google_browser_api_key'             => 'AIzaSyBkJqVXm1IV4ijSHsSFCLJxFwJ6xIT1VJg',
+	'google_cadenza_folder_property_key' => 'cadenzaFolderPropertyProduction',
+	'google_analytics_enabled'           => true,
+	'https_enabled'                      => true,
+	'mysql_host'                         => 'localhost',
+	'mysql_username'                     => 'hqdemo_cadenza',
+	'mysql_password'                     => 'U?%}DL+3gy1e',
+	'mysql_database'                     => 'hqdemo_cadenza',
+	'timezone_local'                     => 'America/New_York',
+	'environment'                        => 'production'
+);

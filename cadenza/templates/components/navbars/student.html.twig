@@ -1,0 +1,60 @@
+{% extends "components/navbar.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderNavbarStudent,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set navbar_id = 'id_navbar_student' %}
+{% set count_new_notifications = navbar_data.user.count_new_notifications %}
+{% set show_debug = false %}
+
+{% block navbar_content %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	<div class="navbar-right">
+		{# Rewards #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown" id="{{ navbar_id }}_rewards_dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-rewards">
+							{{ ICONS.navbar['rewards']|raw }}
+						</div>
+					</div>
+				</a>
+				<div class="dropdown-menu rewards" role="menu">
+					{% include 'components/tables/rewards_dropdown.html.twig' with { 'user':navbar_data.user } %}
+				</div>
+			</li>
+		</ul>
+		{# Notifications #}
+		<ul class="nav navbar-nav">
+        	<li>
+        		<a class="navbar-link" href="notifications.php">
+					<div class="icon-notifications">
+						{{ ICONS.navbar['notifications']|raw }}
+						{% if count_new_notifications > 0 %}<span class="badge">{{ count_new_notifications }}</span>{% endif %}
+					</div>
+				</a>
+			</li>
+		</ul>
+		{# Profile Picture/Menu #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-image"><img src="{{ navbar_data.user.picture }}" width="40" height="40" alt="{{ navbar_data.user.name }}" /></div>
+					</div>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="teachers.php" class="btn{% if navbar_data.count_connected_teachers + navbar_data.count_inactive_teachers == 0 %} disabled{% endif %}">{{ ICONS.mnu['list_of_teachers']|raw }} {{ TEXT.label['my_teachers'] }}</a></li>
+					<li><a href="account.php" class="btn">{{ ICONS.mnu['my_account']|raw }} {{ TEXT.label['my_account'] }}</a></li>
+					<li><a href="{{ MUSICTOOLSUITE_URL_CADENZA }}" target="_blank" class="btn">{{ ICONS.mnu['help']|raw }} {{ TEXT.label['help'] }}</a></li>
+					<li><a href="{{ CADENZA_URL_SELECT_ACCOUNT }}" class="btn">{{ ICONS.mnu['switch_accounts']|raw }} {{ TEXT.label['switch_accounts'] }}</a></li>
+					<li><a href="{{ CADENZA_URL_LOGOUT }}" class="btn">{{ ICONS.mnu['logout']|raw }} {{ TEXT.label['logout'] }}</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block navbar_modals %}
+{% endblock %}

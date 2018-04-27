@@ -1,0 +1,11 @@
+{% set filter_id = 'id_filter_report_type' %}
+
+<div id="{{ filter_id }}">
+	{% include 'widgets/filter.html.twig' with {
+		'widget_id':filter_id ~ '_filter_widget',
+		'prompt':TEXT.label['show:'],
+		'items':[TEXT.label['all_reports'], TEXT.label['resolved'], TEXT.label['unresolved']],
+		'selected_index':filter_report_type_index,
+		'widget_data':{ 'filter-report-type-action':filter_report_type_action }
+	} only %}
+</div>

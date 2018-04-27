@@ -1,0 +1,78 @@
+{% set practicelog_id = 'id_practicelog' %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderMiscPracticelog,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set show_debug = false %}
+{% set has_moreactions = (is_link_connected and user.user_type == 'student') %}
+
+<div id="{{ practicelog_id }}" data-has-moreactions="{{ has_moreactions }}" data-select-practice-id="{{ select_practice_id }}">
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	{% if not is_practicing %}
+		<div class="section-line"><h5 class="section">{{ TEXT.label['practice_log']|upper }}</h5></div>
+		{% if task_practices|length == 0 %}
+			<h4 class="light">{{ TEXT.hint['no_practices_' ~ user.user_type] }}.</h4>
+		{% else %}
+			{% set j = task_practices|length %}
+			{% for task_practice in task_practices %}
+				{% set practiceheader_class = (j == task_practices|length) ? 'practice-header border-color-env first' : 'practice-header border-color-env' %}
+				{% set practiceheader_id = practicelog_id ~ '_practiceheader_' ~ task_practice.practice_id %}
+				<div class="{{ practiceheader_class }}" id="{{ practiceheader_id }}" data-practice-id="{{ task_practice.practice_id }}">
+					<div class="row nogutters">
+						<div class="col-xs-5 practice-header-column-left">
+							<span class="h4 nomargin">{{ j }}. {{ task_practice.created_date_local|date("D M j, Y") }}</span>
+						</div>
+						<div class="col-xs-7 practice-header-column-right">
+							<div class="pull-right">
+								<div class="floatleft">
+									{% include 'components/misc/practicelog_indicators.html.twig' with { 'user':user, 'practice':task_practice } only %}
+								</div>
+								<div class="floatleft time-spent"><span class="h4 nomargin" id="{{ practiceheader_id ~ '_timer_val' }}">{{ task_practice.time_spent }}</span></div>
+								{% set reflection_index = task_practice.reflection_index is not null ? task_practice.reflection_index : null %}
+								<div class="floatleft reflection" data-selected-reflection-index="{{ reflection_index }}">{% spaceless %}
+									{% for i in 1..4 %}
+										<img src="{{ ASSETS_IMAGES_DIR }}/smiley{{ i }}_sm.png" data-reflection-index="{{ i }}" width="32" height="32" alt="{{ TEXT.label['smiley'~i] }}" />
+									{% endfor %}
+								{% endspaceless %}</div>
+								{% if has_moreactions %}
+									<div class="floatright moreactions">
+										{% if user.user_type == 'student' %}
+											{% include 'components/actionoverflows/practicelog_overflow_student.html.twig' with { 'user':user, 'practice':task_practice } only %}
+										{% endif %}
+									</div>
+								{% endif %}
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="practice-content border-color-env" data-practice-id="{{ task_practice.practice_id }}">
+					{# Checklist #}
+					{% include 'components/checklists/practicelog_checklist.html.twig' with { 'practice':task_practice } only %}
+					
+					{# Video Annotator #}
+					{% if (user.user_type == 'student' and is_link_connected) or task_practice.annotator_file_id %}
+						{% set should_show_modal = ((select_practice_id == task_practice.practice_id) ? show_annotation_modal : false) %}
+						{% include 'components/uploads_drive/practicelog_student_annotator.html.twig' with { 'user':user, 'practice':task_practice, 'is_link_connected':is_link_connected, 'show_annotation_modal':should_show_modal } only %}
+					{% endif %}
+					
+					{# Attachments #}
+					{% if (user.user_type == 'student' and is_link_connected) or task_practice.student_attachments|length > 0 %}
+						{% include 'components/uploads/practicelog_student_attachments.html.twig' with { 'user':user, 'linked_user':linked_user, 'is_link_connected':is_link_connected, 'lesson':lesson, 'task':task, 'practice':task_practice } only %}
+					{% endif %}
+					
+					{# Comments #}
+					{% set is_comments_readonly = not is_link_connected %}
+					<h5 class="color-env">{{ TEXT.label['comments']|upper }}</h5>
+					{% include 'components/misc/comments.html.twig' with { 'user':user, 'ref': "practice", 'ref_id':task_practice.practice_id, 'comments':task_practice.comments, 'is_readonly':is_comments_readonly } only %}
+					
+				</div>
+				{% set j = j - 1 %}
+			{% endfor %}
+		{% endif %}
+	{% endif %}
+</div>
+{% if user.user_type == 'student' %}
+	{% include 'components/modals/edit_practicelog_reflection_student.html.twig' with { } only %}
+	{% include 'components/modals/edit_practicelog_timer_student.html.twig' with { } only %}
+{% endif %}

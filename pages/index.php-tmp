@@ -1,0 +1,60 @@
+<?php
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
+require_once dirname(__FILE__).'/../_cadenza/Core.php';
+Core::init();
+
+if (Login::isLoggedInWithGoogle()) {
+	$client = new Google_Client_Cadenza();
+
+	$oauth2_service   = new Google_Service_Oauth2($client);
+	$userinfo         = $oauth2_service->userinfo->get();
+	$email_normalized = UserGateway::normalizeEmail($userinfo->email);
+
+	$user_row = UserGateway::findByEmailNormalized($email_normalized);
+	if ($user_row['user_type'] == 'student') {
+		Redirect::set('student/index');
+	} elseif ($user_row['user_type'] == 'teacher') {
+		Redirect::set('teacher/index');
+	}
+	Redirect::go();
+} elseif (Login::isLoggedInAsAdmin()) {
+	Redirect::set('admin/index');
+} elseif (Login::isLoggedIn()) {
+	if (Session::userType() === 'teacher') {
+		Redirect::set('teacher/index');
+	} else {
+		Redirect::set('student/index');
+	}
+	// Redirect::go();
+} elseif (Login::isUserDeleted()) {
+	Redirect::set('logout');
+	Redirect::go();
+}
+Redirect::done();
+
+$login_error_msg = null;
+if (Login::isUserBlocked()) {
+	$user = new User(UserGateway::find(Session::uid()));
+	Session::close();
+	$login_error_msg = Language::getText('landing', 'account_x_blocked_contact_y');
+	$login_error_msg = str_replace('{x}', '<strong>'.$user->email.'</strong>', $login_error_msg);
+	$login_error_msg = str_replace('{y}', '<a href="mailto:'.Core::emailAddressContact().'">'.Core::emailAddressContact().'</a>', $login_error_msg);
+} elseif (Session::is('reprompt')) {
+	$login_error_msg = Language::getText('landing', 'invalid_refresh_token');
+}
+
+$twig    = new Twig_Environment_Cadenza();
+$session = UserGateway::find(Session::uid());
+$context = array(
+	'login_error_msg' => $login_error_msg,
+	// 'href_login_google' => Core::cadenzaUrl('pages/signup/index.php'),
+	'href_login_student' => Core::cadenzaUrl('pages/login.php'),
+	'href_login_teacher' => Core::cadenzaUrl('pages/login.php'),
+	'href_signup'        => Core::cadenzaUrl('pages/signup/signup.php'),
+	'href_login_admin'   => Core::cadenzaUrl('pages/admin.php'),
+	'href_login'         => Core::cadenzaUrl('pages/login.php'),
+	'session'            => $session
+);
+print$twig->render('pages/index.html.twig', $context);

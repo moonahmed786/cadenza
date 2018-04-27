@@ -1,0 +1,62 @@
+{% extends "components/navbar.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderNavbarTeacher,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set navbar_id = 'id_navbar_teacher' %}
+{% set count_new_notifications = navbar_data.user.count_new_notifications %}
+{% set show_debug = false %}
+
+{% block navbar_content %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	<div class="navbar-right">
+		{# Search #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown dropdown-search" id="{{ navbar_id }}_student_search_dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-search">{{ ICONS.navbar['search']|raw }}</div>
+					</div>
+				</a>
+				<div class="dropdown-menu" role="menu">
+					<div>
+						<input class="typeahead form-control" type="text" placeholder="{{ TEXT.hint['find_a_student'] }}" data-empty-message="{{ TEXT.label['empty_student_search'] }}">
+					</div>
+				</div>
+			</li>
+		</ul>
+		{# Notifications #}
+		<ul class="nav navbar-nav">
+        	<li>
+        		<a class="navbar-link" href="notifications.php">
+					<div class="icon-notifications">
+						{{ ICONS.navbar['notifications']|raw }}
+						{% if count_new_notifications > 0 %}<span class="badge">{{ count_new_notifications }}</span>{% endif %}
+					</div>
+				</a>
+			</li>
+		</ul>
+		{# Profile Picture/Menu #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-image"><img src="{{ navbar_data.user.picture }}" width="40" height="40" alt="{{ navbar_data.user.name }}" /></div>
+					</div>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="students.php" class="btn{% if navbar_data.count_connected_students == 0 %} disabled{% endif %}">{{ ICONS.mnu['list_of_students']|raw }} {{ TEXT.label['list_of_students'] }}</a></li>
+					<li><a href="#" id="{{ navbar_id }}_add_students_btn" class="btn">{{ ICONS.mnu['add_students']|raw }} {{ TEXT.label['add_students'] }}</a></li>
+					<li><a href="account.php" class="btn">{{ ICONS.mnu['my_account']|raw }} {{ TEXT.label['my_account'] }}</a></li>
+					<li><a href="{{ MUSICTOOLSUITE_URL_CADENZA }}" target="_blank" class="btn">{{ ICONS.mnu['help']|raw }} {{ TEXT.label['help'] }}</a></li>
+					<li><a href="{{ CADENZA_URL_SELECT_ACCOUNT }}" class="btn">{{ ICONS.mnu['switch_accounts']|raw }} {{ TEXT.label['switch_accounts'] }}</a></li>
+					<li><a href="{{ CADENZA_URL_LOGOUT }}" class="btn">{{ ICONS.mnu['logout']|raw }} {{ TEXT.label['logout'] }}</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block navbar_modals %}
+	{% include 'components/modals/add_students.html.twig' with { 'invite_rows':navbar_data.invite_rows } only %}
+{% endblock %}

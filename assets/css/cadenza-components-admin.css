@@ -1,0 +1,362 @@
+/* CSS document for Cadenza admin component styles */
+
+/* tabbedareas */
+.tabbedarea .nav-tabs {
+	margin-left: -20px;
+	padding-left: 20px;
+	margin-right: -20px;
+	padding-right: 20px;
+	margin-top: 10px;
+	border-bottom: 1px solid #6d6e70;
+}
+.tabbedarea .nav-tabs > li > a {
+	width: 160px;
+	text-align: center;
+	border-radius: 10px 10px 0 0;
+	padding: 8px 10px;
+	color: #6d6e70;
+	border-color: #6d6e70;
+}
+.tabbedarea .nav-tabs > li > a:hover,
+.tabbedarea .nav-tabs > li > a:focus {
+	color: #5d5e5f;
+	border-bottom-color: #6d6e70;
+}
+.tabbedarea .nav-tabs > li.active > a,
+.tabbedarea .nav-tabs > li.active > a:hover,
+.tabbedarea .nav-tabs > li.active > a:focus {
+	color: #f0f0f0;
+	background-color: #6d6e70;
+	border-color: #6d6e70;
+}
+.tabbedarea .tab-content > .tab-pane {
+	min-height: 560px;
+	padding: 20px 20px 0px 20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	border-bottom: 1px solid #6d6e70;
+}
+.tabbedarea .tabbedarea-noitems-hint {
+	padding: 20px;
+	margin-left: -20px;
+	margin-right: -20px;
+	border-bottom: 1px solid #6d6e70;
+}
+
+/* list of users, list of blocked users and list of user connected users */
+#id_table_list_of_users td,
+#id_table_list_of_blocked_users td,
+#id_table_list_of_user_connected_users td {
+	line-height: normal;
+}
+#id_table_list_of_users th.picture,
+#id_table_list_of_blocked_users th.picture,
+#id_table_list_of_user_connected_users th.picture {
+	width: 80px;
+}
+#id_table_list_of_users div.picture,
+#id_table_list_of_blocked_users div.picture,
+#id_table_list_of_user_connected_users div.picture {
+	margin: 2px;
+}
+#id_table_list_of_users th.user-type,
+#id_table_list_of_blocked_users th.user-type {
+	width: 90px;
+}
+#id_table_list_of_users th.user-id,
+#id_table_list_of_blocked_users th.user-id,
+#id_table_list_of_user_connected_users th.user-id {
+	width: 82px;
+}
+#id_table_list_of_blocked_users th.date-blocked {
+	width: 130px;
+}
+#id_table_list_of_users th.quicklinks,
+#id_table_list_of_blocked_users th.quicklinks,
+#id_table_list_of_user_connected_users th.quicklinks {
+	width: 90px;
+}
+#id_table_list_of_users th.email {
+	width: 220px;
+}
+#id_table_list_of_user_connected_users th.email {
+	width: 276px;
+}
+#id_table_list_of_blocked_users th.email {
+	width: 165px;
+}
+#id_table_list_of_users div.email {
+	width: 204px;
+	word-wrap: break-word;
+}
+#id_table_list_of_user_connected_users div.email {
+	width: 260px;
+	word-wrap: break-word;
+}
+#id_table_list_of_blocked_users div.email {
+	width: 149px;
+	word-wrap: break-word;
+}
+#id_table_list_of_users th.name {
+	width: 148px;
+}
+#id_table_list_of_user_connected_users th.name {
+	width: 182px;
+}
+#id_table_list_of_blocked_users th.name {
+	width: 73px;
+}
+#id_table_list_of_users div.name {
+	width: 132px;
+	word-wrap: break-word;
+}
+#id_table_list_of_user_connected_users div.name {
+	width: 166px;
+	word-wrap: break-word;
+}
+#id_table_list_of_blocked_users div.name {
+	width: 57px;
+}
+@media (min-width: 992px) {
+	#id_table_list_of_users th.email {
+		width: 362px;
+	}
+	#id_table_list_of_user_connected_users th.email {
+		width: 407px;
+	}
+	#id_table_list_of_blocked_users th.email {
+		width: 294px;
+	}
+	#id_table_list_of_users div.email {
+		width: 346px;
+	}
+	#id_table_list_of_user_connected_users div.email {
+		width: 391px;
+	}
+	#id_table_list_of_blocked_users div.email {
+		width: 278px;
+	}
+	#id_table_list_of_users th.name {
+		width: 226px;
+	}
+	#id_table_list_of_user_connected_users th.name {
+		width: 271px;
+	}
+	#id_table_list_of_blocked_users th.name {
+		width: 164px;
+	}
+	#id_table_list_of_users div.name {
+		width: 210px;
+	}
+	#id_table_list_of_user_connected_users div.name {
+		width: 255px;
+	}
+	#id_table_list_of_blocked_users div.name {
+		width: 148px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_users th.email {
+		width: 394px;
+	}
+	#id_table_list_of_user_connected_users th.email {
+		width: 439px;
+	}
+	#id_table_list_of_blocked_users th.email {
+		width: 328px;
+	}
+	#id_table_list_of_users div.email {
+		width: 378px;
+	}
+	#id_table_list_of_user_connected_users div.email {
+		width: 423px;
+	}
+	#id_table_list_of_blocked_users div.email {
+		width: 312px;
+	}
+	#id_table_list_of_users th.name {
+		width: 394px;
+	}
+	#id_table_list_of_user_connected_users th.name {
+		width: 439px;
+	}
+	#id_table_list_of_blocked_users th.name {
+		width: 330px;
+	}
+	#id_table_list_of_users div.name {
+		width: 378px;
+	}
+	#id_table_list_of_user_connected_users div.name {
+		width: 423px;
+	}
+	#id_table_list_of_blocked_users div.name {
+		width: 312px;
+	}
+}
+
+/* list of user invitations */
+#id_table_list_of_user_invitations th.status,
+#id_table_list_of_user_invitations th.status-date {
+	width: 148px;
+}
+#id_table_list_of_user_invitations td {
+	line-height: normal;
+	padding-top: 0.638em;
+	padding-bottom: 0.638em;
+}
+#id_table_list_of_user_invitations div.email {
+	width: 398px;
+	word-wrap: break-word;
+}
+@media (min-width: 992px) {
+	#id_table_list_of_user_invitations div.email {
+		width: 614px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_user_invitations div.email {
+		width: 814px;
+	}
+}
+
+/* list of reports, list of user flags, and list of user reports */
+#id_table_list_of_reports th.report-date,
+#id_table_list_of_user_flags th.report-date,
+#id_table_list_of_user_reports th.report-date {
+	width: 115px;
+}
+#id_table_list_of_reports th.toggle-showhide,
+#id_table_list_of_reports td.toggle-showhide,
+#id_table_list_of_user_flags th.toggle-showhide,
+#id_table_list_of_user_flags td.toggle-showhide,
+#id_table_list_of_user_reports th.toggle-showhide,
+#id_table_list_of_user_reports td.toggle-showhide {
+	padding-left: 0px;
+	width: 56px;
+}
+#id_table_list_of_reports th.report-type,
+#id_table_list_of_user_flags th.report-type,
+#id_table_list_of_user_reports th.report-type {
+	width: 180px;
+}
+#id_table_list_of_reports tr.report .row.reportedby {
+	width: 359px;
+	word-wrap: break-word;
+}
+#id_table_list_of_user_flags .row.reportedby,
+#id_table_list_of_user_reports .row.reportedby {
+	width: 373px;
+	word-wrap: break-word;
+}
+@media (min-width: 992px) {
+	#id_table_list_of_reports tr.report .row.reportedby {
+		width: 579px;
+	}
+	#id_table_list_of_user_flags .row.reportedby,
+	#id_table_list_of_user_reports .row.reportedby {
+		width: 593px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_reports tr.report .row.reportedby {
+		width: 779px;
+	}
+	#id_table_list_of_user_flags .row.reportedby,
+	#id_table_list_of_user_reports .row.reportedby {
+		width: 793px;
+	}
+}
+#id_table_list_of_reports tr.report-details,
+#id_table_list_of_user_flags tr.report-details,
+#id_table_list_of_user_reports tr.report-details {
+	font-size: 14px;
+}
+#id_table_list_of_reports tr.report-details td,
+#id_table_list_of_user_flags tr.report-details td,
+#id_table_list_of_user_reports tr.report-details td {
+	vertical-align: top;
+}
+#id_table_list_of_reports tr.report-details .report-details-info,
+#id_table_list_of_user_flags tr.report-details .report-details-info,
+#id_table_list_of_user_reports tr.report-details .report-details-info {
+	width: 514px;
+	word-wrap: break-word;
+}
+@media (min-width: 992px) {
+	#id_table_list_of_reports tr.report-details .report-details-info,
+	#id_table_list_of_user_flags tr.report-details .report-details-info,
+	#id_table_list_of_user_reports tr.report-details .report-details-info {
+		width: 734px;
+	}
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_reports tr.report-details .report-details-info,
+	#id_table_list_of_user_flags tr.report-details .report-details-info,
+	#id_table_list_of_user_reports tr.report-details .report-details-info {
+		width: 934px;
+	}
+}
+#id_table_list_of_reports tr.report-details p.report-heading,
+#id_table_list_of_user_flags tr.report-details p.report-heading,
+#id_table_list_of_user_reports tr.report-details p.report-heading {
+	font-weight: bold;
+}
+@media (min-width: 1200px) {
+	#id_table_list_of_reports tr.report .prompt,
+	#id_table_list_of_user_flags tr.report .prompt,
+	#id_table_list_of_user_reports tr.report .prompt {
+		display: block;
+	}
+}
+
+/* confirm user block */
+#id_modal_confirm_user_block .block-blurb {
+	padding: 10px;
+	font-weight: bold;
+	color: #f0f0f0;
+	background-color: #fbaf41;
+	border: 2px solid #6d6e70;
+	margin-bottom: 10px;
+}
+
+/* confirm user delete and confirm user delete data */
+#id_modal_confirm_user_delete .delete-blurb,
+#id_modal_confirm_user_delete_data .delete-blurb {
+	padding: 10px;
+	font-weight: bold;
+	color: #f0f0f0;
+	background-color: #eb1c24;
+	border: 2px solid #6d6e70;
+	margin-bottom: 10px;
+}
+#id_modal_confirm_user_delete_data .delete-blurb ul {
+	margin-bottom: 0px;
+}
+
+/* confirm user unblock */
+#id_modal_confirm_user_unblock .unblock-blurb {
+	padding: 10px;
+	font-weight: bold;
+	color: #f0f0f0;
+	background-color: #8cc540;
+	border: 2px solid #6d6e70;
+	margin-bottom: 10px;
+}
+
+/* misc components */
+#id_selecteduser_actions {
+	padding: 20px 0px;
+}
+#id_selecteduser_actions div.user-action {
+	margin-left: 12px;
+}
+#id_selecteduser_header .account-picture {
+	width: 100px;
+}
+#id_selecteduser_header .account-info {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+#id_selecteduser_header .prompt {
+	color: #777;
+}

@@ -1,0 +1,27 @@
+{% extends "teacher.html.twig" %}
+
+{% set js_components = [
+	'actionbars/teacher',
+	'actionoverflows/actionbar_overflow_teacher',
+	'misc/comments',
+	'modals/add_students',
+	'modals/notes_on_student',
+	'modals/report_issue',
+	'modals/view_goals',
+	'modals/view_reflection',
+	'navbars/teacher',
+	'ratings/view_lesson_reflection',
+	'tables/list_of_invites',
+	'tables/task_selector'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/teacher.html.twig' with { 'navbar_data':navbar_data } only %}
+	{% include 'components/actionbars/teacher.html.twig' with { 'user':user, 'student':student, 'is_link_connected':is_link_connected, 'count_lessons':count_lessons, 'lesson':lesson, 'is_edit_lesson':false } only %}
+	<div class="container container-offset-content">
+		{# Lesson Switcher #}
+		{% include 'components/tables/lesson_switcher.html.twig' with { 'user':user, 'linked_user':student, 'is_link_connected':is_link_connected, 'lesson':lesson, 'is_lesson_overview':true, 'is_edit_lesson':false } only %}
+		{# Task Selector #}
+		{% include 'components/tables/task_selector.html.twig' with { 'user':user, 'user_can_add_tasks':user_can_add_tasks, 'linked_user':student, 'is_link_connected':is_link_connected, 'lesson':lesson, 'task':null, 'is_lesson_overview':true, 'is_edit_lesson':false } only %}
+	</div>
+{% endblock %}

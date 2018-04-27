@@ -1,0 +1,14 @@
+{% extends "student.html.twig" %}
+
+{% set js_components = [
+	'navbars/student',
+	'tables/list_of_notifications'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/student.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['notification_board'] }}</h1>
+		{% include 'components/tables/list_of_notifications.html.twig' with { 'user':user, 'page_notifications':page_notifications, 'page_notification_ids_accessible':page_notification_ids_accessible, 'pagination':pagination } only %}
+	</div>
+{% endblock %}

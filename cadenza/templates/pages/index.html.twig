@@ -1,0 +1,459 @@
+{% extends "main-page.html.twig" %}
+
+{% set body_class = 'landing-page' %}
+{% set include_css_components = false %}
+{% set include_css_components_admin = false %}
+
+{% block body %}
+{# <div class="container container-offset-content">
+	<div class="landing-content">
+		<div class="landing-brand">
+			<div class="landing-heading">{{ TEXT.landing['welcome_to'] }}</div>
+			<img class="landing-logo" src="{{ ASSETS_IMAGES_DIR }}/logo_landing.png" alt="{{ APP_NAME }}" />
+		</div>
+		<div class="intro">{{ TEXT.landing['intro'] }}</div>
+		<div class="user-types-wrapper">
+			<div class="user-types-block">
+				<div class="floatleft user-type">
+					<div class="floatleft user-type-graphic student">
+						<img src="{{ ASSETS_IMAGES_DIR }}/landing_student.png" width="50" height="90" alt="{{ TEXT.label['student'] }}" />
+					</div>
+					<div class="floatleft user-type-description">
+						<span class="color-student"><strong>{{ TEXT.label['students'] ~ TEXT.label[':'] }}</strong></span>
+						<ul>
+							<li>{{ TEXT.landing['student_list_text_1'] }}</li>
+							<li>{{ TEXT.landing['student_list_text_2'] }}</li>
+							<li>{{ TEXT.landing['student_list_text_3'] }}</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="floatleft user-type">
+					<div class="floatleft user-type-graphic teacher">
+						<img src="{{ ASSETS_IMAGES_DIR }}/landing_teacher.png" width="92" height="90" alt="{{ TEXT.label['teacher'] }}" />
+					</div>
+					<div class="floatleft user-type-description">
+						<span class="color-teacher"><strong>{{ TEXT.label['teachers'] ~ TEXT.label[':'] }}</strong></span>
+						<ul>
+							<li>{{ TEXT.landing['teacher_list_text_1'] }}</li>
+							<li>{{ TEXT.landing['teacher_list_text_2'] }}</li>
+							<li>{{ TEXT.landing['teacher_list_text_3'] }}</li>
+						</ul>
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="jumbotron text-center">
+			{% if login_error_msg is not null %}
+				<div class="alert alert-danger" role="alert">{{ login_error_msg|raw|nl2br }}</div>
+			{% endif %}
+	  		{# <p><a class="btn btn-login btn-block btn-xl" href="{{ href_login_google }}" role="button">{{ TEXT.label['login_google'] }}</a></p> #}
+
+	  		{# <p><a class="btn btn-login btn-block btn-xl" href="{{ href_signup }}" role="button">Sign Up</a></p>
+>>>>>>> ca96268881dc62d875f492b0530f0a088ffe3143
+	  		<p class="login-admin">{{ TEXT.landing['for_admin_login_click'] }} <a href="{{ href_login_admin }}">{{ TEXT.landing['here'] }}</a>.</p>
+		</div> #}
+		{# <div class="text-center">
+			{% set href_x = MUSICTOOLSUITE_URL_CADENZA %}
+			{% set href_y = MUSICTOOLSUITE_URL_CADENZA_PRIVACY_POLICY %}
+			<p>
+				{{ TEXT.landing['learn_more_x_and_its_y']|replace({
+					'{x}':'<a href="' ~ href_x ~ '" target="_blank">' ~ TEXT.landing['about_cadenza'] ~ '</a>',
+					'{y}':'<a href="' ~ href_y ~ '" target="_blank">' ~ TEXT.landing['privacy_policy'] ~ '</a>'})|raw }}
+			</p>
+		</div>
+	</div>
+</div>  #}
+
+{# <html> #}
+{# <meta http-equiv="content-type" content="text/html;charset=utf-8" /> #}
+{# <head> #}
+{# <meta name="robots" content="noindex, nofollow" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" /> #}
+		
+{# <meta name="description" content="" />
+<meta name="keywords" content="" />
+<link rel="canonical" href="https://drafts.clairegradysmith.com/cvi" />
+		
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Join our mailing list" />
+<meta property="og:description" content="Parents:Understand teacher expectationsWatch your child learnSupport your child&#39;s practising in&#38;nbsp;meaningful ways" />
+<meta property="og:site_name" content="Join our mailing list" />
+<meta property="og:url" content="https://drafts.clairegradysmith.com/2018_03_20" />
+		
+<link type="text/css" rel="stylesheet" media="screen, print" href="https://v.fastcdn.co/f/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+<link type="text/css" rel="stylesheet" media="screen, print" href="https://v.fastcdn.co/f/css?family=PT+Sans:400,700,400italic,700italic" /><!-- end -->
+<style type="text/css" media="screen"></style> #}
+		
+{# <link rel="stylesheet" type="text/css" href="https://v.fastcdn.co/a/5b50c860398151e6792fdbb2177efd15c62ff6ee/031a761e2b05d2bed213fd1f07412755.css" media="screen"  /> #}
+
+{# <script type="text/javascript" src="https://v.fastcdn.co/a/5b50c860398151e6792fdbb2177efd15c62ff6ee/a5cb880a745154a6a1a45f3465215dfd.js"></script>
+<script type="text/javascript" class="instapage-noscrap">var ijQuery = jQuery.noConflict(true);</script>
+<script type="text/javascript" class="instapage-noscrap"></script> #}
+{# <script type="text/javascript" ></script> #}
+<style type="text/css">
+body
+{
+	background-color: #ffffff;
+	background-position: top left;
+	background-repeat: repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;										
+}				
+.page .page-block .block-inner { background-color: transparent; }	
+</style>
+{# <style type="text/css"></style> #}
+<div id="i-page" class="page page2 ">
+	<div class="notification">
+		<div class="notification-overlay"></div>
+			<div class="notification-inner">
+				<img rel="//v.fastcdn.co/a/img/loading_circle.svg" src="#" class="loading notification-loader" alt="" />
+				<span class="message"></span>
+				<span class="close-button" onclick="jQuery(this).parent().parent().hide()">Close</span>
+			</div>
+	</div>
+
+	<div class="page-block" id="page-block-dmlfw1qbd4t">
+		<div class="color-overlay"></div>
+			<div class="border-holder">
+					<div class="block-inner">
+<div class="page-element widget-container page-element-type-line-horizontal widget-line-horizontal "id="element-94">
+	<div class="line-horizontal" style="width: auto; height: 10px; border-bottom: 4px dashed #f17300;"></div>
+</div>
+
+<div class="page-element widget-container page-element-type-image widget-image "id="element-81">
+	<a href="{{ CADENZA_URL }}" class="navbar-brand">
+		<div class="contents">
+				<img src="{{ ASSETS_IMAGES_DIR }}/logo_landing.png" style="margin-top: 0px;" alt=""/>
+		</div>
+	</a>
+</div>
+<div class="page-element widget-container page-element-type-headline widget-headline "id="element-84">
+	
+<div class="contents"><h4><p style="text-align: center; line-height: 31px; font-size: 22px;"><font color="#fbf7f7">Cadenza is a motivating practice tool for music students, parents, and teachers.</font></p></h4></div>
+</div>
+<div class="page-element widget-container page-element-type-button widget-button " id="element-113">
+<div class="conversion_wrapper row">
+	{# <a #}
+		{# href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=321129875102-0mr6reuh062u2oqej2uvg0nvmuie28ns.apps.googleusercontent.com&amp;as=7e205fcb29563677&amp;nosignup=1&amp;destination=https%3A%2F%2Fcadenzamusictool.ca&amp;approval_state=!ChRBMFl6aFhnOXB3clVKY3htM1NFRRIfUTZYcWtWeUJ1UlFTNEpEYnJUUGdXM0JjRG9Ia0FoWQ%e2%88%99ACThZt4AAAAAWinWo1Y0VZUjaFZLp22i1O-9OVlaBeYr&amp;xsrfsig=AHgIfE8Mwp28tjpahcdZ03xDVe47oHQehA&amp;flowName=GeneralOAuthFlow" #}
+				{# style="width: 140px; height: 40px;"
+				data-wid="113" href="{{ href_login_google }}" role="button">
+		
+			<div
+				class="btn submit-button button_submit dynamic-button   "
+			>LOG IN</div> #}
+			{# <p><a class="btn btn-login btn-block btn-xl" href="{{ href_login_google }}" role="button">{{ TEXT.label['login_google'] }}</a></p> #}
+			{# <a class="login-admin btn submit-button button_submit dynamic-button" href="{{ href_login_admin }}"> ADMIN LOGIN</a>&nbsp; #}
+			{% if session is not empty %}
+				<a class="login-admin btn submit-button button_submit dynamic-button" href="{{ CADENZA_URL_LOGOUT }}">LOG OUT</a>&nbsp;
+			{% else %}
+				<a class="login-admin btn submit-button button_submit dynamic-button" href="{{ href_login_student }}">LOG IN</a>&nbsp;
+			{% endif %}	
+			{# <a class="login-admin btn submit-button button_submit dynamic-button" href="{{ href_login_student }}">LOG IN</a>&nbsp; #}
+			{# <a class="login-admin btn submit-button button_submit dynamic-button" href="{{ href_login_teacher }}"> TEACHER LOGIN</a>&nbsp; #}
+			{# </a> #}
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="page-block" id="page-block-swe7gxv7yl">
+	<div class="color-overlay"></div>
+		<div class="border-holder">
+			<div class="block-inner"></div>
+		</div>
+</div>
+<div class="page-block" id="page-block-0qlhhpeqxd2k">
+	<div class="color-overlay"></div>
+		<div class="border-holder">
+			<div class="block-inner">
+				<div class="page-element widget-container page-element-type-box widget-box "id="element-83">
+					<div class="box" style="width: 588px; height: 350px; background-color: #ffffff; border: 1px solid #dbe4ee; border-radius: 21px 21px 21px 21px; background-repeat: repeat; background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-position: top left;"></div>
+				</div>
+				<div class="page-element widget-container page-element-type-video widget-video "id="element-82">
+					<div class="video_wrapper contents">
+						<iframe class="youtube_object" type="text/html" width="560" height="315" src="https://www.youtube.com/embed/_pESHPeb7Jo" data-src="https://www.youtube.com/embed/_pESHPeb7Jo" allowfullscreen frameborder="0"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<div class="page-block" id="page_block_header">
+	<div class="color-overlay"></div>
+		<div class="border-holder">
+			<div class="block-inner">
+				<div class="page-element widget-container page-element-type-text widget-text " id="element-16">
+					<div class="contents">
+						<p style="text-align: center; line-height: 24px; font-size: 17px;">View your profile and recent notes from your teacher? Review your students' progress between lessons!</p>
+					</div>
+				</div>
+				<div class="page-element widget-container page-element-type-button widget-button" id="element-107">
+					<div class="conversion_wrapper">
+						{# <a href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=321129875102-0mr6reuh062u2oqej2uvg0nvmuie28ns.apps.googleusercontent.com&amp;as=7e205fcb29563677&amp;nosignup=1&amp;destination=https%3A%2F%2Fcadenzamusictool.ca&amp;approval_state=!ChRBMFl6aFhnOXB3clVKY3htM1NFRRIfUTZYcWtWeUJ1UlFTNEpEYnJUUGdXM0JjRG9Ia0FoWQ%e2%88%99ACThZt4AAAAAWinWo1Y0VZUjaFZLp22i1O-9OVlaBeYr&amp;xsrfsig=AHgIfE8Mwp28tjpahcdZ03xDVe47oHQehA&amp;flowName=GeneralOAuthFlow" style="width: 272px; height: 76px;" data-wid="107"> #}	
+						<a href="{{ href_signup }}" role="button">
+							<div class="btn btn-login btn-block btn-xl btn submit-button button_submit dynamic-button">CREATE ACCOUNT</div>
+						</a>	
+						{# </a> #}
+					</div>
+				</div>
+				<div class="page-element widget-container page-element-type-text widget-text " id="element-19">
+					<div class="contents">
+						<p style="text-align: center; line-height: 24px; font-size: 17px;">Click above to troubleshoot, and to learn more about Cadenza.</p>
+					</div>
+				</div>
+                <div class="page-element widget-container page-element-type-image widget-image "id="element-43">
+					<div class="contents">
+						<a href="https://musictoolsuite.ca/cadenza-faqs/" style="width: 70px; height: 70px;" >
+							<img src="https://v.fastcdn.co/t/9ab8648e/d980ffda/1521570230-24858631-70x70-letter-Q-white.png" style="margin-top: 0px;"alt=""/>
+						</a>
+					</div>
+				</div>
+				<div class="page-element widget-container page-element-type-image widget-image" id="element-42">	
+					<div class="contents">
+						<a href="https://accounts.google.com/signin/oauth/oauthchooseaccount?client_id=321129875102-0mr6reuh062u2oqej2uvg0nvmuie28ns.apps.googleusercontent.com&amp;as=7e205fcb29563677&amp;nosignup=1&amp;destination=https%3A%2F%2Fcadenzamusictool.ca&amp;approval_state=!ChRBMFl6aFhnOXB3clVKY3htM1NFRRIfUTZYcWtWeUJ1UlFTNEpEYnJUUGdXM0JjRG9Ia0FoWQ%e2%88%99ACThZt4AAAAAWinWo1Y0VZUjaFZLp22i1O-9OVlaBeYr&amp;xsrfsig=AHgIfE8Mwp28tjpahcdZ03xDVe47oHQehA&amp;flowName=GeneralOAuthFlow" style="width: 70px; height: 70px;">
+						<img src="https://v.fastcdn.co/t/9ab8648e/d980ffda/1521570229-24858476-70x70-checkmark-white.png" style="margin-top: 0px;" alt=""/>
+						</a>
+					</div>
+				</div>
+				<div class="page-element widget-container page-element-type-button widget-button " id="element-108">
+					<div class="conversion_wrapper">
+						<a href="https://musictoolsuite.ca/cadenza-faqs/" style="width: 229px; height: 76px;" data-wid="108">
+							<div class="btn submit-button button_submit dynamic-button">FAQ</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="page-block" id="page-block-te2ri0uj0hf">
+		<div class="color-overlay"></div>
+			<div class="border-holder">
+				<div class="block-inner">
+					<div class="page-element widget-container page-element-type-text widget-text " id="element-100">
+						<div class="contents">
+							<p style="line-height: 22.399999618530273px; font-size: 16px;">
+								<span style="color: rgb(251, 247, 247);">Watch this video to find out!</span>
+								<br>
+							</p>
+						</div>
+					</div>
+					<div class="page-element widget-container page-element-type-headline widget-headline " id="element-102">
+						<div class="contents">
+							<h1>
+								<p style="line-height: 45px; font-size: 32px;">
+									<font color="#ffffff">Is it more work for teachers?</font>
+								</p>
+							</h1>
+						</div>
+					</div>
+					<div class="page-element widget-container page-element-type-button widget-button " id="element-112">
+						<div class="conversion_wrapper">
+							<a href="https://www.youtube.com/watch?v=f4PXp9D4vM4" style="width: 140px; height: 40px;" data-wid="112">
+								<div class="btn submit-button button_submit dynamic-button">Watch Now</div>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="page-block" id="page-block-b3wlupjg4bm">
+				<div class="color-overlay"></div>
+				<div class="border-holder">
+					<div class="block-inner"></div>
+				</div>
+			</div>
+			<div class="page-block" id="page-block-8w37hxkfjzs">
+				<div class="color-overlay"></div>
+					<div class="border-holder">
+						<div class="block-inner">
+							<div class="page-element widget-container page-element-type-headline widget-headline " id="element-73">
+								<div class="contents">
+									<h1>
+										<p style="text-align: left; line-height: 66px; font-size: 47px;">
+											<b>
+												<font color="#ffffff">Join our mailing list!</font>
+											</b>
+										</p>
+									</h1>
+								</div>
+							</div>
+							<div class="page-element widget-container page-element-type-text widget-text" id="element-86">
+								<div class="contents">
+									<p style="text-align: left; line-height: 24px; font-size: 17px;">
+										<b>Cadenza is part of the 
+											<a href="https://musictoolsuite.ca/" rel="null" type="url" id="link-zqa3bbuyb4" class="url-link">
+												<font color="#9f0a0a">Music Tool Suite,</font>
+											</a> a collaborative partnership between Queen's University, the 
+											<font color="#9f0a0a">
+												<a href="https://www.concordia.ca/research/learning-performance.html" rel="null" type="url" id="link-yszjwjzsyo" class="url-link">Centre for the Study of Learning and Performance
+												</a>
+											</font> at Concordia University, the 
+												<font color="#9f0a0a">
+													<a href="https://www.musicmakesus.ca/" rel="null" type="url" id="link-2hhgm8sosg" class="url-link">Coalition for Music Education,
+													</a>
+												</font> and 
+												<font color="#9f0a0a">
+													<a href="https://www.thecuriouspianoteachers.org/" rel="null" type="url" id="link-iiwshj0306k" class="url-link">The Curious Piano Teachers.
+													</a>
+												</font> Music Tool Suite is a collection of research-based digital tools created to support studio music instruction.
+											</b>
+										</p>
+									</div>
+									<div class="newsletter-col">
+										<form method="post" action="news_letter.php">
+											<div class="form-group" style="width: 400px;">
+												<input type="text" class="form-control input-lg" id="name" name="name" placeholder="{{ TEXT.hint['news_letter_name'] }}" />
+												<input type="email" class="form-control input-lg" id="emial" name="email" placeholder="{{ TEXT.hint['news_letter_email'] }}" />
+												{# <input type="submit" name="submit" value="JOIN NOW!" class="btn submit-button button_submit dynamic-button  shadow "> #}
+												<input type="submit" name"submit" value="JOIN NOW!" style="width: 140px; height: 40px;"data-wid="87" class="btn submit-button button_submit dynamic-button  shadow ">
+											</div>
+										</form>	
+									</div>
+								</div>   
+							</div>
+						</div>
+						<div class="page-block" id="page-block-koa41774txn">
+						<div class="color-overlay"></div>
+						<div class="border-holder">
+							<div class="block-inner">
+								<div class="page-element widget-container page-element-type-circle widget-circle" id="element-72">
+									<div class="circle" style="width: 72px; height: 72px; background-color: #f17300; opacity: 1; filter:alpha(opacity=100); background-repeat: repeat; background-position: top left; background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="page-block" id="page-block-fdrihetzeoi">
+						<div class="color-overlay"></div>
+						<div class="border-holder">
+							<div class="block-inner">
+								<div class="page-element widget-container page-element-type-headline widget-headline" id="element-93">
+									<div class="contents">
+										<h1>
+											<p style="text-align: center; line-height: 50.400001525878906px; font-size: 36px;">
+												<font color="#f17300">Who uses Cadenza?</font>
+											</p>
+										</h1>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-89">
+									<div class="contents">
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">
+											<b>Students:</b>
+										</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Time and track your practice sessions</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Set goals and reflect on your learning</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Share recordings</p>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-90">
+									<div class="contents">
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">
+											<b>Teachers:<br></b>
+										</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Create practice plans</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Review students' progress</p><p style="line-height: 22.399999618530273px; font-size: 16px;">Comment on recordings</p>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-95">
+									<div class="contents">
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">
+											<b>Parents:<br></b>
+										</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Understand teacher expectations<br>
+										</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Watch your child learn</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">Support your child's practising in&nbsp;</p>
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">meaningful ways</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="page-block" id="page-block-frjdykyte6f">
+						<div class="color-overlay"></div>
+						<div class="border-holder">
+							<div class="block-inner">
+								<div class="page-element widget-container page-element-type-image widget-image" id="element-88">
+									<div class="contents">
+										<img src="{{ ASSETS_IMAGES_DIR }}/logo_landing.png" style="margin-top: 0px;" alt=""/>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-91">
+									<div class="contents">
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">
+											<font color="#fbf7f7">
+												"My student is definitely benefiting from Cadenza since I started capturing and annotating, “Good! Play THIS way every time!” moments from her lessons. After a few months of unhelpful in-lesson correction/demonstration, I started using the video capture feature and WOW, it’s made a big difference in only a couple of weeks!"
+											</font>
+										</p>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-114">
+									<div class="contents">
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">
+											<font color="#fbf7f7">
+												"Cadenza is an excellent digital tool to help music teachers and their students organize music teaching/learning with ease. I wish I had this tool available to me when I was studying music! It’s especially helpful when life gets too busy. As I work towards my Master's of Health Science, I hope to share this digital tool with my many musical classmates in our Institute of Medical Science."
+											</font>
+										</p>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-headline widget-headline" id="element-92">
+									<div class="contents">
+										<h1>
+											<p style="line-height: 50.400001525878906px; font-size: 36px;">
+												<font color="#f17300">Our Teachers Say...</font>
+											</p>
+										</h1>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-97">
+									<div class="contents">
+										<p style="line-height: 22.399999618530273px; font-size: 16px;">
+											<font color="#fbf7f7">
+												"We love Cadenza.  My child struggles to stay on task and keep focused. This tool keeps her on track.  Distraction leads to a feeling of being unaccomplished. With Cadenza, my child can watch her progress and rate herself, giving her a sense of accomplishment and boosting her confidence.  I call it the IEP for music training."
+											</font>
+										</p>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-headline widget-headline" id="element-96">
+									<div class="contents">
+										<h1>
+											<p style="line-height: 50.400001525878906px; font-size: 36px;">
+												<font color="#f17300">Our Parents Say...</font>
+											</p>
+										</h1>
+									</div>
+								</div>
+								<div class="page-element widget-container page-element-type-headline widget-headline" id="element-115">
+									<div class="contents">
+										<h1>
+											<p style="line-height: 50.400001525878906px; font-size: 36px;">
+												<font color="#f17300">Our Students Say...</font>
+											</p>
+										</h1>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="page-block" id="page-block-z2lrnhrq8yk0fhokxibtq33di">
+						<div class="color-overlay"></div>
+						<div class="border-holder">
+							<div class="block-inner">
+								<div class="page-element widget-container page-element-type-text widget-text" id="element-38">
+									<div class="contents">
+										<p style="text-align: center; line-height: 21px; font-size: 15px;">
+											<font color="#ffffff">Copyright 
+												<a href="https://musictoolsuite.ca/" rel="null" type="url" id="link-6brqoqqqaj7" class="url-link">Music Tool Suite</a>
+												 ©2018
+											</font>
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="fb-root"></div>
+{% endblock %}

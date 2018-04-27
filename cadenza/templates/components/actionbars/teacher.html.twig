@@ -1,0 +1,43 @@
+{% extends "components/actionbar.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderActionbarTeacher,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set actionbar_id = 'id_actionbar_teacher' %}
+{% set linked_user = student %}
+{% set has_lessons = count_lessons > 0 %}
+
+{% set show_debug = false %}
+
+{% block action_buttons %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	<div class="floatleft actionbar-actionbuttons show-md">
+		<a href="#" class="btn btn-icon icon-labelled{% if is_edit_lesson %} disabled{% endif %}" id="{{ actionbar_id }}_new_btn" data-student-id="{{ student.uid }}">
+			<div class="floatleft icon-image icon-new" id="{{ actionbar_id }}_new_icon">{{ ICONS.btn['new']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['new_lesson'] }}</div>
+			<div class="clear"></div>
+		</a>
+		<span class="btn-spacer"></span>
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionbar_id }}_notes_btn" data-student-id="{{ student.uid }}" data-student-name="{{ student.name }}">
+			<div class="floatleft icon-image icon-notes" id="{{ actionbar_id }}_notes_icon">{{ ICONS.btn['notes']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['notes'] }}</div>
+			<div class="clear"></div>
+		</a>
+		<span class="btn-spacer"></span>
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionbar_id }}_goals_btn" data-linked-user-id="{{ student.uid }}">
+			<div class="floatleft icon-image icon-goals" id="{{ actionbar_id }}_goals_icon">{{ ICONS.btn['goals']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['goals'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</div>
+	<div class="floatleft text-center actionbar-actionoverflow">
+		{% include 'components/actionoverflows/actionbar_overflow_teacher.html.twig' with { 'user':user, 'student':student, 'is_link_connected':is_link_connected, 'is_edit_lesson':is_edit_lesson } only %}
+	</div>
+	<div class="clear"></div>
+{% endblock %}
+
+{% block actionbar_modals %}
+	{% include 'components/modals/view_goals.html.twig' with { } only %}
+	{% include 'components/modals/notes_on_student.html.twig' with { } only %}
+	{% include 'components/modals/report_issue.html.twig' with { } only %}
+{% endblock %}

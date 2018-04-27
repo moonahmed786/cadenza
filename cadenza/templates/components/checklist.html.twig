@@ -1,0 +1,8 @@
+<div id="{{ checklist_id }}" class="checklist">
+	{% if not is_empty %}
+		{% block checklist_heading %}
+		{% endblock %}
+		{% block checklist_content %}
+		{% endblock %}
+	{% endif %}
+</div>

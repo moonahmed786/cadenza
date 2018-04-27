@@ -1,0 +1,32 @@
+{% extends "components/checklist.html.twig" %}
+
+{% set checklist_id = 'id_checklist_task_checklist' %}
+{% set is_empty = checklist_item_rows is empty %}
+
+{% block checklist_heading %}
+	<div class="section-line"><h5 class="section">{{ TEXT.label['checklist']|upper }}</h5></div>
+{% endblock %}
+
+{% block checklist_content %}
+	<ul class="checklist">
+	{% set checked = false %}
+	{% for checklist_item in checklist_item_rows %}
+		<li>{% spaceless %}
+			<div class="floatleft">
+				{% if practice is not empty %}
+					<a href="#" class="btn btn-icon icon-chk" data-checklist-item-id="{{ checklist_item.checklist_item_id }}" data-checked="{{ checked }}">{{ ICONS.btn['chk_off']|raw }}</a>
+				{% else %}
+					<a href="#" class="btn btn-icon icon-chk-ro" data-checklist-item-id="{{ checklist_item.checklist_item_id }}" data-checked="{{ checked }}">{{ ICONS.btn['chk_ul_ro']|raw }}</a>
+				{% endif %}
+			</div>
+			<div class="floatleft checklist-item-content">
+				<span>{{ checklist_item.text }}</span>
+				{% if checklist_item.target_type != 1 %}
+					<span class="checklist-item-target">{{ ICONS.btn['targettype' ~ checklist_item.target_type]|raw }} {{ checklist_item.target_val }} {{ TEXT.hint['targettype' ~ checklist_item.target_type] }}</span>
+				{% endif %}
+			</div>
+			<div class="clear"></div>
+		{% endspaceless %}</li>
+	{% endfor %}
+	</ul>
+{% endblock %}

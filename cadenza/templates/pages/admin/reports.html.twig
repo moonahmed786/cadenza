@@ -1,0 +1,16 @@
+{% extends "admin.html.twig" %}
+
+{% set js_admin_components = [
+	'navbars/admin',
+	'misc/filter_report_type',
+	'tables/list_of_reports'
+] %}
+
+{% block body %}
+	{% include 'admin_components/navbars/admin.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['report_log'] }}</h1>
+		{% include 'admin_components/misc/filter_report_type.html.twig' with { 'filter_report_type_index':filter_report_type_index, 'filter_report_type_action':filter_report_type_action } only %}
+		{% include 'admin_components/tables/list_of_reports.html.twig' with { 'page_admin_reports':page_admin_reports, 'pagination':pagination, 'sortable_options':sortable_options, filter_report_type:filter_report_type } only %}
+	</div>
+{% endblock %}

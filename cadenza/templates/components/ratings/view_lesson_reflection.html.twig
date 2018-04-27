@@ -1,0 +1,14 @@
+{% extends "components/rating.html.twig" %}
+
+{% set rating_id = 'id_rating_view_lesson_reflection' %}
+{% set edit = false %}
+
+{% block rating_content %}
+	<div class="row nogutters reflection-faces">
+		{% for i in 1..4 %}
+			<div class="col-xs-3 reflection-face-ro" data-reflection-index="{{ i }}">
+				<img src="{{ ASSETS_IMAGES_DIR }}/smiley{{ i }}.png" width="50" height="50" alt="{{ TEXT.label['smiley'~i] }}" />
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

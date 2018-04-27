@@ -1,0 +1,36 @@
+{% extends "components/table.html.twig" %}
+
+{% set table_id = 'id_table_lesson_switcher' %}
+{% set table_class = is_lesson_overview ? 'table overview' : 'table bg-color-env' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = false %}
+{% set has_tfoot = false %}
+{% set has_tbody = true %}
+
+{% block table_head %}
+{% endblock %}
+
+{% block table_foot %}
+{% endblock %}
+
+{% block table_body %}
+	{% set prev_class = lesson.prev_saved_lesson_id is not empty ? 'btn btn-icon icon-prev' : 'btn btn-icon icon-prev disabled' %}
+	{% set next_class = lesson.next_saved_lesson_id is not empty ? 'btn btn-icon icon-next' : 'btn btn-icon icon-next disabled' %}
+	{% if not is_lesson_overview %}
+		{% set prev_class = prev_class ~ ' inverse' %}
+		{% set next_class = next_class ~ ' inverse' %}
+	{% endif %}
+	{% set script_prevnext = (is_edit_lesson ? 'edit_lesson.php' : (is_lesson_overview ? 'view_lesson_overview.php' : 'view_lesson.php')) %}
+	{% set href_prev = script_prevnext ~ '?' ~ linked_user.user_type ~ '_id=' ~ linked_user.uid ~ '&lesson_id=' ~ lesson.prev_saved_lesson_id %}
+	{% set href_next = script_prevnext ~ '?' ~ linked_user.user_type ~ '_id=' ~ linked_user.uid ~ '&lesson_id=' ~ lesson.next_saved_lesson_id %}
+	<tr>
+		<td class="prev">{% if is_lesson_overview %}<h1>{% endif %}<a href="{{ href_prev }}" class="{{ prev_class }}" aria-label="{{ TEXT.label['prev'] }}">{{ ICONS.btn['prev']|raw }}</a>{% if is_lesson_overview %}</h1>{% endif %}</td>
+		<td class="current">{% if is_lesson_overview %}<h1>{% else %}<span class="h3 side-menu-date">{% endif %}{{ lesson.created_date|date("M j, Y") }}{% if is_lesson_overview %}</h1>{% else %}</span>{% endif %}</td>
+		<td class="next">{% if is_lesson_overview %}<h1>{% endif %}<a href="{{ href_next }}" class="{{ next_class }}" aria-label="{{ TEXT.label['next'] }}">{{ ICONS.btn['next']|raw }}</a>{% if is_lesson_overview %}</h1>{% endif %}</td>
+	</tr>
+{% endblock %}
+
+{% block table_modals %}
+{% endblock %}

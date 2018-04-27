@@ -1,0 +1,25 @@
+{% extends "student.html.twig" %}
+
+{% set js_components = [
+	'actionbars/student',
+	'actionoverflows/actionbar_overflow_student',
+	'misc/comments',
+	'modals/edit_goals',
+	'modals/edit_reflection',
+	'modals/report_issue',
+	'modals/view_goals',
+	'modals/view_reflection',
+	'navbars/student',
+	'ratings/edit_lesson_reflection',
+	'ratings/view_lesson_reflection',
+	'tables/list_of_lessons'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/student.html.twig' with { 'navbar_data':navbar_data } only %}
+	{% include 'components/actionbars/student.html.twig' with { 'user':user, 'teacher':teacher, 'is_link_connected':is_link_connected, 'is_practicing':false, 'count_lessons':count_lessons } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['my_lessons'] }}</h1>
+		{% include 'components/tables/list_of_lessons.html.twig' with { 'user':user, 'linked_user':teacher, 'is_link_connected':is_link_connected, 'page_lessons':page_lessons, 'pagination':pagination, 'sortable_options':sortable_options } only %}
+	</div>
+{% endblock %}

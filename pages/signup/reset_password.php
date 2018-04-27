@@ -1,0 +1,79 @@
+<?php
+require_once dirname(__FILE__).'/../../_cadenza/Core.php';
+Core::init();
+
+if(isset($_POST['password']))
+{
+	$token = $_GET['token'];
+	$user = UserGateway::findByToken($_GET['token']);
+	$password = $_POST['password'];
+	$password_hash = password_hash($password,PASSWORD_DEFAULT);
+	UserGateway::resetPassword($user['uid'],$password_hash);
+	$message = "Password successfully reset.";
+	$redirect = Core::cadenzaUrl('pages/login.php');
+	header('Location: '.$redirect.'?message='.$message);
+	exit;
+}
+
+else if(isset($_GET['token'])){
+	$data = array(
+				'token' => cleanInput($_GET['token'])
+			);
+	$message = "";
+	$error = validate($data);
+	$user = UserGateway::findByToken($_GET['token']);
+	if (!empty($user)) {
+		Redirect::done();
+		$twig = new Twig_Environment_Cadenza();
+		$context = array(
+			'form_url' => Core::cadenzaUrl('pages/signup/reset_password.php'),
+			'data' => $data,
+			'errors' => $error
+		);
+		print $twig->render('pages/signup/reset_password.html.twig',$context);
+	}else{
+		$message = "Account verification failed.";
+	}
+// 	$redirect = Core::cadenzaUrl('pages/signup/reset_password..php');
+// 	header('Location: '.$redirect.'?message='.$message);
+// 	exit;
+}
+
+function validate($data){
+	$error = [];
+	if (!isset($data['token'])) {
+		$error['token'] = 'Tokken is required';
+	}
+	return $error;
+}
+function cleanInput($input)
+{
+	if (is_array($input)) {
+		foreach ($input as $key => $value) {
+			cleanInput($value);
+		}
+	}else{
+		$data = str_replace(array('&amp;','&lt;','&gt;'), array('&amp;amp;','&amp;lt;','&amp;gt;'), $input);
+		$input = preg_replace('/(&#*\w+)[\x00-\x20]+;/u', '$1;', $input);
+		$input = preg_replace('/(&#x*[0-9A-F]+);*/iu', '$1;', $input);
+		$input = html_entity_decode($input, ENT_COMPAT, 'UTF-8');
+
+		// Remove any attribute starting with "on" or xmlns
+		$input = preg_replace('#(<[^>]+?[\x00-\x20"\'])(?:on|xmlns)[^>]*+>#iu', '$1>', $input);
+
+		// Remove javascript: and vbscript: protocols
+		$input = preg_replace('#([a-z]*)[\x00-\x20]*=[\x00-\x20]*([`\'"]*)[\x00-\x20]*j[\x00-\x20]*a[\x00-\x20]*v[\x00-\x20]*a[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iu', '$1=$2nojavascript...', $input);
+		$input = preg_replace('#([a-z]*)[\x00-\x20]*=([\'"]*)[\x00-\x20]*v[\x00-\x20]*b[\x00-\x20]*s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:#iu', '$1=$2novbscript...', $input);
+		$input = preg_replace('#([a-z]*)[\x00-\x20]*=([\'"]*)[\x00-\x20]*-moz-binding[\x00-\x20]*:#u', '$1=$2nomozbinding...', $input);
+
+		// Only works in IE: <span style="width: expression(alert('Ping!'));"></span>
+		$input = preg_replace('#(<[^>]+?)style[\x00-\x20]*=[\x00-\x20]*[`\'"]*.*?expression[\x00-\x20]*\([^>]*+>#i', '$1>', $input);
+		$input = preg_replace('#(<[^>]+?)style[\x00-\x20]*=[\x00-\x20]*[`\'"]*.*?behaviour[\x00-\x20]*\([^>]*+>#i', '$1>', $input);
+		$input = preg_replace('#(<[^>]+?)style[\x00-\x20]*=[\x00-\x20]*[`\'"]*.*?s[\x00-\x20]*c[\x00-\x20]*r[\x00-\x20]*i[\x00-\x20]*p[\x00-\x20]*t[\x00-\x20]*:*[^>]*+>#iu', '$1>', $input);
+
+		// Remove namespaced elements (we do not need them)
+		$input = preg_replace('#</*\w+:\w[^>]*+>#i', '', $input);
+	    $input = preg_replace('#</*(?:applet|b(?:ase|gsound|link)|embed|frame(?:set)?|i(?:frame|layer)|l(?:ayer|ink)|meta|object|s(?:cript|tyle)|title|xml)[^>]*+>#i', '', $input);
+		return $input;
+	}
+}

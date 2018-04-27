@@ -1,0 +1,25 @@
+{% extends "components/navbar.html.twig" %}
+
+{% set navbar_id = 'id_navbar_default' %}
+
+{% block navbar_content %}
+	<div class="navbar-right">
+		{# Profile Picture/Menu #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-image"><img src="{{ user.picture }}" width="40" height="40" alt="{{ user.name }}" /></div>
+					</div>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="{{ CADENZA_URL_SELECT_ACCOUNT }}" class="btn">{{ ICONS.mnu['switch_accounts']|raw }} {{ TEXT.label['switch_accounts'] }}</a></li>
+					<li><a href="{{ CADENZA_URL_LOGOUT }}" class="btn">{{ ICONS.mnu['logout']|raw }} {{ TEXT.label['logout'] }}</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block navbar_modals %}
+{% endblock %}

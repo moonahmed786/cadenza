@@ -1,0 +1,51 @@
+{% extends "base.html.twig" %}
+
+{% set body_class = '' %}
+{% set include_css_components = false %}
+{% set include_css_components_admin = true %}
+
+
+{% block body %}
+	<div class="page-block login-wrap" id="page-block-8w37hxkfjzs">
+		<div class="border-holder">
+			<div class="block-inner login-binner">
+				<div class="login-box">
+					<a href="{{ CADENZA_URL }}">
+						<div class="landing-brand">
+							<img class="landing-logo" src="{{ ASSETS_IMAGES_DIR }}/logo_landing.png" alt="{{ APP_NAME }}"/>
+						</div>
+					</a>
+					<div class="login-form-box">
+						{% if messages is not empty %} 
+				       			<div class="alert alert-success">{{messages}}</div>
+						{% endif %} 
+						{# <div class="alert alert-success">{{message}}</div> #}
+						{% if errors is defined %} 
+							{% for error in errors %}
+				       			<div class="alert alert-danger">{{error}}</div>
+						    {% endfor %}
+						{% endif %} 
+						<form action="" method="POST" role="form">
+						
+							<div class="form-group">
+								<label for="">Enter your email , we will resend verification</label>
+								<input type="email" name="email" class="form-control" placeholder="Enter Email...">
+							</div>
+						
+							<button type="submit" class="btn btn-primary">Resend</button>
+						</form>
+						<p class="login-admin">Don't have an account? <a href="{{ href_signup }}">Sign Up</a></p>
+						<p class="login-admin"> <a href="{{ href_login }}">Login page</a></p>
+					</div>
+				</div> 
+			</div>
+			<div class="footer-forms">
+				<div class="container">
+					<div class="row">
+						<p>Copyright <a href="https://musictoolsuite.ca/" rel="null" type="url" class="url-link">Music Tool Suite</a> ©2018</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "components/upload_drive.html.twig" %}
+
+{% set upload_id = 'id_upload_practice_student_annotator' %}
+{% set upload_class = 'upload-practice-student-annotator' %}
+{% set practice_id = practice.practice_id %}
+{% set uploaded_drive_files = { 'practice_id': practice.practice_id, 'annotator_file_id': practice.annotator_file_id, 'annotator_title': practice.annotator_title } %}
+{% set is_readonly = false %}
+{% set can_annotate = true %}
+{% set is_practicing = true %}
+{% set user_email = user.email %}
+
+{% block heading %}
+	<div class="section-line"><h5 class="section">{{ TEXT.label['media_annotator']|upper }}</h5></div>
+{% endblock %}

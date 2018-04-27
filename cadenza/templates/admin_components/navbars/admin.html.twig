@@ -1,0 +1,48 @@
+{% extends "admin_components/navbar.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using AdminComponents::renderNavbarAdmin,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set navbar_id = 'id_navbar_admin' %}
+{% set count_new_notifications = 0 %} {# TODO: hardcoded value is only for testing!!! #}
+{% set show_debug = false %}
+
+{% block navbar_content %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	<div class="navbar-right">
+		{# Search #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown dropdown-search" id="{{ navbar_id }}_user_search_dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-search">{{ ICONS.navbar['search']|raw }}</div>
+					</div>
+				</a>
+				<div class="dropdown-menu" role="menu">
+					<div>
+						<input class="typeahead form-control" type="text" placeholder="{{ TEXT.hint['find_a_user'] }}" data-empty-message="{{ TEXT.label['empty_user_search'] }}">
+					</div>
+				</div>
+			</li>
+		</ul>
+		{# Main Menu #}
+		<ul class="nav navbar-nav">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+					<div class="toggle-icon">
+						<div class="icon-menu">{{ ICONS.navbar['menu']|raw }}</div>
+					</div>
+				</a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href="users.php" class="btn">{{ ICONS.mnu['list_of_users']|raw }} {{ TEXT.label['list_of_users'] }}</a></li>
+					<li><a href="blocked_users.php" class="btn">{{ ICONS.mnu['blocked_users']|raw }} {{ TEXT.label['blocked_users'] }}</a></li>
+					<li><a href="reports.php" class="btn">{{ ICONS.mnu['list_of_reports']|raw }} {{ TEXT.label['report_log'] }}</a></li>
+					<li><a href="{{ CADENZA_URL_LOGOUT }}" class="btn">{{ ICONS.mnu['logout']|raw }} {{ TEXT.label['logout'] }}</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+{% endblock %}
+
+{% block navbar_modals %}
+{% endblock %}

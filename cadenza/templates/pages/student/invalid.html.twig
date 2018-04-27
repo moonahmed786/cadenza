@@ -1,0 +1,11 @@
+{% extends "student.html.twig" %}
+
+{% set js_components = [
+	'navbars/student'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/student.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+	</div>
+{% endblock %}

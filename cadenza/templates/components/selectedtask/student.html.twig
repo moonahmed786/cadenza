@@ -1,0 +1,52 @@
+{% extends "components/selectedtask.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderSelectedTaskStudent,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set selectedtask_id = 'id_selectedtask_student' %}
+
+{% set show_debug = false %}
+
+{% block top_left %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	{# TODO: replace placeholders #}
+	{# Task Num, Title and Description #}
+	<h4 class="color-env">{{ TEXT.label['task_x_of_y']|replace({'{x}':task_num, '{y}':lesson.saved_tasks|length})|upper }}</h4>
+	<h3 class="nomargin-top"><strong>{{ task.title is empty ? TEXT.label['untitled_task'] : task.title }}</strong></h3>
+	{% if task.description is not empty %}<p class="h4 description pre-line">{{ task.description }}</p>{% endif %}
+	{# Checklist #}
+	{% include 'components/checklists/task_checklist.html.twig' with { 'checklist_item_rows':checklist_item_rows, 'practice':practice } only %}
+{% endblock %}
+
+{% block top_right %}
+	{% include 'components/misc/task_moreinfo.html.twig' with { 'user':user, 'task':task } only %}
+{% endblock %}
+
+{% block bottom %}
+	{% if is_practicing %}
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="section-line"><h5 class="section">{{ TEXT.label['timer']|upper }}</h5></div>
+				{% include 'components/timers/practice_timer.html.twig' with { } only %}
+			</div>
+			<div class="col-xs-6">
+				{% include 'components/uploads_drive/practice_student_annotator.html.twig' with { 'user': user, 'practice': practice } only %}
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<div class="section-line"><h5 class="section">{{ TEXT.label['reflection']|upper }}</h5></div>
+				{% include 'components/ratings/practice_reflection.html.twig' with {} only %}
+			</div>
+			<div class="col-xs-6">
+				<div class="section-line"><h5 class="section">{{ TEXT.label['comments']|upper }}</h5></div>
+				<textarea id="{{ selectedtask_id }}_new_practice_first_comment" class="form-control item-text" rows="3" placeholder="{{ TEXT.hint['comments'] }}" aria-label="{{ TEXT.label['comment'] }}"></textarea>
+			</div>
+		</div>
+		{% include 'components/uploads/practice_student_attachments.html.twig' with { 'lesson':lesson, 'task':task, 'practice':practice } only %}
+		<a href="#" class="btn btn-default btn-lg btn-block" id="{{ selectedtask_id }}_save_practice_btn" data-practice-id="{{ practice.practice_id }}"><span id="{{ selectedtask_id }}_save_practice_icon">{{ ICONS.btn['save']|raw }}</span> {{ TEXT.label['save_practice'] }}</a>
+	{% elseif is_link_connected and user_can_practice_task %}
+		<a href="#" class="btn btn-default btn-lg btn-block{% if not user_can_practice_task %} disabled{% endif %}" id="{{ selectedtask_id }}_start_practice_btn" data-task-id="{{ task.task_id }}"><span id="{{ selectedtask_id }}_start_practice_icon">{{ ICONS.btn['start']|raw }}</span> {{ TEXT.label['start_practice'] }}</a>
+	{% endif %}
+	{% include 'components/misc/practicelog.html.twig' with { 'user':user, 'linked_user':linked_user, 'is_link_connected':is_link_connected, 'lesson':lesson, 'task':task, 'task_practices':task_practices, 'is_practicing':is_practicing, 'select_practice_id':select_practicelog_practice_id, 'show_annotation_modal':show_annotation_modal } only %}
+{% endblock %}

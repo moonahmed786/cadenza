@@ -1,0 +1,38 @@
+{% extends "components/selectedtask.html.twig" %}
+
+{% set selectedtask_id = 'id_selectedtask_teacher' %}
+{% set is_practicing = false %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderSelectedTaskTeacher,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set show_debug = false %}
+
+{% block top_left %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	{# TODO: replace placeholders #}
+	<div class="floatleft">
+		{# Task Num, Title and Description #}
+		<h4 class="color-env">{{ TEXT.label['task_x_of_y']|replace({'{x}':task_num, '{y}':lesson.saved_tasks|length})|upper }}</h4>
+	</div>
+	<div class="floatright">
+		<a href="#" class="btn btn-icon icon-labelled{% if not user_can_edit_task %} disabled{% endif %}" id="{{ selectedtask_id }}_edit_btn" data-student-id="{{ linked_user.uid }}" data-lesson-id="{{ lesson.lesson_id }}" data-task-id="{{ task.task_id }}">
+			<div class="floatleft icon-image icon-edit" id="{{ selectedtask_id }}_edit_icon">{{ ICONS.btn['edit']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['edit_task'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</div>
+	<div class="clear"></div>
+	<h3 class="nomargin-top"><strong>{{ task.title is empty ? TEXT.label['untitled_task'] : task.title }}</strong></h3>
+	{% if task.description is not empty %}<p class="h4 description pre-line">{{ task.description }}</p>{% endif %}
+	{# Checklist #}
+	{% include 'components/checklists/task_checklist.html.twig' with { 'checklist_item_rows':checklist_item_rows, 'practice':practice } only %}
+{% endblock %}
+
+{% block top_right %}
+	{% include 'components/misc/task_moreinfo.html.twig' with { 'user':user, 'task':task } only %}
+{% endblock %}
+
+{% block bottom %}
+	{% include 'components/misc/practicelog.html.twig' with { 'user':user, 'linked_user':linked_user, 'is_link_connected':is_link_connected, 'lesson':lesson, 'task':task, 'task_practices':task_practices, 'is_practicing':is_practicing, 'select_practice_id':select_practicelog_practice_id, 'show_annotation_modal':show_annotation_modal } only %}
+{% endblock %}

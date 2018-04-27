@@ -1,0 +1,44 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_view_reflection' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['reflection'] %}
+{% set has_footer = false %}
+
+{% block modal_body %}
+	<div class="reflection-ro">
+		<div class="row">
+			<div class="col-xs-8 col-md-9">
+				<div class="section-line"><h4 class="section" id="{{ modal_id }}_lesson_title"></h4></div>
+			</div>
+			<div class="col-xs-4 col-md-3 h4 nopadding-left text-center">
+				<span class="color-env">{{ ICONS.data['targets']|raw }}</span>
+				<span id="{{ modal_id }}_lesson_targets"></span>
+				&nbsp;
+				<span class="color-env">{{ ICONS.data['time_spent']|raw }}</span>
+				<span id="{{ modal_id }}_lesson_time_spent"></span>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-8 col-md-9">
+				{% include 'components/ratings/view_lesson_reflection.html.twig' with { } only %}
+			</div>
+			<div class="col-xs-4 col-md-3 nopadding-left"></div>
+		</div>
+		<div class="row">
+			<div class="col-xs-9 col-md-10 nopadding-right">
+				<div class="floatleft">
+					<strong><span id="{{ modal_id }}_prompt" class="reflection-prompt"></span></strong>
+				</div>
+				<div class="clear"></div>
+				<span id="{{ modal_id }}_text" class="pre-line"></span>
+				<h4 id="{{ modal_id }}_no_text" class="light nomargin-top hidden"></h4>
+			</div>
+			<div class="col-xs-3 col-md-2"></div>
+		</div>
+		{# Comments #}
+		<h5 class="color-env">{{ TEXT.label['comments']|upper }}</h5>
+		<div id="{{ modal_id }}_lesson_comments"></div>
+	</div>
+{% endblock %}

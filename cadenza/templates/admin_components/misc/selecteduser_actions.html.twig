@@ -1,0 +1,31 @@
+{% set selecteduser_actions_id = 'id_selecteduser_actions' %}
+
+{# IMPORTANT: This component can be refreshed using AdminComponents::renderMiscSelecteduserActions,
+so if the parameters of this template change, make sure to update that function! #}
+
+<div id="{{ selecteduser_actions_id }}" class="pull-right" data-user-status="{{ user.status }}">
+	{% if user.status == 'active' %}
+		<div class="floatleft user-action">
+			<button type="button" class="btn btn-danger btn-lg" id="{{ selecteduser_actions_id }}_delete_btn">{{ TEXT.label['delete_user'] }}</button>
+		</div>
+		{% if user.user_type is not null %}
+			<div class="floatleft user-action">
+				<button type="button" class="btn btn-warning btn-lg" id="{{ selecteduser_actions_id }}_block_btn">{{ TEXT.label['block_user'] }}</button>
+			</div>
+		{% endif %}
+	{% endif %}
+	{% if user.status == 'blocked' and user.user_type is not null %}
+		<div class="floatleft user-action">
+			<button type="button" class="btn btn-danger btn-lg" id="{{ selecteduser_actions_id }}_delete_data_btn">{{ TEXT.label['delete_user_data'] }}</button>
+		</div>
+		<div class="floatleft user-action">
+			<button type="button" class="btn btn-success btn-lg" id="{{ selecteduser_actions_id }}_unblock_btn">{{ TEXT.label['unblock_user'] }}</button>
+		</div>
+	{% endif %}
+	<div class="clear"></div>
+</div>
+
+{% include 'admin_components/modals/confirm_user_delete.html.twig' with { 'user': user } only %}
+{% include 'admin_components/modals/confirm_user_block.html.twig' with { 'user': user } only %}
+{% include 'admin_components/modals/confirm_user_delete_data.html.twig' with { 'user': user } only %}
+{% include 'admin_components/modals/confirm_user_unblock.html.twig' with { 'user': user } only %}

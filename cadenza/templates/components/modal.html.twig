@@ -1,0 +1,18 @@
+<div id="{{ modal_id }}" class="{{ modal_class }}" tabindex="-1" role="dialog" aria-labelledby="{{ modal_id }}_label" aria-hidden="true">
+	<div class="{{ modal_dialog_class }}">
+		<div class="modal-content">
+			<div class="modal-header">
+				<a href="#" class="btn btn-icon inverse icon-close close" data-dismiss="modal" aria-label="{{ TEXT.label['close'] }}">{{ ICONS.btn['close']|raw }}</a>
+				<h4 id="{{ modal_id }}_label" class="modal-title">{{ modal_title }}</h4>
+			</div>
+			<div class="modal-body">
+				{% block modal_body %}
+				{% endblock %}
+			</div>
+			{% if has_footer %}<div class="modal-footer">
+				{% block modal_footer %}
+				{% endblock %}
+			</div>{% endif %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,18 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_notes_on_student' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['notes'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	<div class="form-group nomargin">
+		<p>{{ TEXT.blurb['notes'] }}</p>
+		<textarea id="{{ modal_id }}_text" class="form-control" rows="10" aria-labelledby="{{ modal_id }}_label"></textarea>
+	</div>
+{% endblock %}
+
+{% block modal_footer %}
+	<a href="#" class="btn btn-icon icon-save" id="{{ modal_id }}_save_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+{% endblock %}

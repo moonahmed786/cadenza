@@ -1,0 +1,66 @@
+{% extends "components/table.html.twig" %}
+
+{% set table_id = 'id_table_list_of_students' %}
+{% set table_class = 'table table-striped' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = true %}
+{% set has_tfoot = true %}
+{% set has_tbody = true %}
+
+{% block table_head %}
+	<tr class="hint">
+		<th colspan="7"><h4 class="light nomargin-top">{{ TEXT.hint['select_a_student'] }}.</h4></th>
+	</tr>
+    <tr>
+        <th class="picture">{{ TEXT.label['picture'] }}</th>
+        <th class="name">
+        	{% if sortable_options['name'] %}
+    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['name'] } only %}
+        	{% endif %}
+        </th>
+        <th>
+        	{% if sortable_options['last_login'] %}
+    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['last_login'] } only %}
+        	{% endif %}
+        </th>
+        <th class="text-center quicklinks">{{ TEXT.label['notes'] }}</th>
+        <th class="text-center quicklinks">{{ TEXT.label['list_of_lessons']|replace({' L':'\nL'})|nl2br }}</th>
+        <th class="text-center quicklinks">{{ TEXT.label['latest_lesson']|replace({' ':'\n'})|nl2br }}</th>
+        <th class="text-center quicklinks">{{ TEXT.label['new_lesson']|replace({' ':'\n'})|nl2br }}</th>
+    </tr>
+{% endblock %}
+
+{% block table_foot %}
+	<tr>
+		<th colspan="8">{% include 'widgets/pagination.html.twig' with { 'pagination':pagination } only %}</th>
+	</tr>
+{% endblock %}
+
+{% block table_body %}
+    {% for student in page_students %}
+    	{% set student_lesson_count = page_lesson_counts[student.uid] %}
+	    <tr>
+			<td class="text-center">{% spaceless %}
+				<div class="picture">
+					{% if student.picture is not null %}
+						<img src="{{ student.picture }}" width="60" height="60" alt="{{ student.name }}" />
+					{% else %}
+						<img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="60" height="60" alt="{{ student.name }}" />
+					{% endif %}
+				</div>
+			{% endspaceless %}</td>
+	        <td><div class="name">{{ student.name }}</div></td>
+	        <td>{{ student.last_login|capitalize }}</td>
+	        <td class="text-center"><a href="#" class="btn btn-icon icon-notes" aria-label="{{ TEXT.label['notes'] }}" data-student-id="{{ student.uid }}" data-student-name="{{ student.name }}">{{ ICONS.btn['notes']|raw }}</a></td>
+	        <td class="text-center"><a href="lessons.php?student_id={{ student.uid }}" class="btn btn-icon icon-lessonlist" aria-label="{{ TEXT.label['list_of_lessons'] }}">{{ ICONS.btn['lessonlist']|raw }}</a></td>
+	        <td class="text-center"><a href="view_lesson_overview.php?student_id={{ student.uid }}&lesson_id=latest" class="btn btn-icon icon-lesson {% if student_lesson_count == 0 %}disabled{% endif %}" aria-label="{{ TEXT.label['latest_lesson'] }}">{{ ICONS.btn['lesson']|raw }}</a></td>
+	        <td class="text-center"><a href="#" class="btn btn-icon icon-new" aria-label="{{ TEXT.label['new_lesson'] }}" data-student-id="{{ student.uid }}">{{ ICONS.btn['new']|raw }}</a></td>
+	    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+    {% include 'components/modals/notes_on_student.html.twig' with { } only %}
+{% endblock %}

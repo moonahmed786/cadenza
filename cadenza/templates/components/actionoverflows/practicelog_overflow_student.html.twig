@@ -1,0 +1,30 @@
+{% extends "components/actionoverflow.html.twig" %}
+
+{% set actionoverflow_id = 'id_actionoverflow_practicelog_overflow_student_' ~ practice.practice_id %}
+{% set actionoverflow_dropdown_class = 'dropdown dropdown-actionoverflow-practicelog-overflow-student' %}
+{% set hidden = true %}
+{% set inverse = true %}
+
+{% block actionoverflow_list_items %}
+	<li>
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionoverflow_id }}_edit_timer_btn" data-practice-id="{{ practice.practice_id }}">
+			<div class="floatleft icon-image icon-timer" id="{{ actionoverflow_id }}_edit_timer_icon">{{ ICONS.btn['timer']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['edit_timer'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+	<li>
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionoverflow_id }}_edit_reflection_btn" data-practice-id="{{ practice.practice_id }}">
+			<div class="floatleft icon-image icon-timer" id="{{ actionoverflow_id }}_edit_reflection_icon">{{ ICONS.btn['quickreflection']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['edit_reflection'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+	<li>
+		<a href="#" class="btn btn-icon icon-labelled{% if practice.is_notified %} disabled{% endif %}" id="{{ actionoverflow_id }}_notify_btn" data-practice-id="{{ practice.practice_id }}">
+			<div class="floatleft icon-image icon-notify" id="{{ actionoverflow_id }}_notify_icon">{{ ICONS.btn['notify']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['notify_teacher'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+{% endblock %}

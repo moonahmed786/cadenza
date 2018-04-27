@@ -1,0 +1,25 @@
+{% set comments_id = 'id_' ~ ref ~ '_comments_' ~ ref_id %}
+
+<div id="{{ comments_id }}" data-ref="{{ ref }}" data-ref-id="{{ ref_id }}" data-readonly="{{ is_readonly ? "true" : "false" }}" class="form-group nomargin comments-form">
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	<h4 class="light {{ is_readonly and comments|length == 0 ? '' : 'hidden' }} empty-message">{{ TEXT.hint['no_comments_' ~ user.user_type] }}.</h4>
+	{% for comment in comments %}
+		{% include 'components/misc/comment.html.twig' with {
+			'user':user,
+			'ref': ref,
+			'ref_id': ref_id,
+			'comment':comment,
+			'is_readonly':is_readonly
+		} only %}
+	{% endfor %}
+	{% if not is_readonly %}
+		{% include 'components/misc/comment.html.twig' with {
+			'user':user,
+			'ref': ref,
+			'ref_id': ref_id,
+			'comment':null,
+			'is_new':true,
+			'is_readonly':false
+		} only %}
+	{% endif %}
+</div>

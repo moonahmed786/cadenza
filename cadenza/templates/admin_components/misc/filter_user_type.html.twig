@@ -1,0 +1,11 @@
+{% set filter_id = 'id_filter_user_type' %}
+
+<div id="{{ filter_id }}">
+	{% include 'widgets/filter.html.twig' with {
+		'widget_id':filter_id ~ '_filter_widget',
+		'prompt':TEXT.label['show:'],
+		'items':[TEXT.label['all_users'], TEXT.label['students'], TEXT.label['teachers']],
+		'selected_index':filter_user_type_index,
+		'widget_data':{ 'filter-user-type-action':filter_user_type_action }
+	} only %}
+</div>

@@ -1,0 +1,37 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_view_goals' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['goals'] %}
+{% set has_footer = false %}
+
+{% block modal_body %}
+	<div class="goals-ro">
+		{% include 'widgets/filter.html.twig' with {
+			'widget_id':modal_id ~ '_complete_filter',
+			'prompt':TEXT.label['show:'],
+			'items':[TEXT.label['all'], TEXT.label['incomplete'], TEXT.label['completed']],
+			'selected_index':0
+		} only %}
+		<h4 id="{{ modal_id }}_no_goals" class="light nomargin-top hidden"></h4>
+		<div id="{{ modal_id }}_item_dummy" class="hidden">
+			<div class="goal-saved">
+				<div class="row">
+					<div class="col-xs-12">
+						<div class="pull-left chk-wrapper">
+							<a href="#" class="btn btn-icon icon-chk-ro color-env"></a>
+						</div>
+						<div class="section-line">
+							<h4 class="section">
+								<span class="item-title"></span>
+							</h4>
+						</div>
+					</div>
+				</div>
+				<p class="item-text pre-line"></p>
+			</div>
+		</div>
+		<div id="{{ modal_id }}_items"></div>
+	</div>
+{% endblock %}

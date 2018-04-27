@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% set body_class = '' %}
+{% set include_css_components = false %}
+{% set include_css_components_admin = true %}
+
+{% set js_admin_components = [
+	'forms/login'
+] %}
+
+{% block body %}
+	<div class="page-block login-wrap" id="page-block-8w37hxkfjzs">
+			<div class="border-holder">
+				<div class="block-inner login-binner">
+					<div class="login-box">
+					<a href="{{ CADENZA_URL }}">
+						<div class="landing-brand">
+							<img class="landing-logo" src="{{ ASSETS_IMAGES_DIR }}/logo_landing.png" alt="{{ APP_NAME }}"/>
+						</div>
+					</a>
+					<div class="login-form-box">
+						{% if messages is not empty %} 
+				       			<div class="alert alert-success">{{ messages | striptags('<b>,<a>') | raw}}</div>
+						{% endif %} 
+						{% include 'pages/user_login.html.twig' with { } only %}
+						<p class="login-admin">{{ TEXT.landing['for_admin_login_click'] }} <a style ="text-align: left;" href="{{ href_login_admin }}">{{ TEXT.landing['here'] }}</a>. <a href="{{ href_forget_password }}">Forgot Password ?</a><br/>Don't have an account? <a href="{{ href_signup }}">Sign Up</a>  </p>
+					</div>
+
+				</div> 
+			</div>
+			<div class="footer-forms">
+				<div class="container">
+					<div class="row">
+						<p>Copyright <a href="https://musictoolsuite.ca/" rel="null" type="url" class="url-link">Music Tool Suite</a> ©2018</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

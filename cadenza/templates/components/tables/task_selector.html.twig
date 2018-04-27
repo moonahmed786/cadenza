@@ -1,0 +1,109 @@
+{% extends "components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderTableTaskSelector,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set table_id = 'id_table_task_selector' %}
+{% set table_class = is_lesson_overview ? 'table overview' : 'table' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = false %}
+{% set has_tfoot = false %}
+{% set has_tbody = true %}
+
+{% set show_debug = false %}
+{% if show_reflection_modal %}
+	{% set table_data = { "show-reflection-modal": true } %}
+{% endif %}
+
+
+{% block table_head %}
+{% endblock %}
+
+{% block table_foot %}
+{% endblock %}
+
+{% block table_body %}
+	{% if show_debug %}<tr><td colspan="3" class="h5 nomargin"><div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div></td></tr>{% endif %}
+	{% set valid_lesson_tasks = (is_lesson_overview or not is_edit_lesson) ? lesson.saved_tasks : lesson.tasks %}
+	{% if is_lesson_overview %}
+		<tr>
+		{% for lesson_task in valid_lesson_tasks %}
+			{% set show_star = lesson_task.is_target_met %}
+			{% set plus = show_star ? lesson_task.count_practices_extra %}
+			<td class="task-info" data-lesson-id="{{ lesson.lesson_id }}" data-task-id="{{ lesson_task.task_id }}" data-count-practices="{{ lesson_task.count_practices }}">
+				<div class="task-title">{{ lesson_task.title is empty ? TEXT.label['untitled_task'] : lesson_task.title }}</div>
+				<div class="task-target">{% spaceless %}
+					{% for i in 1..lesson_task.target %}
+						<div class="target-circle{{ i <= lesson_task.count_practices ? ' completed' : '' }}"></div>
+					{% endfor %}
+					<div class="target-star{{ not show_star ? ' hidden' : '' }}"></div>
+					<div class="target-plus h5 nomargin">{{ plus > 0 ? '+' ~ plus : '' }}</div>
+				{% endspaceless %}</div>
+			</td>
+			<td class="task-go cat-{{ lesson_task.category }} text-center">
+				<a href="view_lesson.php?{{ linked_user.user_type }}_id={{ linked_user.uid }}&lesson_id={{ lesson.lesson_id }}&select_task_id={{ lesson_task.task_id }}" class="btn btn-icon inverse icon-go" aria-label="{{ TEXT.label['go'] }}">{{ ICONS.btn['go']|raw }}</a>
+			</td>
+			{% if loop.index0 is even %}
+				<td class="spacer"></td>
+			{% else %}
+				</tr><tr>
+			{% endif %}
+		{% endfor %}
+		{% if valid_lesson_tasks|length is odd %}<td colspan="2"></td>{% endif %}
+		</tr>
+		<tr>
+			<td colspan="5" class="reflection">
+				<a href="#" class="btn btn-reflection btn-xl btn-block" id="{{ table_id }}_reflection_btn">
+					<div class="floatleft"><span id="{{ table_id}}_reflection_icon">{{ ICONS.btn['reflection']|raw }}</span> {{ TEXT.label['reflection'] }}</div>
+					<div class="floatright">
+						<span class="reflection-data">{{ ICONS.data['targets']|raw }} {{ lesson.count_saved_tasks_with_target_met }}/{{ lesson.saved_tasks|length }}</span>
+						<span class="reflection-data">{{ ICONS.data['time_spent']|raw }} {{ lesson.time_spent }}</span>
+					</div>
+					<div class="clear"></div>
+				</a>
+			</td>
+		</tr>
+	{% else %}
+		{% for lesson_task in valid_lesson_tasks %}
+			{% set tr_class = lesson_task.task_id == task.task_id ? 'selected' : 'selectable' %}
+			{% set show_star = lesson_task.is_target_met %}
+			{% set plus = show_star ? lesson_task.count_practices_extra %}
+			<tr class="{{ tr_class }}" data-lesson-id="{{ lesson.lesson_id }}" data-task-id="{{ lesson_task.task_id }}" data-count-practices="{{ lesson_task.count_practices }}" data-edit="{{ is_edit_lesson ? '1' : '' }}">
+				<td class="task-category {{ lesson_task.category == '0' ? 'bg-color-cat-0' : 'bg-color-cat-' ~ lesson_task.category }}"></td>
+				<td class="task">
+					<div class="task-title">{{ lesson_task.title is empty ? TEXT.label['untitled_task'] : lesson_task.title }}</div>
+					<div class="task-target">{% spaceless %}
+						<div class="target-circles">
+							{% for i in 1..lesson_task.target %}
+								<div class="target-circle{{ i <= lesson_task.count_practices ? ' completed' : '' }}"></div>
+							{% endfor %}
+						</div>
+						<div class="target-star{{ not show_star ? ' hidden' : '' }}"></div>
+						<div class="target-plus h5 nomargin">{{ plus > 0 ? '+' ~ plus : '' }}</div>
+					{% endspaceless %}</div>
+				</td>
+			</tr>
+		{% endfor %}
+		{% if user.user_type == 'teacher' %}
+			<tr>
+				<td colspan="3" class="new-task">
+					<a href="#" class="btn btn-default btn-lg btn-block{% if not user_can_add_tasks %} disabled{% endif %}" id="{{ table_id }}_new_btn" data-edit="{{ is_edit_lesson ? '1' : '' }}"><span id="{{ table_id}}_new_icon">{{ ICONS.btn['new']|raw }}</span> {{ TEXT.label['new_task'] }}</a>
+				</td>
+			</tr>
+		{% endif %}
+		<tr>
+			<td colspan="3">
+				<a href="#" class="btn btn-reflection btn-lg btn-block" id="{{ table_id }}_reflection_btn"><span id="{{ table_id}}_reflection_icon">{{ ICONS.btn['reflection']|raw }}</span> {{ TEXT.label['reflection'] }}</a>
+			</td>
+		</tr>
+	{% endif %}
+{% endblock %}
+
+{% block table_modals %}
+	{% if user.user_type == 'student' %}
+		{% include 'components/modals/edit_reflection.html.twig' with { 'user':user } only %}
+	{% endif %}
+	{% include 'components/modals/view_reflection.html.twig' with { 'user':user } only %}
+{% endblock %}

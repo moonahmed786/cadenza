@@ -1,0 +1,15 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_edit_practicelog_reflection_student' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog' %}
+{% set modal_title = TEXT.label['edit_reflection'] %}
+{% set has_footer = true %}
+
+{% block modal_body %}
+	{% include 'components/ratings/practice_reflection.html.twig' with { } only %}
+{% endblock %}
+
+{% block modal_footer %}
+	<a href="#" class="btn btn-icon icon-save" id="{{ modal_id }}_save_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "student.html.twig" %}
+
+{% set js_components = [
+	'actionbars/student',
+	'actionoverflows/actionbar_overflow_student',
+	'actionoverflows/practicelog_overflow_student',
+	'checklists/task_checklist',
+	'misc/annotator_annotations',
+	'misc/annotator_media_playback',
+	'misc/annotator_write_annotation',
+	'misc/comments',
+	'misc/practicelog',
+	'misc/practicelog_indicators',
+	'misc/task_moreinfo',
+	'modals/annotator',
+	'modals/edit_goals',
+	'modals/edit_practicelog_reflection_student',
+	'modals/edit_practicelog_timer_student',
+	'modals/edit_reflection',
+	'modals/report_issue',
+	'modals/view_goals',
+	'modals/view_reflection',
+	'modals/notemaker_import',
+	'navbars/student',
+	'ratings/edit_lesson_reflection',
+	'ratings/practice_reflection',
+	'ratings/view_lesson_reflection',
+	'selectedtask/student',
+	'tables/task_selector',
+	'timers/editonly_timer_student',
+	'timers/practice_timer',
+	'uploads/practice_student_attachments',
+	'uploads/practicelog_student_attachments',
+	'uploads_drive/practice_student_annotator',
+	'uploads_drive/practicelog_student_annotator'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/student.html.twig' with { 'navbar_data':navbar_data } only %}
+	{% include 'components/actionbars/student.html.twig' with { 'user':user, 'teacher':teacher, 'is_link_connected':is_link_connected, 'is_practicing':false, 'count_lessons':count_lessons } only %}
+	<div class="container container-offset-content">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="view-lesson-grid-left">
+					{# Lesson Switcher #}
+					{% include 'components/tables/lesson_switcher.html.twig' with { 'user':user, 'linked_user':teacher, 'is_link_connected':is_link_connected, 'lesson':lesson, 'is_lesson_overview':false, 'is_edit_lesson':false } only %}
+					{# Task Selector #}
+					{% include 'components/tables/task_selector.html.twig' with { 'user':user, 'user_can_add_tasks':user_can_add_tasks, 'linked_user':teacher, 'is_link_connected':is_link_connected, 'lesson':lesson, 'task':task, 'is_lesson_overview':false, 'is_edit_lesson':false } only %}
+				</div>
+			</div>
+			<div class="col-xs-9">
+				<div class="view-lesson-grid-right">
+					{# Selected Task #}
+					{% include 'components/selectedtask/student.html.twig' with { 'user':user, 'user_can_practice_task':user_can_practice_task, 'linked_user':teacher, 'is_link_connected':is_link_connected, 'lesson':lesson, 'task':task, 'task_num':task_num, 'task_practices':task_practices, 'practice':null, 'is_practicing':false, 'checklist_item_rows':checklist_item_rows, 'select_practicelog_practice_id':select_practicelog_practice_id, 'show_annotation_modal':show_annotation_modal } only %}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% include 'components/modals/annotator.html.twig' with { } only %}
+	{% include 'components/modals/notemaker_import.html.twig' with { } only %}
+{% endblock %}

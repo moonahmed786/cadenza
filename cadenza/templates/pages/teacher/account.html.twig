@@ -1,0 +1,17 @@
+{% extends "teacher.html.twig" %}
+
+{% set js_components = [
+	'misc/account_info',
+	'modals/account_deletion',
+	'modals/add_students',
+	'navbars/teacher',
+	'tables/list_of_invites'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/teacher.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['my_account'] }}</h1>
+		{% include 'components/misc/account_info.html.twig' with { 'user':user } %}
+	</div>
+{% endblock %}

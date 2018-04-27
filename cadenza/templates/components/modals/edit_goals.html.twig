@@ -1,0 +1,58 @@
+{% extends "components/modal.html.twig" %}
+
+{% set modal_id = 'id_modal_edit_goals' %}
+{% set modal_class = 'modal fade' %}
+{% set modal_dialog_class = 'modal-dialog modal-lg' %}
+{% set modal_title = TEXT.label['goals'] %}
+{% set has_footer = false %}
+
+{% block modal_body %}
+	<div class="form-group nomargin goals-form">
+		{% include 'widgets/filter.html.twig' with {
+			'widget_id':modal_id ~ '_complete_filter',
+			'prompt':TEXT.label['show:'],
+			'items':[TEXT.label['all'], TEXT.label['incomplete'], TEXT.label['completed']],
+			'selected_index':0
+		} only %}
+		<div id="{{ modal_id }}_item_dummy" class="hidden">
+			<div class="goal-saved">
+				<div class="row">
+					<div class="col-xs-9 col-md-10 nopadding-right">
+						<div class="pull-left chk-wrapper">
+							<a href="#" class="btn btn-icon icon-chk"></a>
+						</div>
+						<div class="section-line">
+							<h4 class="section">
+								<span class="item-title"></span>
+							</h4>
+						</div>
+					</div>
+					<div class="col-xs-3 col-md-2">
+						<div class="item-buttons">{% spaceless %}
+							<a href="#" class="btn btn-icon icon-edit" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+							<span class="btn-spacer"></span>
+							<a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+						{% endspaceless %}</div>
+					</div>
+				</div>
+				<p class="item-text pre-line"></p>
+			</div>
+			<div class="goal-edit hidden">
+				<div class="row">
+					<div class="col-xs-9 col-md-10 nopadding-right">
+						<div class="section-line"><h4 class="section item-title"></h4></div>
+					</div>
+					<div class="col-xs-3 col-md-2">
+						<div class="item-buttons">{% spaceless %}
+							<a href="#" class="btn btn-icon icon-save" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+							<span class="btn-spacer"></span>
+							<a href="#" class="btn btn-icon icon-delete" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+						{% endspaceless %}</div>
+					</div>
+				</div>
+				<textarea class="form-control item-text" rows="4" placeholder="{{ TEXT.hint['goals'] }}" aria-label="{{ TEXT.label['goals'] }}"></textarea>
+			</div>
+		</div>
+		<div id="{{ modal_id }}_items"></div>
+	</div>
+{% endblock %}

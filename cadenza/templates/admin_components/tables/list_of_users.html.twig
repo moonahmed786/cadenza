@@ -1,0 +1,88 @@
+{% extends "admin_components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using AdminComponents::renderTableListOfUsers,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set has_rows = (page_users|length > 0) %}
+
+{% set table_id = 'id_table_list_of_users' %}
+{% set table_class = 'table table-striped' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = true %}
+{% set has_tfoot = has_rows %}
+{% set has_tbody = has_rows %}
+
+{% block table_head %}
+	{% if not has_rows %}
+		<tr class="hint">
+			{% if filter_user_type == 'student' %}
+				<th colspan="6"><h4 class="light nomargin-top">{{ TEXT.hint['no_active_students'] }}.</h4></th>
+			{% elseif filter_user_type == 'teacher' %}
+				<th colspan="6"><h4 class="light nomargin-top">{{ TEXT.hint['no_active_teachers'] }}.</h4></th>
+			{% else %}
+				<th colspan="6"><h4 class="light nomargin-top">{{ TEXT.hint['no_active_users'] }}.</h4></th>
+			{% endif %}
+		</tr>
+	{% else %}
+	    <tr>
+	        <th class="picture">{{ TEXT.label['picture'] }}</th>
+	        <th class="text-center user-type">
+	        	{{ TEXT.label['user_type'] }}
+	        </th>
+	        <th class="text-center user-id">
+	        	{% if sortable_options['user_id'] %}
+	        		{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['user_id'] } %}
+	        	{% endif %}
+	        </th>
+	        <th class="email">
+	        	{% if sortable_options['email'] %}
+	    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['email'] } only %}
+	        	{% endif %}
+	        </th>
+	        <th class="name">
+	        	{% if sortable_options['name'] %}
+	    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['name'] } only %}
+	        	{% endif %}
+	        </th>
+	        <th class="text-center quicklinks">{{ TEXT.label['view'] }}</th>
+	    </tr>
+    {% endif %}
+{% endblock %}
+
+{% block table_foot %}
+	<tr>
+		<th colspan="6">{% include 'widgets/pagination.html.twig' with { 'pagination':pagination } only %}</th>
+	</tr>
+{% endblock %}
+
+{% block table_body %}
+    {% for user in page_users %}
+	    <tr>
+	        <td class="text-center">{% spaceless %}
+				<div class="picture">
+		        	{% if user.picture is not null %}
+		        		<img src="{{ user.picture }}" width="60" height="60" alt="{{ user.name }}" />
+		        	{% else %}
+		        		<img src="{{ ASSETS_IMAGES_DIR }}/default_profile_picture.png" width="60" height="60" alt="{{ user.name }}" />
+		        	{% endif %}
+				</div>
+	        {% endspaceless %}</td>
+	        <td class="text-center">
+	        	{% if user.user_type == 'student' %}
+	        		<img src="{{ ASSETS_IMAGES_DIR }}/list_student.png" width="33" height="60" alt="{{ TEXT.label['student'] }}" />
+	        	{% elseif user.user_type == 'teacher' %}
+	        		<img src="{{ ASSETS_IMAGES_DIR }}/list_teacher.png" width="61" height="60" alt="{{ TEXT.label['teacher'] }}" />
+	        	{% endif %}
+	        </td>
+	        <td class="text-center">{{ user.uid }}</td>
+	        <td><div class="email">{{ user.email }}</div></td>
+	        <td><div class="name">{{ user.name }}</div></td>
+	        <td class="text-center"><a href="{{ 'view_user.php?uid=' ~ user.uid }}" class="btn btn-icon icon-go" aria-label="{{ TEXT.label['view'] }}">{{ ICONS.btn['go']|raw }}</a></td>
+	    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+{% endblock %}

@@ -1,0 +1,22 @@
+<nav id="{{ navbar_id }}" class="navbar navbar-default navbar-fluid-background">
+	<div class="container container-offset-header">
+		<div class="navbar-header">
+			<a href="{{ CADENZA_URL }}" class="navbar-brand">
+				<div class="floatleft icon-home">{{ ICONS.navbar['home']|raw }}</div>
+				<div class="floatleft">
+					<img id="{{ navbar_id }}_logo" src="{{ ASSETS_IMAGES_DIR }}/logo.png" width="210" height="40" alt="{{ APP_NAME }}" />
+					<img id="{{ navbar_id }}_logo_o" class="hidden" src="{{ ASSETS_IMAGES_DIR }}/logo_o.png" width="210" height="40" alt="{{ APP_NAME }}" />
+				</div>
+				<div class="clear"></div>
+			</a>
+		</div>
+		<div id="{{ navbar_id }}_content">
+			{% block navbar_content %}
+			{% endblock %}
+		</div>
+	</div>
+</nav>
+<div class="container">
+	{% block navbar_modals %}
+	{% endblock %}
+</div>

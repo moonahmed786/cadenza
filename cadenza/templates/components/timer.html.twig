@@ -1,0 +1,41 @@
+<div id="{{ timer_id }}" class="timer" data-autostart="{{ autostart }}" data-autostart-delay="{{ autostart_delay }}" data-edit-hrs="{{ edit_hrs }}" data-edit-min="{{ edit_min }}" data-edit-sec="{{ edit_sec }}">
+	<div class="floatleft timericon"><i class="fa fa-clock-o"></i></div>
+	{% if not editonly %}
+		<div class="floatleft timertime" data-ticking="">{% spaceless %}
+			<div class="floatleft hrs">0h</div>
+			<div class="floatleft min">00m</div>
+			<div class="floatleft sec">00s</div>
+			<div class="clear"></div>
+		{% endspaceless %}</div>
+	{% endif %}
+	<div class="floatleft timeredit{% if not editonly %} hidden{% endif %}">{% spaceless %}
+		{% if edit_hrs %}
+		<div class="floatleft input-group edit-hrs">
+			<input type="text" class="form-control input-num" placeholder="" maxlength="1" value="" />
+			<span class="input-group-addon">h</span>
+		</div>
+		{% endif %}
+		{% if edit_min %}
+		<div class="floatleft input-group edit-min">
+			<input type="text" class="form-control input-num" placeholder="" maxlength="2" value="" />
+			<span class="input-group-addon">m</span>
+		</div>
+		{% endif %}
+		{% if edit_sec %}
+		<div class="floatleft input-group edit-sec">
+			<input type="text" class="form-control input-num" placeholder="" maxlength="2" value="" />
+			<span class="input-group-addon">s</span>
+		</div>
+		<div class="clear"></div>
+		{% endif %}
+	{% endspaceless %}</div>
+	{% if not editonly %}
+		<div class="floatright timerbuttons">
+			<a href="#" class="btn btn-icon icon-edit" id="{{ timer_id }}_edit_btn" aria-label="{{ TEXT.label['edit'] }}">{{ ICONS.btn['edit']|raw }}</a>
+			<a href="#" class="btn btn-icon icon-save hidden" id="{{ timer_id }}_save_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+			<a href="#" class="btn btn-icon icon-pause" id="{{ timer_id }}_pause_btn" aria-label="{{ TEXT.label['pause'] }}">{{ ICONS.btn['pause']|raw }}</a>
+			<a href="#" class="btn btn-icon icon-resume hidden" id="{{ timer_id }}_resume_btn" aria-label="{{ TEXT.label['resume'] }}">{{ ICONS.btn['resume']|raw }}</a>
+		</div>
+	{% endif %}
+	<div class="clear"></div>
+</div>

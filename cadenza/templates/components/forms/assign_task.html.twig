@@ -1,0 +1,79 @@
+{% extends "components/form.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using Components::renderFormAssignTask,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set form_id = 'id_form_assign_task' %}
+{% set form_class = 'form-horizontal' %}
+{% set show_debug = false %}
+
+{% block form_content %}
+	{% if show_debug %}<div class="alert alert-info" role="alert"><strong>Debug:</strong> {{ debug }}</div>{% endif %}
+	{# Title + Target #}
+	<div class="form-group">
+		<div class="floatleft task-title">
+			<label class="sr-only" for="{{ form_id }}_title">{{ TEXT.label['title'] }}</label>
+			<div class="autocomplete-wrapper autocomplete-lg"><input type="text" class="typeahead form-control input-lg" id="{{ form_id }}_title" data-untitled-title="{{ TEXT.label['untitled_task'] }}" placeholder="{{ TEXT.hint['enter_a_task_title'] }}" maxlength="255" value="{{ task.title }}" /></div>
+		</div>
+		<div class="floatright task-target">
+			<div class="input-group input-group-lg">
+				<span class="input-group-addon addon-icon"><img src="{{ ASSETS_IMAGES_DIR }}/teacher/target.png" width="40" height="40" alt="{{ TEXT.label['target'] }}" /></span>
+				<input type="text" class="form-control input-lg input-num" id="{{ form_id }}_target_input_num" aria-label="{{ TEXT.label['target_number'] }}" value="{{ task.target }}" maxlength="2" />
+				<span class="input-group-addon">{{ TEXT.hint['targettype_task'] }}</span>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	{# Category Chooser #}
+	<div class="form-group h4 noselect">
+		{% set cat1_class = 'task-category border-color-cat-1 ' ~ (task.category == '1' ? 'bg-color-cat-1 selected' : 'selectable') ~ ' cat-grid-left' %}
+		{% set cat2_class = 'task-category border-color-cat-2 ' ~ (task.category == '2' ? 'bg-color-cat-2 selected' : 'selectable') ~ ' cat-grid-mid' %}
+		{% set cat3_class = 'task-category border-color-cat-3 ' ~ (task.category == '3' ? 'bg-color-cat-3 selected' : 'selectable') ~ ' cat-grid-right' %}
+		{% set cat4_class = 'task-category border-color-cat-4 ' ~ (task.category == '4' ? 'bg-color-cat-4 selected' : 'selectable') ~ ' cat-grid-left' %}
+		{% set cat5_class = 'task-category border-color-cat-5 ' ~ (task.category == '5' ? 'bg-color-cat-5 selected' : 'selectable') ~ ' cat-grid-mid' %}
+		{% set cat6_class = 'task-category border-color-cat-6 ' ~ (task.category == '6' ? 'bg-color-cat-6 selected' : 'selectable') ~ ' cat-grid-right' %}
+		<div class="row nogutters">
+			<div class="col-xs-4"><div class="{{ cat1_class }}" data-category="1">{{ TEXT.label['task_cat_1'] }}</div></div>
+			<div class="col-xs-4"><div class="{{ cat2_class }}" data-category="2">{{ TEXT.label['task_cat_2'] }}</div></div>
+			<div class="col-xs-4"><div class="{{ cat3_class }}" data-category="3">{{ TEXT.label['task_cat_3'] }}</div></div>
+		</div>
+		<div class="row nogutters">
+			<div class="col-xs-4"><div class="{{ cat4_class }}" data-category="4">{{ TEXT.label['task_cat_4'] }}</div></div>
+			<div class="col-xs-4"><div class="{{ cat5_class }}" data-category="5">{{ TEXT.label['task_cat_5'] }}</div></div>
+			<div class="col-xs-4"><div class="{{ cat6_class }}" data-category="6">{{ TEXT.label['task_cat_6'] }}</div></div>
+		</div>
+		<div class="row nogutters">
+			<div class="col-xs-12">
+				<div class="task-category border-color-cat-0 {{ task.category == '0' ? 'bg-color-cat-0 selected' : 'selectable' }}" data-category="0">
+					{{ TEXT.label['other:'] }}
+					<div class="autocomplete-wrapper"><input type="text" class="typeahead form-control" id="{{ form_id }}_category_other" aria-label="{{ TEXT.label['other'] }}" maxlength="255" value="{{ task.category_other }}" /></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{# Description #}
+	<div class="form-group">
+		<div class="col-xs-12">
+			<textarea id="{{ form_id }}_description" class="form-control" rows="5" placeholder="{{ TEXT.hint['enter_a_task_description'] }}" aria-label="{{ TEXT.label['description'] }}">{{ task.description }}</textarea>
+		</div>
+	</div>
+	{# Checklist #}
+	<div class="form-group">
+		{% include 'components/checklists/assign_checklist.html.twig' with { 'checklist_item_rows':checklist_item_rows } only %}
+	</div>
+	{# Teacher Attachments #}
+	{% include 'components/uploads/task_teacher_attachments.html.twig' with { 'lesson':lesson, 'task':task } only %}
+	{# Bottom Bar #}
+	<div class="bottombar">
+		<div class="floatleft">
+			<a href="#" class="btn btn-icon inverse icon-delete" id="{{ form_id }}_delete_btn" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+		</div>
+		<div class="floatright">
+			<a href="#" class="btn btn-icon inverse icon-save" id="{{ form_id }}_save_btn" aria-label="{{ TEXT.label['save'] }}">{{ ICONS.btn['save']|raw }}</a>
+		</div>
+		<div class="clear"></div>
+	</div>
+{% endblock %}
+
+{% block form_modals %}
+{% endblock %}

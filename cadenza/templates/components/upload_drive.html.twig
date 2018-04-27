@@ -1,0 +1,31 @@
+{% block heading %}
+{% endblock %}
+<div id="{{ upload_id }}" class="{{ upload_class }}" data-user-email="{{ user_email }}" data-readonly="{{ is_readonly }}" data-can-annotate="{{ can_annotate }}" data-practicing="{{ is_practicing }}" {% if open_on_load %}data-open-on-load="true"{% endif %}>
+	<div id="{{ upload_id }}_files" class="upload-files-wrapper">
+		<input type="hidden" id="{{ upload_id }}_file_json" value="{{ uploaded_drive_files|json_encode }}" />
+		<div id="{{ upload_id }}_file_dummy" class="floatleft hidden upload-file">
+			<div class="floatleft fileicon">{{ ICONS.btn['loading']|raw }}</div>
+			<div class="floatleft filename">{{ TEXT.label['uploading'] }}&hellip;</div>
+			<div class="floatright">
+				<a href="#" class="btn btn-icon icon-delete disabled hidden" aria-label="{{ TEXT.label['delete'] }}">{{ ICONS.btn['delete']|raw }}</a>
+				<a href="#" class="btn btn-icon icon-remove" aria-label="{{ TEXT.label['remove'] }}">{{ ICONS.btn['remove']|raw }}</a>
+			</div>
+			<div class="clear"></div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+			</div>
+		</div>
+		<div id="{{ upload_id }}_btns" class="{{ upload_class }}-btns">
+			<div id="{{ upload_id }}_upload_btn" class="floatleft {{ upload_class }}-upload-btn fileinput-button upload-file file-chooser">
+				<i class="fa fa-plus"></i>
+				<input id="{{ upload_id }}_input" data-practice-id="{{ practice_id }}" type="file" accept="audio/*, video/*" />
+			</div>
+			<!-- <div id="{{ upload_id }}_import_btn" class="floatleft {{ upload_class }}-import-btn fileinput-button upload-file file-chooser">
+				<i class="fa fa-plus"></i>
+				<wbr>
+				{{ TEXT.label['notemaker'] }}
+			</div> -->
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

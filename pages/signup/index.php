@@ -1,0 +1,29 @@
+<?php
+require_once dirname(__FILE__).'/../../_cadenza/Core.php';
+Core::init();
+
+
+if (isset($_REQUEST['user_type']) && ($_REQUEST['user_type'] == 'student' || $_REQUEST['user_type'] == 'teacher')) {
+	$user_type = $_REQUEST['user_type'];
+	UserGateway::updateUserType($user->uid, $user_type);
+	Session::set('user_type', $user_type);
+	Redirect::set('index');
+	Redirect::go();
+}elseif(isset($_GET['token'])){
+	$message = "";
+	$user = UserGateway::findByToken($_GET['token']);
+	if (isset($user['uid'])) {
+		UserGateway::updateStatus($user['uid'],'active',date('Y-m-d H:i'));
+		$message = "Account successfully activated.";
+	}else{
+		$message = "Account verification failed.";
+	}
+	$redirect = Core::cadenzaUrl('pages/login.php');
+	header('Location: '.$redirect.'?message='.$message);
+	exit;
+}
+else {
+	Redirect::done();
+	$twig = new Twig_Environment_Cadenza();
+	print $twig->render('pages/signup/signup.html.twig');
+}

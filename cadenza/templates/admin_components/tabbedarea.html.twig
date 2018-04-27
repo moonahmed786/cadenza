@@ -1,0 +1,27 @@
+<div id="{{ tabbedarea_id }}" class="tabbedarea">
+	{% if tabbedarea_tablist_items|length > 0 %}
+		<ul class="nav nav-tabs" role="tablist">
+			{% for item in tabbedarea_tablist_items %}
+				{% set item_tab_id = tabbedarea_id ~ '_tab_' ~ item.tab_key %}
+				{% set is_item_active = (loop.index0 == tabbedarea_active_index) %}
+				<li role="presentation" class="h4{{ is_item_active ? ' active' : '' }}">
+					<a href="#{{ item_tab_id }}" aria-controls="{{ item_tab_id }}" role="tab" data-toggle="tab" data-tab-key="{{ item.tab_key }}" data-action="{{ item.action }}">{{ item.label }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+		<div class="tab-content">
+			{% for item in tabbedarea_tablist_items %}
+				{% set item_tab_id = tabbedarea_id ~ '_tab_' ~ item.tab_key %}
+				{% set is_item_active = (loop.index0 == tabbedarea_active_index) %}
+				<div role="tabpanel" class="tab-pane{{ is_item_active ? ' active' : '' }}" id="{{ item_tab_id }}" data-tab-key="{{ item.tab_key }}">
+					{% block tabbedarea_tabpanel %}
+					{% endblock %}
+				</div>
+			{% endfor %}
+		</div>
+	{% elseif tabbedarea_noitems_hint is not null %}
+		<div class="tabbedarea-noitems-hint">
+			<h4 class="light nomargin-top nomargin-bottom">{{ tabbedarea_noitems_hint }}</h4>
+		</div>
+	{% endif %}
+</div>

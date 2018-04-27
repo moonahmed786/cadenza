@@ -1,0 +1,812 @@
+/* CSS document for extending and/or overriding bootstrap styles */
+
+/* General styles */
+body {
+	font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.tooltip,
+.popover {
+	font-family: Raleway, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.input-num {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Containers (http://getbootstrap.com/css/#overview-container) */
+.container {
+	word-wrap: break-word;
+	min-width: 750px;
+}
+.container-fluid {
+	min-width: 768px;
+}
+.container.container-offset-header {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.container.container-offset-content {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+/* Grid System (http://getbootstrap.com/css/#grid) */
+.row.nogutters {
+	margin-left: 0;
+	margin-right: 0;
+}
+.form-group .row.nogutters {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+.row.nogutters .col-xs-1,
+.row.nogutters .col-sm-1,
+.row.nogutters .col-md-1,
+.row.nogutters .col-lg-1,
+.row.nogutters .col-xs-2,
+.row.nogutters .col-sm-2,
+.row.nogutters .col-md-2,
+.row.nogutters .col-lg-2,
+.row.nogutters .col-xs-3,
+.row.nogutters .col-sm-3,
+.row.nogutters .col-md-3,
+.row.nogutters .col-lg-3,
+.row.nogutters .col-xs-4,
+.row.nogutters .col-sm-4,
+.row.nogutters .col-md-4,
+.row.nogutters .col-lg-4,
+.row.nogutters .col-xs-5,
+.row.nogutters .col-sm-5,
+.row.nogutters .col-md-5,
+.row.nogutters .col-lg-5,
+.row.nogutters .col-xs-6,
+.row.nogutters .col-sm-6,
+.row.nogutters .col-md-6,
+.row.nogutters .col-lg-6,
+.row.nogutters .col-xs-7,
+.row.nogutters .col-sm-7,
+.row.nogutters .col-md-7,
+.row.nogutters .col-lg-7,
+.row.nogutters .col-xs-8,
+.row.nogutters .col-sm-8,
+.row.nogutters .col-md-8,
+.row.nogutters .col-lg-8,
+.row.nogutters .col-xs-9,
+.row.nogutters .col-sm-9,
+.row.nogutters .col-md-9,
+.row.nogutters .col-lg-9,
+.row.nogutters .col-xs-10,
+.row.nogutters .col-sm-10,
+.row.nogutters .col-md-10,
+.row.nogutters .col-lg-10,
+.row.nogutters .col-xs-11,
+.row.nogutters .col-sm-11,
+.row.nogutters .col-md-11,
+.row.nogutters .col-lg-11,
+.row.nogutters .col-xs-12,
+.row.nogutters .col-sm-12,
+.row.nogutters .col-md-12,
+.row.nogutters .col-lg-12 {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+/* Headings (http://getbootstrap.com/css/#type-headings) */
+h1.light,
+h1 > .light,
+h2.light,
+h2 > .light,
+h3.light,
+h3 > .light,
+h4.light,
+h4 > .light,
+h5.light,
+h5 > .light,
+h6.light,
+h6 > .light,
+div.h1.light,
+div.h1 > .light,
+div.h2.light,
+div.h2 > .light,
+div.h3.light,
+div.h3 > .light,
+div.h4.light,
+div.h4 > .light,
+div.h5.light,
+div.h5 > .light,
+div.h6.light,
+div.h6 > .light {
+	color: #777;
+}
+.environment-student h1.section,
+.environment-student h2.section,
+.environment-student h3.section,
+.environment-student h4.section,
+.environment-student h5.section,
+.environment-student h6.section {
+	color: #28a8e0;
+}
+.environment-teacher h1.section,
+.environment-teacher h2.section,
+.environment-teacher h3.section,
+.environment-teacher h4.section,
+.environment-teacher h5.section,
+.environment-teacher h6.section {
+	color: #3f898a;
+}
+.environment-admin h1.section,
+.environment-admin h2.section,
+.environment-admin h3.section,
+.environment-admin h4.section,
+.environment-admin h5.section,
+.environment-admin h6.section {
+	color: #6d6e70;
+}
+div.section-line {
+	overflow: hidden;
+}
+div.section-line h1.section,
+div.section-line h2.section,
+div.section-line h3.section,
+div.section-line h4.section,
+div.section-line h5.section,
+div.section-line h6.section {
+	display: inline-block;
+	padding-right: 8px;
+	position: relative;
+}
+div.section-line h1.section:after,
+div.section-line h2.section:after,
+div.section-line h3.section:after,
+div.section-line h4.section:after,
+div.section-line h5.section:after,
+div.section-line h6.section:after {
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	display: block;
+	width: 1170px; /* max container width */
+	height: 1px;
+	background-color: #999999;
+	content: "";
+}
+.environment-student div.section-line h1.section:after,
+.environment-student div.section-line h2.section:after,
+.environment-student div.section-line h3.section:after,
+.environment-student div.section-line h4.section:after,
+.environment-student div.section-line h5.section:after,
+.environment-student div.section-line h6.section:after {
+	background-color: #28a8e0;
+}
+.environment-teacher div.section-line h1.section:after,
+.environment-teacher div.section-line h2.section:after,
+.environment-teacher div.section-line h3.section:after,
+.environment-teacher div.section-line h4.section:after,
+.environment-teacher div.section-line h5.section:after,
+.environment-teacher div.section-line h6.section:after {
+	background-color: #3f898a;
+}
+.environment-admin div.section-line h1.section:after,
+.environment-admin div.section-line h2.section:after,
+.environment-admin div.section-line h3.section:after,
+.environment-admin div.section-line h4.section:after,
+.environment-admin div.section-line h5.section:after,
+.environment-admin div.section-line h6.section:after {
+	background-color: #6d6e70;
+}
+
+/* Tables (http://getbootstrap.com/css/#tables) */
+.table > tbody > tr > td,
+.table > tbody > tr > th,
+.table > tfoot > tr > td,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > thead > tr > th {
+	vertical-align: middle;
+}
+.table > thead > tr > td,
+.table > thead > tr > th {
+	border-top: 0;
+}
+.table > thead > tr.hint > td,
+.table > thead > tr.hint > th {
+	border-bottom: 0;
+	padding: 0;
+}
+.environment-student .table th {
+	color: #28a8e0;
+	font-weight: normal;
+}
+.environment-teacher .table th {
+	color: #3f898a;
+	font-weight: normal;
+}
+.environment-admin .table th {
+	color: #6d6e70;
+	font-weight: normal;
+}
+.table-striped-double > tbody > tr:nth-of-type(4n-3) {
+	background-color: #f9f9f9;
+}
+.table-striped-double > tbody > tr:nth-of-type(4n-2) {
+	background-color: #f9f9f9;
+}
+.table-striped-manual > tbody > tr.striped {
+	background-color: #f9f9f9;
+}
+
+/* Buttons (http://getbootstrap.com/css/#buttons) */
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+.btn-xl {
+	padding: 16px 23px;
+	font-size: 24px;
+	line-height: 1.3333333;
+	border-radius: 8px;
+}
+.btn-icon {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	width: 40px;
+	height: 40px;
+}
+.btn-icon-sm {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	width: 30px;
+	height: 30px;
+}
+.input-group-addon > .btn-icon {
+	width: 32px;
+	height: 32px;
+}
+.btn-icon.icon-labelled {
+	width: auto;
+}
+.btn-icon.icon-labelled > div.icon-image {
+	width: 40px;
+	height: 40px;
+	line-height: 1;
+	text-align: center;
+}
+.btn-icon.icon-labelled > div.icon-text {
+	line-height: 40px;
+}
+.btn-icon.icon-labelled.label-below > div.icon-image {
+	margin: 0px auto;
+}
+.btn-icon.icon-labelled.label-below > div.icon-text {
+	line-height: 1;
+}
+.environment-student a.btn-icon {
+	color: #28a8e0;
+}
+.environment-student a.btn-icon:hover,
+.environment-student a.btn-icon:focus {
+	color: #1b8aba;
+}
+.environment-teacher a.btn-icon {
+	color: #3f898a;
+}
+.environment-teacher a.btn-icon:hover,
+.environment-teacher a.btn-icon:focus {
+	color: #357273;
+}
+.environment-admin a.btn-icon {
+	color: #6d6e70;
+}
+.environment-admin a.btn-icon:hover,
+.environment-admin a.btn-icon:focus {
+	color: #5d5e5f;
+}
+.environment-student .has-error a.btn-icon,
+.environment-teacher .has-error a.btn-icon,
+.environment-admin .has-error a.btn-icon {
+	color: #a94442;
+}
+.environment-student .has-error a.btn-icon:hover,
+.environment-student .has-error a.btn-icon:focus,
+.environment-teacher .has-error a.btn-icon:hover,
+.environment-teacher .has-error a.btn-icon:focus,
+.environment-admin .has-error a.btn-icon:hover,
+.environment-admin .has-error a.btn-icon:focus {
+	color: #913a39;
+}
+a.btn-icon.inverse {
+	color: #f0f0f0;
+}
+a.btn-icon.inverse:hover,
+a.btn-icon.inverse:focus {
+	color: #ffffff;
+}
+a.btn-icon-sm {
+	color: #333;
+}
+a.btn-icon-sm:hover,
+a.btn-icon-sm:focus {
+	color: #000000;
+}
+.btn-danger {
+	color: #f0f0f0;
+	background-color: #eb1c24;
+	border-color: #d3131a;
+}
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger.focus,
+.btn-danger:active,
+.btn-danger.active,
+.btn-danger:active:hover,
+.btn-danger.active:hover,
+.btn-danger:active:focus,
+.btn-danger.active:focus,
+.btn-danger:active.focus,
+.btn-danger.active.focus {
+	color: #ffffff;
+	background-color: #d3131a;
+	border-color: #d3131a;
+}
+.btn-success {
+	color: #f0f0f0;
+	background-color: #8cc540;
+	border-color: #7baf35;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success.focus,
+.btn-success:active,
+.btn-success.active,
+.btn-success:active:hover,
+.btn-success.active:hover,
+.btn-success:active:focus,
+.btn-success.active:focus,
+.btn-success:active.focus,
+.btn-success.active.focus {
+	color: #ffffff;
+	background-color: #7baf35;
+	border-color: #7baf35;
+}
+.btn-warning {
+	color: #f0f0f0;
+	background-color: #fbaf41;
+	border-color: #faa121;
+}
+.btn-warning:hover,
+.btn-warning:focus,
+.btn-warning.focus,
+.btn-warning:active,
+.btn-warning.active,
+.btn-warning:active:hover,
+.btn-warning.active:hover,
+.btn-warning:active:focus,
+.btn-warning.active:focus,
+.btn-warning:active.focus,
+.btn-warning.active.focus {
+	color: #ffffff;
+	background-color: #faa121;
+	border-color: #faa121;
+}
+.btn-reflection {
+	color: #f0f0f0;
+	background-color: #167394;
+	border-color: #0f5168;
+}
+.btn-reflection:hover,
+.btn-reflection:focus,
+.btn-reflection.focus,
+.btn-reflection:active,
+.btn-reflection.active,
+.btn-reflection:active:hover,
+.btn-reflection.active:hover,
+.btn-reflection:active:focus,
+.btn-reflection.active:focus,
+.btn-reflection:active.focus,
+.btn-reflection.active.focus {
+	color: #ffffff;
+	background-color: #0f5168;
+	border-color: #0f5168;
+}
+.btn-login {
+	color: #f0f0f0;
+	background-color: #e76140;
+	border-color: #d9411b;
+}
+.btn-login:hover,
+.btn-login:focus,
+.btn-login.focus,
+.btn-login:active,
+.btn-login.active,
+.btn-login:active:hover,
+.btn-login.active:hover,
+.btn-login:active:focus,
+.btn-login.active:focus,
+.btn-login:active.focus,
+.btn-login.active.focus {
+	color: #ffffff;
+	background-color: #d9411b;
+	border-color: #d9411b;
+}
+.environment-student .btn-default {
+	color: #f0f0f0;
+	background-color: #28a8e0;
+	border-color: #1b8aba;
+}
+.environment-teacher .btn-default {
+	color: #f0f0f0;
+	background-color: #3f898a;
+	border-color: #357273;
+}
+.environment-admin .btn-default {
+	color: #f0f0f0;
+	background-color: #6d6e70;
+	border-color: #5d5e5f;
+}
+.environment-student .btn-default:hover,
+.environment-student .btn-default:focus,
+.environment-student .btn-default.focus,
+.environment-student .btn-default:active,
+.environment-student .btn-default.active,
+.environment-student .btn-default:active:hover,
+.environment-student .btn-default.active:hover,
+.environment-student .btn-default:active:focus,
+.environment-student .btn-default.active:focus,
+.environment-student .btn-default:active.focus,
+.environment-student .btn-default.active.focus,
+.environment-student .open > .dropdown-toggle.btn-default {
+	color: #ffffff;
+	background-color: #1b8aba;
+	border-color: #1b8aba;
+}
+.environment-teacher .btn-default:hover,
+.environment-teacher .btn-default:focus,
+.environment-teacher .btn-default.focus,
+.environment-teacher .btn-default:active,
+.environment-teacher .btn-default.active,
+.environment-teacher .btn-default:active:hover,
+.environment-teacher .btn-default.active:hover,
+.environment-teacher .btn-default:active:focus,
+.environment-teacher .btn-default.active:focus,
+.environment-teacher .btn-default:active.focus,
+.environment-teacher .btn-default.active.focus,
+.environment-teacher .open > .dropdown-toggle.btn-default {
+	color: #ffffff;
+	background-color: #357273;
+	border-color: #357273;
+}
+.environment-admin .btn-default:hover,
+.environment-admin .btn-default:focus,
+.environment-admin .btn-default.focus,
+.environment-admin .btn-default:active,
+.environment-admin .btn-default.active,
+.environment-admin .btn-default:active:hover,
+.environment-admin .btn-default.active:hover,
+.environment-admin .btn-default:active:focus,
+.environment-admin .btn-default.active:focus,
+.environment-admin .btn-default:active.focus,
+.environment-admin .btn-default.active.focus,
+.environment-admin .open > .dropdown-toggle.btn-default {
+	color: #ffffff;
+	background-color: #5d5e5f;
+	border-color: #5d5e5f;
+}
+
+/* Input Groups (http://getbootstrap.com/components/#input-groups) */
+.input-group-btn:first-child > .btn,
+.input-group-btn:first-child > .btn-group {
+	margin-right: 0;
+}
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group {
+	margin-left: 0;
+}
+.input-group-btn .btn.nopadding {
+	height: 34px;
+}
+.input-group-addon.addon-icon {
+	padding: 0px 2px;
+}
+.input-group-btn.open .dropdown-menu > li > a > i,
+.input-group-btn.open .dropdown-menu > li > a > span > i {
+	width: 16px;
+}
+.input-group-btn > .btn-group-vertical.btn-group-xs > .btn {
+	width: 23px;
+	height: 23px;
+	padding-top: 2px;
+}
+.input-group-btn > .btn-group-vertical.btn-group-xs > .btn + .btn {
+	margin-top: 0px;
+}
+.input-group-btn > .btn-group-vertical > .btn:first-child:not(:last-child) {
+	border-top-left-radius: 0px;
+}
+.input-group-btn > .btn-group-vertical > .btn:last-child:not(:first-child) {
+	border-bottom-left-radius: 0px;
+}
+
+/* Navbars (http://getbootstrap.com/components/#navbar) */
+.navbar {
+	border-width: 0;
+	border-radius: 0;
+}
+.navbar .navbar-nav {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.navbar .navbar-brand {
+	padding: 10px 15px;
+	height: 60px;
+}
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:focus {
+	background-color: transparent;
+}
+.navbar .navbar-nav > li > a.navbar-link {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.navbar .navbar-nav > li > a.navbar-link > div.icon-notifications {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	font-size: 32px;
+	padding-top: 4px;
+	position: relative;
+}
+.navbar .navbar-nav > li > a.navbar-link  > div.icon-notifications .badge {
+	position: absolute;
+	top: 3px;
+	right: -3px;
+}
+.navbar .navbar-nav > li > a.dropdown-toggle {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.navbar .navbar-nav > li > a.dropdown-toggle > div.toggle-icon > div.icon-rewards {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	font-size: 36px;
+	padding-top: 2px;
+}
+.navbar .navbar-nav > li > a.dropdown-toggle > div.toggle-icon > div.icon-search {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 34px;
+    padding-top: 2px;
+    position: relative;
+}
+.navbar .navbar-nav > li > a.dropdown-toggle > div.toggle-icon > div.icon-menu {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	font-size: 36px;
+	padding-top: 2px;
+}
+.navbar .navbar-nav > li > a.dropdown-toggle > div.toggle-icon > div.icon-image {
+	width: 40px;
+	height: 40px;
+	border: 1px solid #f0f0f0;
+	border-radius: 4px;
+	overflow: hidden;
+}
+.navbar .navbar-nav > li > a.dropdown-toggle > div.toggle-icon > div.icon-text {
+	line-height: 40px;
+}
+.navbar .navbar-nav .dropdown-menu.rewards {
+	padding: 10px;
+}
+.navbar .navbar-nav .dropdown-menu.notifications {
+	padding: 0px;
+}
+.navbar .navbar-brand > .icon-home {
+	width: 40px;
+	height: 40px;
+	text-align: center;
+	font-size: 36px;
+	padding-top: 2px;
+	margin-right: 12px;
+}
+.navbar .navbar-brand,
+.navbar .navbar-text,
+.navbar .navbar-nav > li > a,
+.navbar .navbar-link {
+	color: #f0f0f0;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus,
+.navbar .navbar-nav > li > a:hover,
+.navbar .navbar-nav > li > a:focus,
+.navbar .navbar-link:hover,
+.navbar .navbar-nav > .active > a,
+.navbar .navbar-nav > .active > a:hover,
+.navbar .navbar-nav > .active > a:focus,
+.navbar .navbar-nav > .open > a,
+.navbar .navbar-nav > .open > a:hover,
+.navbar .navbar-nav > .open > a:focus,
+.navbar .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar .navbar-nav .open .dropdown-menu > li > a:focus  {
+	color: #ffffff;
+}
+.navbar .navbar-nav .open .dropdown-menu > li > a > i {
+	width: 24px;
+}
+.navbar .navbar-nav > .disabled > a,
+.navbar .navbar-nav > .disabled > a:hover,
+.navbar .navbar-nav > .disabled > a:focus {
+	color: #cccccc;
+}
+.navbar-default.navbar-fluid-background,
+.navbar-default .container,
+.navbar-default .container-fluid,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	background-color: #999999;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+	background-color: #888888;
+}
+
+.environment-student .navbar-default.navbar-fluid-background,
+.environment-student .navbar-default .container,
+.environment-student .navbar-default .container-fluid,
+.environment-student .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.environment-student .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	background-color: #28a8e0;
+}
+.environment-student .navbar-default .navbar-nav > .active > a,
+.environment-student .navbar-default .navbar-nav > .active > a:hover,
+.environment-student .navbar-default .navbar-nav > .active > a:focus,
+.environment-student .navbar-default .navbar-nav > .open > a,
+.environment-student .navbar-default .navbar-nav > .open > a:hover,
+.environment-student .navbar-default .navbar-nav > .open > a:focus {
+	background-color: #1b8aba;
+}
+
+.environment-teacher .navbar-default.navbar-fluid-background,
+.environment-teacher .navbar-default .container,
+.environment-teacher .navbar-default .container-fluid,
+.environment-teacher .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.environment-teacher .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	background-color: #3f898a;
+}
+.environment-teacher .navbar-default .navbar-nav > .active > a,
+.environment-teacher .navbar-default .navbar-nav > .active > a:hover,
+.environment-teacher .navbar-default .navbar-nav > .active > a:focus,
+.environment-teacher .navbar-default .navbar-nav > .open > a,
+.environment-teacher .navbar-default .navbar-nav > .open > a:hover,
+.environment-teacher .navbar-default .navbar-nav > .open > a:focus {
+	background-color: #357273;
+}
+
+.environment-admin .navbar-default.navbar-fluid-background,
+.environment-admin .navbar-default .container,
+.environment-admin .navbar-default .container-fluid,
+.environment-admin .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+.environment-admin .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+	background-color: #6d6e70;
+}
+.environment-admin .navbar-default .navbar-nav > .active > a,
+.environment-admin .navbar-default .navbar-nav > .active > a:hover,
+.environment-admin .navbar-default .navbar-nav > .active > a:focus,
+.environment-admin .navbar-default .navbar-nav > .open > a,
+.environment-admin .navbar-default .navbar-nav > .open > a:hover,
+.environment-admin .navbar-default .navbar-nav > .open > a:focus {
+	background-color: #5d5e5f;
+}
+
+/* Badges (http://getbootstrap.com/components/#badges) */
+.badge {
+	background-color: #ee2430;
+	padding: 3px 6px;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* Carousels (http://getbootstrap.com/javascript/#carousel) */
+.carousel-inner {
+	height: 500px;
+}
+.carousel-indicators li {
+	background-color: #DDD;
+	border: 1px solid #999999;
+}
+.environment-student .carousel-indicators .active {
+	background-color: #28a8e0;
+}
+.environment-teacher .carousel-indicators .active {
+	background-color: #3f898a;
+}
+.environment-admin .carousel-indicators .active {
+	background-color: #6d6e70;
+}
+.carousel-control {
+	opacity: 1;
+	filter: alpha(opacity=100);
+	text-shadow: none;
+}
+.carousel-control:hover,
+.carousel-control:focus {
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+.carousel-control.left,
+.carousel-control.right {
+	background-image: none;
+}
+.carousel-control .icon-prev:before {
+	content: "";
+}
+.carousel-control .icon-next:before {
+	content: "";
+}
+
+/* Modals (http://getbootstrap.com/javascript/#modals) */
+.modal .modal-dialog {
+	min-width: 600px;
+}
+.modal .modal-dialog.modal-sm {
+	min-width: 300px;
+}
+.modal .close {
+	height: 30px;
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.modal .close:hover,
+.modal .close:focus {
+	filter: alpha(opacity=100);
+	opacity: 1;
+}
+.environment-student .modal .modal-header {
+	background-color: #28a8e0;
+	color: #f0f0f0;
+}
+.environment-teacher .modal .modal-header {
+	background-color: #3f898a;
+	color: #f0f0f0;
+}
+.environment-admin .modal .modal-header {
+	background-color: #6d6e70;
+	color: #f0f0f0;
+}
+.modal-body {
+	overflow-y: auto;
+	max-height: 500px;
+}
+@media (min-height: 768px) {
+	.modal-body {
+		max-height: 650px;
+	}
+}
+@media (min-height: 992px) {
+	.modal-body {
+		max-height: 1110px;
+	}
+}
+.modal-lg .modal-body {
+	min-height: 180px;
+}
+
+/* Dropdowns (http://getbootstrap.com/javascript/#dropdowns) */
+.dropdown-menu > li > a.btn {
+	font-size: 18px;
+	text-align: left;
+	border-radius: 0;
+}
+.dropdown-menu > li > a.btn.btn-icon.icon-labelled {
+	padding: 3px 15px;
+	height: 46px;
+}

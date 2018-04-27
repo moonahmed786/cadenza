@@ -1,0 +1,139 @@
+{% extends "admin_components/table.html.twig" %}
+
+{# IMPORTANT: This component can be refreshed using AdminComponents::renderTableListOfReports,
+so if the parameters of this template change, make sure to update that function! #}
+
+{% set has_rows = (page_admin_reports|length > 0) %}
+
+{% set table_id = 'id_table_list_of_reports' %}
+{% set table_class = 'table table-striped-manual' %}
+{% set thead_class = '' %}
+{% set tfoot_class = '' %}
+{% set tbody_class = 'h4' %}
+{% set has_thead = true %}
+{% set has_tfoot = has_rows %}
+{% set has_tbody = has_rows %}
+
+{% block table_head %}
+	{% if not has_rows %}
+		<tr class="hint">
+			{% if filter_report_type == 'resolved' %}
+				<th colspan="4"><h4 class="light nomargin-top">{{ TEXT.hint['no_reports_resolved'] }}.</h4></th>
+			{% elseif filter_report_type == 'unresolved' %}
+				<th colspan="4"><h4 class="light nomargin-top">{{ TEXT.hint['no_reports_unresolved'] }}.</h4></th>
+			{% else %}
+				<th colspan="4"><h4 class="light nomargin-top">{{ TEXT.hint['no_reports'] }}.</h4></th>
+			{% endif %}
+		</tr>
+	{% else %}
+	    <tr>
+	    	<th class="report-date">
+	        	{% if sortable_options['date'] %}
+	    			{% include 'widgets/sortable_label.html.twig' with { 'sortable':sortable_options['date'] } only %}
+	        	{% endif %}
+	    	</th>
+	    	<th class="toggle-showhide">&nbsp;</th>
+	    	<th>
+	    		{{ TEXT.label['reported_by'] }}
+	    	</th>
+	    	<th class="report-type">
+	    		{{ TEXT.label['type'] }}
+	    	</th>
+	    </tr>
+    {% endif %}
+{% endblock %}
+
+{% block table_foot %}
+	<tr>
+		<th colspan="4">{% include 'widgets/pagination.html.twig' with { 'pagination':pagination } only %}</th>
+	</tr>
+{% endblock %}
+
+{% block table_body %}
+	{% set report_num = 0 %}
+	{% for admin_report in page_admin_reports %}
+		{% set report_num = report_num + 1 %}
+		{% set stripe_class = report_num is odd ? 'striped' : '' %}
+		{% set is_reporter_deleted = admin_report.reporter_user_status == 'deleted' %}
+		{% set is_reporter_blocked = admin_report.reporter_user_status == 'blocked' %}
+		{% set is_reported_deleted = admin_report.reported_user_status == 'deleted' %}
+		{% set is_reported_blocked = admin_report.reported_user_status == 'blocked' %}
+		<tr class="report {{ stripe_class }}" data-admin-report-id="{{ admin_report.admin_report_id }}">
+			<td>{{ admin_report.report_date_local|date("Y-m-d") }}{% if admin_report.is_resolved %}{{ ' (' ~ TEXT.label['resolved'] ~ ')' }}{% endif %}</td>
+			<td class="toggle-showhide">
+	        	<a href="#" class="btn btn-icon icon-toggle-showhide" data-show="1" aria-label="{{ TEXT.label['showhide_report'] }}">{{ ICONS.btn['toggle_show']|raw }}</a>
+	        </td>
+	        <td>
+	        	<div class="row reportedby">
+	        		<div class="col-xs-12 col-lg-2">
+	        			<span class="prompt">{{ TEXT.label['user_id'] ~ TEXT.label[':'] }}</span>
+	        			{{ admin_report.reporter_uid }}
+	        		</div>
+	        		<div class="col-xs-12 col-lg-5">
+	        			<span class="prompt">{{ TEXT.label['email'] ~ TEXT.label[':'] }}</span>
+	        			{% if is_reporter_deleted %}
+	        				<span class="user-status-deleted">{{ TEXT.label['deleted'] }}</span>
+	        			{% else %}
+	        				{{ admin_report.reporter_email }}
+	        				{% if is_reporter_blocked %}
+	        					<span class="user-status-blocked">{{ '(' ~ TEXT.label['blocked'] ~ ')' }}</span>
+	        				{% endif %}
+	        			{% endif %}
+	        		</div>
+	        		<div class="col-xs-12 col-lg-5">
+	        			<span class="prompt">{{ TEXT.label['name'] ~ TEXT.label[':'] }}</span>
+	        			{{ admin_report.reporter_name }}
+	        		</div>
+	        	</div>
+	        </td>
+	        <td>{{ TEXT.label['report_type_' ~ admin_report.report_type] }}</td>
+		</tr>
+		<tr class="report-details {{ stripe_class }} hidden" data-admin-report-id="{{ admin_report.admin_report_id }}">
+			<td colspan="3">
+				<div class="report-details-info">
+					<p class="report-heading">
+						{% if admin_report.report_type == 'delete' %}
+							{{ TEXT.account['requested_delete'] }}
+						{% else %}
+							{{ TEXT.account['reported_issue_against'] }}
+						{% endif %}
+					</p>
+					{% if admin_report.reported_uid is not null %}
+						<p>
+							<span class="prompt">{{ TEXT.label['user_id'] ~ TEXT.label[':'] }}</span>
+							{{ admin_report.reported_uid }}
+						</p>
+						<p>
+							<span class="prompt">{{ TEXT.label['email'] ~ TEXT.label[':'] }}</span>
+							{% if is_reported_deleted %}
+								<span class="user-status-deleted">{{ TEXT.label['deleted'] }}</span>
+							{% else %}
+								{{ admin_report.reported_email }}
+								{% if is_reported_blocked %}
+									<span class="user-status-blocked">{{ '(' ~ TEXT.label['blocked'] ~ ')' }}</span>
+								{% endif %}
+							{% endif %}
+						</p>
+						<p>
+							<span class="prompt">{{ TEXT.label['name'] ~ TEXT.label[':'] }}</span>
+							{{ admin_report.reporter_name }}
+						</p>
+					{% endif %}
+					<p class="pre-line"><u>{{ TEXT.label['details:'] }}</u><br />{{ admin_report.report_text }}</p>
+				</div>
+			</td>
+			<td>
+				{% if admin_report.reported_uid is not null %}
+					<a href="#" class="btn btn-default btn-block view-reported{% if is_reported_deleted %} disabled{% endif %}" data-reported-uid="{{ admin_report.reported_uid }}">{{ TEXT.label['view_reported'] }}</a>
+				{% endif %}
+				<a href="#" class="btn btn-default btn-block view-reporter{% if is_reporter_deleted %} disabled{% endif %}" data-reporter-uid="{{ admin_report.reporter_uid }}">{{ TEXT.label['view_reporter'] }}</a>
+				{% if not admin_report.is_resolved %}
+					<a href="#" class="btn btn-default btn-block mark-resolved" data-admin-report-id="{{ admin_report.admin_report_id }}">{{ TEXT.label['mark_as_resolved'] }}</a>
+				{% endif %}
+			</td>
+		</tr>
+	{% endfor %}
+{% endblock %}
+
+{% block table_modals %}
+{% endblock %}

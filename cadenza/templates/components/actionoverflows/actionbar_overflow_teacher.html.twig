@@ -1,0 +1,44 @@
+{% extends "components/actionoverflow.html.twig" %}
+
+{% set actionoverflow_id = 'id_actionoverflow_actionbar_overflow_teacher' %}
+{% set actionoverflow_dropdown_class = 'dropdown' %}
+{% set hidden = false %}
+{% set inverse = false %}
+
+{% block actionoverflow_list_items %}
+	<li class="hide-md">
+		<a href="#" class="btn btn-icon icon-labelled{% if is_edit_lesson %} disabled{% endif %}" id="{{ actionoverflow_id }}_new_btn" data-student-id="{{ student.uid }}">
+			<div class="floatleft icon-image icon-new" id="{{ actionoverflow_id }}_new_icon">{{ ICONS.btn['new']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['new_lesson'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+	<li class="hide-md">
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionoverflow_id }}_notes_btn" data-student-id="{{ student.uid }}" data-student-name="{{ student.name }}">
+			<div class="floatleft icon-image icon-notes" id="{{ actionoverflow_id }}_notes_icon">{{ ICONS.btn['notes']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['notes'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+	<li class="hide-md">
+		<a href="#" class="btn btn-icon icon-labelled" id="{{ actionoverflow_id }}_goals_btn" data-linked-user-id="{{ student.uid }}">
+			<div class="floatleft icon-image icon-goals" id="{{ actionoverflow_id }}_goals_icon">{{ ICONS.btn['goals']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['goals'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+	<li>
+		<a href="#" class="btn btn-icon icon-labelled{% if is_edit_lesson or not is_link_connected %} disabled{% endif %}" id="{{ actionoverflow_id }}_disconnect_btn" data-connected-user-id="{{ student.uid }}" data-connected-user-user-type="{{ student.user_type }}">
+			<div class="floatleft icon-image icon-disconnect" id="{{ actionoverflow_id }}_disconnect_icon">{{ ICONS.btn['disconnect']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['disconnect_student'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+	<li>
+		<a href="#" class="btn btn-icon icon-labelled{% if not is_link_connected %} disabled{% endif %}" id="{{ actionoverflow_id }}_report_btn" data-connected-user-id="{{ student.uid }}" data-connected-user-name="{{ student.name }}" data-connected-user-user-type="{{ student.user_type }}">
+			<div class="floatleft icon-image icon-report" id="{{ actionoverflow_id }}_report_icon">{{ ICONS.btn['report']|raw }}</div>
+			<div class="floatleft icon-text h4 nomargin">{{ TEXT.label['report_an_issue'] }}</div>
+			<div class="clear"></div>
+		</a>
+	</li>
+{% endblock %}

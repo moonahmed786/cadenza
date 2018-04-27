@@ -1,0 +1,17 @@
+{% extends "teacher.html.twig" %}
+
+{% set js_components = [
+	'modals/add_students',
+	'modals/notes_on_student',
+	'navbars/teacher',
+	'tables/list_of_invites',
+	'tables/list_of_students'
+] %}
+
+{% block body %}
+	{% include 'components/navbars/teacher.html.twig' with { 'navbar_data':navbar_data } only %}
+	<div class="container container-offset-content">
+		<h1>{{ TEXT.label['list_of_students'] }}</h1>
+		{% include 'components/tables/list_of_students.html.twig' with { 'user':user, 'page_students':page_students, 'page_lesson_counts':page_lesson_counts, 'pagination':pagination, 'sortable_options':sortable_options } only %}
+	</div>
+{% endblock %}
