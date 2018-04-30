@@ -11,11 +11,11 @@ modules:
         - \Helper\Functional
         - PhpBrowser:
             url: http://www.queen-music.com/pages
-        - Db:
-           dsn: 'mysql:host=localhost;dbname=cadenza_test'
-           user: 'root'
-           password: ''
-           dump: 'tests/_data/cadenza.sql'
-           populate: true # run populator before all tests
-           cleanup: true # run populator before each test
-           populator: 'mysql -u $user -h $host $dbname < $dump'
+        # - Db:
+        #    dsn: 'mysql:host=localhost;dbname=cadenza_test'
+        #    user: 'root'
+        #    password: ''
+        #    dump: 'tests/_data/cadenza.sql'
+        #    populate: true # run populator before all tests
+        #    cleanup: true # run populator before each test
+        #    populator: 'mysql -u $user -h $host $dbname < $dump'
