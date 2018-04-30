@@ -3,3 +3,5 @@ config.prod.php
 cadenza/twig_cache/*
 cadenza/files/*
 _cadenza/Core.php
+vendor/*
+tests/_output/*
